@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Attack.cs" />
+    <Compile Include="Assets\Scripts\AttackList.cs" />
     <Compile Include="Assets\Scripts\CombatManager.cs" />
     <Compile Include="Assets\Scripts\Wrestler.cs" />
     <Reference Include="Unity.Timeline.Editor">

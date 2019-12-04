@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack
+public struct Attack
 {
     string attackName;
     int damage;
-    bool infoSet = false;
+    string type;
 
     public int Damage
     {
@@ -17,32 +17,15 @@ public class Attack
     {
         get { return attackName; }
     }
-
-    // Start is called before the first frame update
-    void Start()
+    public string Type
     {
-        
+        get { return type; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Attack(string name, int damage, string type)
     {
-        
-    }
-
-    public void SetAttackInfo(string name, int damage)
-    {
-        //Checks to see if the info has already been set
-        if (!infoSet)
-        {
-            //Sets attack name and damage
-            attackName = name;
-            this.damage = damage;
-        }
-        else
-        {
-            //Logs an error for trying to set the information more than once
-            Debug.Log("Attack information already set!");
-        }
+        this.attackName = name;
+        this.damage = damage;
+        this.type = type;
     }
 }

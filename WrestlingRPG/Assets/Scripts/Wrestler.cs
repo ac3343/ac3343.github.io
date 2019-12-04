@@ -7,6 +7,7 @@ public class Wrestler : MonoBehaviour
     public string wrestlerName;
     int health;
     public List<Attack> learnedAttacks = new List<Attack>();
+    public Dictionary<string, Attack> knownAttacks = new Dictionary<string, Attack>();
 
     public int Health
     {
@@ -39,5 +40,7 @@ public class Wrestler : MonoBehaviour
     {
         //Adds learnedAttack to list of learned attacks
         learnedAttacks.Add(learnedAttack);
+
+        knownAttacks.Add(learnedAttack.Name, learnedAttack);
     }
 }
