@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Wrestler : MonoBehaviour
 {
+    
+    //Fields
     public string wrestlerName;
     int health;
+    
+    //Attacks
     public List<Attack> learnedAttacks = new List<Attack>();
     public Dictionary<string, Attack> knownAttacks = new Dictionary<string, Attack>();
+
+    //Taunts
+    public List<Taunt> learnedTaunts = new List<Taunt>();
+    public Dictionary<string, Taunt> knownTaunts = new Dictionary<string, Taunt>();
 
     public int Health
     {
@@ -42,5 +50,13 @@ public class Wrestler : MonoBehaviour
         learnedAttacks.Add(learnedAttack);
 
         knownAttacks.Add(learnedAttack.Name, learnedAttack);
+    }
+
+    public void LearnTaunt(Taunt learnedTaunt)
+    {
+        //Adds learnedAttack to list of learned attacks
+        learnedTaunts.Add(learnedTaunt);
+
+        knownTaunts.Add(learnedTaunt.Name, learnedTaunt);
     }
 }

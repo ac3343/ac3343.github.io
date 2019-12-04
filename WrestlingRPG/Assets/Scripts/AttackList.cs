@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackList
 {
     //List of attacks
-    static Attack punch = new Attack("Punch", 4, "Strike");
+    static Attack punch = new Attack("Punch", 4, "Strike", 4);
 
     //Attack Properties
     public static Attack Punch
