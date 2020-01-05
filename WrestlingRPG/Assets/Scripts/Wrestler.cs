@@ -44,6 +44,11 @@ public class Wrestler : MonoBehaviour
             health = 0;
     }
 
+    public void Rest()
+    {
+        //Recovers some health
+        health += 2;
+    }
     public void LearnAttack(Attack learnedAttack)
     {
         //Adds learnedAttack to list of learned attacks

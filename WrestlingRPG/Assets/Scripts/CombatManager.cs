@@ -370,7 +370,6 @@ public class CombatManager : MonoBehaviour
         if (currentTurnCost + selectionCost < maxTurnCost)
         {
             currentTurnCost += selectionCost;
-            //commandMenu.Add(currentSelection);
             commandMenu.Insert(commandMenu.Count - 1, currentSelection);
             commandChain.Add(currentSelection);
         }
@@ -384,6 +383,15 @@ public class CombatManager : MonoBehaviour
     {
         //Gets current selection
         string currentSelection = currentMenu[selectedOption];
+
+        //Ends turn if the end turn option is selected
+        if(currentSelection == endTurnOption)
+        {
+            EndTurn(player, enemy, commandChain, CombatStates.EnemyTurn);
+
+            //Returns function
+            return;
+        }
 
         //Selection cost variable
         int selectionCost = 0;
@@ -409,8 +417,40 @@ public class CombatManager : MonoBehaviour
                 break;
         }
         currentTurnCost -= selectionCost;
-        //commandMenu.Add(currentSelection);
         commandMenu.Remove(currentSelection);
         commandChain.Remove(currentSelection);
+    }
+
+    void EndTurn(Wrestler currentWrestler, Wrestler target, List<string> commands, CombatStates nextTurn)
+    {
+        Debug.Log("Turn ended");
+
+        string turnString = currentWrestler.wrestlerName + " ";
+
+        foreach(string command in commands)
+        {
+            switch (command)
+            {
+                case "Rest":
+                    currentWrestler.Rest();
+                    turnString += "recovered health ";
+                    break;
+                case "Set Up":
+                    turnString += "set up opponent ";
+                    break;
+                default:
+                    if (currentWrestler.knownTaunts.ContainsKey(command))
+                    {
+                        
+                    }
+                    else if (currentWrestler.knownAttacks.ContainsKey(command))
+                    {
+
+                    }
+                    break;
+            }
+        }
+        
+        currentState = CombatStates.EnemyTurn;
     }
 }
