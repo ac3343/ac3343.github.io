@@ -244,13 +244,7 @@ public class CombatManager : MonoBehaviour
                     Attack selectedAttack = enemy.learnedAttacks[0];
 
                     //Undergoes the wrestler turn
-                    WrestlerTurn(enemy, player, selectedAttack, CombatStates.PlayerTurn);
-
-                    //Sets current menu to default menu
-                    currentMenu = menu;
-
-                    //Resets selected option
-                    selectedOption = 0;
+                    WrestlerTurn(enemy, player, selectedAttack, CombatStates.PlayerTurn);                    
                 }
                 break;
             case CombatStates.DamageDealt:
@@ -296,7 +290,7 @@ public class CombatManager : MonoBehaviour
                     GUI.color = i == selectedOption && currentMenu == commandMenu ? Color.yellow : Color.white;
 
                     //Prints menu options out to screen
-                    GUI.Label(new Rect(250 , 250 + 50 * i, 200, 50), commandMenu[i]);
+                    GUI.Label(new Rect(250 , 250 + 25 * i, 200, 50), commandMenu[i]);
                 }
                 break;
             case CombatStates.EnemyTurn:
@@ -423,9 +417,9 @@ public class CombatManager : MonoBehaviour
 
     void EndTurn(Wrestler currentWrestler, Wrestler target, List<string> commands, CombatStates nextTurn)
     {
-        Debug.Log("Turn ended");
-
         string turnString = currentWrestler.wrestlerName + " ";
+
+        Taunt.AttackEffect attackModifier = null;
 
         foreach(string command in commands)
         {
@@ -433,24 +427,66 @@ public class CombatManager : MonoBehaviour
             {
                 case "Rest":
                     currentWrestler.Rest();
-                    turnString += "recovered health ";
+                    turnString += "recovered health\n";
                     break;
                 case "Set Up":
-                    turnString += "set up opponent ";
+                    turnString += "set up opponent\n";
                     break;
                 default:
                     if (currentWrestler.knownTaunts.ContainsKey(command))
                     {
-                        
+                        //Sets attack modifier
+                        attackModifier = currentWrestler.knownTaunts[command].AttackModifier;
+
+                        turnString += "uses " + currentWrestler.knownTaunts[command].Name + "\n";
                     }
                     else if (currentWrestler.knownAttacks.ContainsKey(command))
                     {
+                        //Gets damage of selected attack
+                        int damage = currentWrestler.knownAttacks[command].Damage;
+                        //Modifies damage
+                        if (attackModifier != null)
+                        {
+                            damage = attackModifier(damage);
+                            attackModifier = null;
+                        }
 
+                        //Deals damage
+                        target.TakeDamage(damage);
+
+                        turnString += "uses " + currentWrestler.knownAttacks[command].Name + " and deals " + damage + " damage\n";
                     }
                     break;
             }
+
         }
-        
-        currentState = CombatStates.EnemyTurn;
+
+        //Sets action message to turn string
+        actionMessage = turnString;
+        //Resets player data
+        ResetPlayerData();
+
+        //Goes to next state
+        currentState = nextTurn;
+    }
+
+    void ResetPlayerData()
+    {
+        //Clears commands
+        commandChain.Clear();
+
+        //Clears command menu
+        commandMenu.Clear();
+        commandMenu.Add(endTurnOption);
+
+        //Resets turn cose
+        currentTurnCost = 0;
+
+        //Sets current menu to the default menu
+        currentMenu = menu;
+        displayedMenu = currentMenu;
+
+        //Resets selected option
+        selectedOption = 0;
     }
 }

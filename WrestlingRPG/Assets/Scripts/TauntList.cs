@@ -5,7 +5,7 @@ using UnityEngine;
 public class TauntList
 {
     //Taunts
-    static Taunt roar = new Taunt("Roar", "Boosts attack", 3, new Taunt.BoostEffect(BoostAttackBy));
+    static Taunt roar = new Taunt("Roar", "Boosts attack", 3, new Taunt.AttackEffect(DoubleAttackPower));
     
 
     //Taunt properties
@@ -14,8 +14,8 @@ public class TauntList
         get { return roar; }
     }
     //Taunt methods
-    static int BoostAttackBy(int attackMultiplier)
+    static int DoubleAttackPower(int attackValue)
     {
-        return attackMultiplier;
+        return attackValue * 2;
     }
 }

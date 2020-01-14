@@ -10,8 +10,8 @@ public class Taunt
     int cost;
 
     //Effect delegates and instances
-    public delegate int BoostEffect (int multiplier);
-    BoostEffect boostFunction;
+    public delegate int AttackEffect (int attackValue);
+    AttackEffect boostAttack;
     public delegate void UniqueEffect();
     UniqueEffect uniqueFunction;
 
@@ -31,9 +31,9 @@ public class Taunt
         get { return cost; }
     }
 
-    public BoostEffect NumEffect
+    public AttackEffect AttackModifier
     {
-        get { if (boostFunction != null) return boostFunction; else return null; }
+        get { if (boostAttack != null) return boostAttack; else return null; }
     }
 
     public UniqueEffect OtherEffect
@@ -42,7 +42,7 @@ public class Taunt
     }
 
     //Constructor
-    public Taunt(string name, string description, int cost, BoostEffect effectFunction)
+    public Taunt(string name, string description, int cost, AttackEffect effectFunction)
     {
         //Sets up fields
         this.name = name;
@@ -50,7 +50,7 @@ public class Taunt
         this.cost = cost;
 
         //Sets effect function
-        boostFunction = effectFunction;
+        boostAttack = effectFunction;
         uniqueFunction = null;
     }
 
@@ -62,7 +62,7 @@ public class Taunt
         this.cost = cost;
 
         //Sets effect function
-        boostFunction = null;
+        boostAttack = null;
         uniqueFunction = effectFunction;
     }
 
