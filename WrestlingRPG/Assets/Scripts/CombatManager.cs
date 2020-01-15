@@ -45,13 +45,8 @@ public class CombatManager : MonoBehaviour
     int selectedOption;
     List<string> currentMenu;
     List<string> displayedMenu;
-
-    //Turn fields
-    const int maxTurnCost = 10;
-    List<string> commandChain;
     List<string> commandMenu;
     string endTurnOption = "End Turn";
-    int currentTurnCost;
    
     // Start is called before the first frame update
     void Start()
@@ -67,8 +62,9 @@ public class CombatManager : MonoBehaviour
         player.LearnAttack(AttackList.Punch);
         enemy.LearnAttack(AttackList.Punch);
 
-        //Teaches player taunt
+        //Teaches player and enemy taunt
         player.LearnTaunt(TauntList.Roar);
+        enemy.LearnTaunt(TauntList.Roar);
 
         //Creates menu
         menu = new List<string>();
@@ -123,8 +119,7 @@ public class CombatManager : MonoBehaviour
         //Sets currentMenu to the primary menu
         currentMenu = menu;
 
-        //Creates commannd chain and comand menu
-        commandChain = new List<string>();
+        //Creates comand menu
         commandMenu = new List<string>();
 
         //Adds end turn option to comand menu
@@ -132,9 +127,6 @@ public class CombatManager : MonoBehaviour
 
         //Sets displayed menu equal to current menu
         displayedMenu = currentMenu;
-
-        //Sets current turn cost
-        currentTurnCost = 0;
     }
 
     // Update is called once per frame
@@ -181,7 +173,7 @@ public class CombatManager : MonoBehaviour
                     else if(currentMenu != commandMenu)
                     {
                         //If the selection is already in the field
-                        if (!commandChain.Contains(currentMenu[selectedOption]) || currentMenu == strikeMenu || currentMenu == grappleMenu)
+                        if (!player.CommandChain.Contains(currentMenu[selectedOption]) || currentMenu == strikeMenu || currentMenu == grappleMenu)
                         {
                             //Adds selection to commandmenu
                             AddSelectionToCommandList();
@@ -240,18 +232,19 @@ public class CombatManager : MonoBehaviour
             case CombatStates.EnemyTurn:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    //Selects acttack
-                    Attack selectedAttack = enemy.learnedAttacks[0];
+                    //Randomizes commands
+                    enemy.RandomizeCommandChain();
 
                     //Undergoes the wrestler turn
-                    WrestlerTurn(enemy, player, selectedAttack, CombatStates.PlayerTurn);                    
+                    EndTurn(enemy, player, CombatStates.PlayerTurn);
+
+                    //Resets menu data
+                    ResetMenuData();
                 }
                 break;
             case CombatStates.DamageDealt:
                 break;
             case CombatStates.End:
-                //Declares winner after action message
-                actionMessage += "\n" + winner.wrestlerName + " wins!";
                 break;
         }
     }
@@ -298,39 +291,19 @@ public class CombatManager : MonoBehaviour
             case CombatStates.DamageDealt:
                 break;
             case CombatStates.End:
+                //Displays winning text
+                GUI.Label(new Rect(0, 0, 100, 100), "\n" + winner.wrestlerName + " wins!"); 
                 break;
         }
 
         //Shows health information for both wrestlers
-        string healths = player.wrestlerName + ": " + player.Health + "\n" + enemy.wrestlerName + ": " + enemy.Health + "\n" + "Turn Cost: " + currentTurnCost + "/" + maxTurnCost;
+        string healths = player.wrestlerName + ": " + player.Health + "\n" + enemy.wrestlerName + ": " + enemy.Health + "\n" + "Turn Cost: " + player.CurrentTurnCost + "/" + player.MaxTurnCost;
 
         GUI.color = Color.white;
         //Prints health information out to screen
         GUI.Label(new Rect(0, 35, 200, 50), healths);
         //Prints recent action out to screen
-        GUI.Label(new Rect(55, 135, 200, 50), actionMessage);
-    }
-
-    void WrestlerTurn(Wrestler currentWrestler, Wrestler target, Attack selectedAttack, CombatStates nextTurn)
-    {
-        //Deals damage to target based on attack's damage value
-        target.TakeDamage(selectedAttack.Damage);
-
-        //Checks the target's health
-        if (target.Health == 0)
-        {
-            //Makes the current wrestler the winner and ends the match
-            winner = currentWrestler;
-            currentState = CombatStates.End;
-        }
-        else
-        {
-            //Continues to the next turn
-            currentState = nextTurn;
-        }
-
-        //Creates a string detailing the turn
-        actionMessage = currentWrestler.wrestlerName + " used " + selectedAttack.Name + " and dealt " + selectedAttack.Damage + " damage.";
+        GUI.Label(new Rect(55, 135, 250, 150), actionMessage);
     }
 
     void AddSelectionToCommandList()
@@ -361,11 +334,11 @@ public class CombatManager : MonoBehaviour
                 }
                 break;
         }
-        if (currentTurnCost + selectionCost < maxTurnCost)
+        if (player.CurrentTurnCost + selectionCost < player.MaxTurnCost)
         {
-            currentTurnCost += selectionCost;
+            player.CurrentTurnCost += selectionCost;
             commandMenu.Insert(commandMenu.Count - 1, currentSelection);
-            commandChain.Add(currentSelection);
+            player.CommandChain.Add(currentSelection);
         }
         else
         {
@@ -381,7 +354,7 @@ public class CombatManager : MonoBehaviour
         //Ends turn if the end turn option is selected
         if(currentSelection == endTurnOption)
         {
-            EndTurn(player, enemy, commandChain, CombatStates.EnemyTurn);
+            EndTurn(player, enemy, CombatStates.EnemyTurn);
 
             //Returns function
             return;
@@ -410,13 +383,14 @@ public class CombatManager : MonoBehaviour
                 }
                 break;
         }
-        currentTurnCost -= selectionCost;
+        player.CurrentTurnCost -= selectionCost;
         commandMenu.Remove(currentSelection);
-        commandChain.Remove(currentSelection);
+        player.CommandChain.Remove(currentSelection);
     }
 
-    void EndTurn(Wrestler currentWrestler, Wrestler target, List<string> commands, CombatStates nextTurn)
+    void EndTurn(Wrestler currentWrestler, Wrestler target, CombatStates nextTurn)
     {
+        List<string> commands = currentWrestler.CommandChain;
         string turnString = currentWrestler.wrestlerName + " ";
 
         Taunt.AttackEffect attackModifier = null;
@@ -454,33 +428,38 @@ public class CombatManager : MonoBehaviour
                         //Deals damage
                         target.TakeDamage(damage);
 
-                        turnString += "uses " + currentWrestler.knownAttacks[command].Name + " and deals " + damage + " damage\n";
+                        turnString += "uses " + currentWrestler.knownAttacks[command].Name + ", deals " + damage + " damage\n";
                     }
                     break;
             }
 
+            turnString += "          ";
         }
 
         //Sets action message to turn string
         actionMessage = turnString;
         //Resets player data
-        ResetPlayerData();
+        currentWrestler.ResetWrestler();
 
-        //Goes to next state
-        currentState = nextTurn;
+        //Checks the target's health
+        if (target.Health == 0)
+        {
+            //Makes the current wrestler the winner and ends the match
+            winner = currentWrestler;
+            currentState = CombatStates.End;
+        }
+        else
+        {
+            //Continues to the next turn
+            currentState = nextTurn;
+        }
     }
 
-    void ResetPlayerData()
+    void ResetMenuData()
     {
-        //Clears commands
-        commandChain.Clear();
-
         //Clears command menu
         commandMenu.Clear();
         commandMenu.Add(endTurnOption);
-
-        //Resets turn cose
-        currentTurnCost = 0;
 
         //Sets current menu to the default menu
         currentMenu = menu;
