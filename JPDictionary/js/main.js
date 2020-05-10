@@ -2,20 +2,20 @@
 let jpDict = "";
 let dictFIle = "php/dic/all_dic";
 let testDictFile = "dic/test_dict";
+let entriesElement = document.querySelector("#entries");
+
 
 loadDictionary();
 document.onkeypress = (e) => {
-  addNewVocab("留学する", "りゅがくする", "to study abroad", "vrb-irr");
-  addNewKanji("夜", ["よる", "よ"], ["や"], "night");
+  //addNewVocab("留学する", "りゅがくする", "to study abroad", "vrb-irr");
+  //addNewKanji("夜", ["よる", "よ"], ["や"], "night");
 
   //console.log(jpDict);
   
-  editKanjiEntry(1, "鳥", ["とり"], ["ちょう"], "bird");
-  editVocabEntry(0, "近い", "ちかい", "close;near", "adj-i");
+  //editKanjiEntry(1, "鳥", ["とり"], ["ちょう"], "bird");
+  //editVocabEntry(0, "近い", "ちかい", "close;near", "adj-i");
 
-
-
-  console.log(jpDict);
+  displayVocabList([0, 1, 2, 4]);
 };
 
 //let testVocab = new Vocab("留学する", "りゅがくする", "to study abroad", "vrb-irr", new Date());
@@ -138,7 +138,7 @@ function editVocabEntry(_index, _kanji, _hirakata, _english, _pos){
     console.log("Edited vocab entry at" + _index);
   }
   else{
-    console.log("Error! Index out " +  _index +" of bounds. Vocab dict only has " + jpDict.vocab.count + " entries.");
+    console.log("Error! Index " +  _index +" out  of bounds. Vocab dict only has " + jpDict.vocab.count + " entries.");
   }
 }
 
@@ -154,7 +154,130 @@ function editKanjiEntry(_index, _character, _kun, _on, _english){
     console.log("Edited kanji entry at " + _index);
   }
   else{
-    console.log("Error! Index out " +  _index +" of bounds. Kanji dict only has " + jpDict.kanji.count + " entries.");
+    console.log("Error! Index " +  _index +" out  of bounds. Kanji dict only has " + jpDict.kanji.count + " entries.");
+  }
+}
+
+function getVocabByIndex(_index){
+  if(_index < jpDict.vocab.count && _index >= 0){
+    return jpDict.vocab.dict[_index];
+  }
+  else{
+    console.log("Error! Index " +  _index +" out  of bounds. Vocab dict only has " + jpDict.vocab.count + " entries.");
+  }
+  
+}
+
+function getKanjiByIndex(_index){
+  if(_index < jpDict.kanji.count && _index >= 0){
+    return jpDict.kanji.dict[_index];
+  }
+  else{
+    console.log("Error! Index " +  _index +" out  of bounds. Kanji dict only has " + jpDict.kanji.count + " entries.");
+  }
+}
+
+function displayVocab(_index){
+  //Gets vocab entry
+  vocabEntry = getVocabByIndex(_index);
+
+  if(vocabEntry){
+    //Creates entry element
+    let element = "<div data-index = '";
+    element += _index;
+    element += "' class = 'entry'> <p class='col1'>";
+    element += vocabEntry.kanji;
+    element += "</p><p class='col2'>";
+    element += vocabEntry.hirakata;
+    element += "</p><p class='col3'>";
+    element += vocabEntry.english;
+    element += "</p><p class='col4'>";
+    element += vocabEntry.pos;
+    element += "</p><p class='col4'>";
+    element += vocabEntry.entryTime;
+    element += "</div>";
+
+    return element;
+  }
+  
+}
+
+function displayKanji(_index){
+  //Gets kanji entry
+  kanjiEntry = getKanjiByIndex(_index);
+
+  if(kanjiEntry){
+    //Creates entry element
+    let element = "<div data-index = '";
+    element += _index;
+    element += "' class = 'entry'> <p class='col1'>";
+    element += kanjiEntry.character;
+    element += "</p><p class='col2'>";
+    element += kanjiEntry.on;
+    element += "</p><p class='col3'>";
+    element += kanjiEntry.kun;
+    element += "</p><p class='col4'>";
+    element += kanjiEntry.english;
+    element += "</p><p class='col4'>";
+    element += kanjiEntry.entryTime;
+    element += "</div>";
+
+    return element;
+  }
+  
+}
+
+function displayVocabList(_indexArray){
+  //Creates string to contain elements
+  let entriesString = "";
+
+  //Loops through indexes in index array
+  for (const i of _indexArray) {
+    //Gets vocab element
+    let vocabElement = displayVocab(i);
+
+    if(vocabElement){
+      //Adds element of vocab entry i to entries string
+      entriesString += vocabElement;
+    }
+    
+  }
+
+  //Sets inner html of entries element to the big string
+  entriesElement.innerHTML = entriesString;
+}
+
+function displayKanjiList(_indexArray){
+  //Creates string to contain elements
+  let entriesString = "";
+
+  //Loops through indexes in index array
+  for (const i of _indexArray) {
+    //Gets kanji element
+    let kanjiElement = displayKanji(i);
+
+    if(kanjiElement){
+      //Adds element of kanji entry i to entries string
+      entriesString += displayKanji(i);
+    }
+    
+  }
+
+  //Sets inner html of entries element to the big string
+  entriesElement.innerHTML = entriesString;
+}
+
+function getRandomVocabList(_numberOfEntries, _partOfSpeech, _date){
+  //Array of indexes
+  let indexes = [];
+
+  //Array of checked indexes
+  let checkedIndexes = [];
+
+  
+  let i = 0;
+  while(i < _numberOfEntries && checkedIndexes.length < jpDict.vocab.count){
+
   }
 }
 })();
