@@ -1,4 +1,13 @@
 (function(){
+
+window.onload= (e) => {
+  document.querySelector("#submitVocab").onclick = vocabEntered;
+  document.querySelector("#submitKanji").onclick = kanjiEntered;
+  document.querySelector("#addVocabEntry").onclick = addVocabInput;
+  document.querySelector("#addKanjiEntry").onclick = addKanjiInput;
+};
+
+
 let jpDict = "";
 let dictFIle = "php/dic/all_dic";
 let testDictFile = "dic/test_dict";
@@ -15,7 +24,9 @@ document.onkeypress = (e) => {
   //editKanjiEntry(1, "鳥", ["とり"], ["ちょう"], "bird");
   //editVocabEntry(0, "近い", "ちかい", "close;near", "adj-i");
 
-  displayVocabList([0, 1, 2, 4]);
+  //displayVocabList([0, 1, 2, 4]);
+
+  console.log(getVocabListWithNEntries(20, "", new Date(2020,4, 5)));
 };
 
 //let testVocab = new Vocab("留学する", "りゅがくする", "to study abroad", "vrb-irr", new Date());
@@ -267,17 +278,153 @@ function displayKanjiList(_indexArray){
   entriesElement.innerHTML = entriesString;
 }
 
-function getRandomVocabList(_numberOfEntries, _partOfSpeech, _date){
+function getVocabListWithNEntries(_numberOfEntries, _partsOfSpeech, _date){
   //Array of indexes
   let indexes = [];
 
-  //Array of checked indexes
-  let checkedIndexes = [];
+  //Starting index
+  let dateObj;
 
   
-  let i = 0;
-  while(i < _numberOfEntries && checkedIndexes.length < jpDict.vocab.count){
+  
+  //Starts loop at most recent dictionary entry.
+  let i = jpDict.vocab.count - 1;
+  //Runs until the entire dictionary has been searched or the number of entries has been fulfilled
+  while(indexes.length < _numberOfEntries && i >= 0){
+    //Gets current entry and current entry time
+    let currentEntry = getVocabByIndex(i);
+    let currentEntryTime = Date.parse(currentEntry.entryTime);
+    console.log(currentEntryTime);
 
+    //If the date is older than the passed in date, the loop stops
+    if(_date && currentEntryTime < _date){
+      break;
+    }
+    //If the part of speech matches or isn't required, the index gets pushed in
+    if((_partsOfSpeech && _partsOfSpeech.includes(currentEntry.pos)) || !_partsOfSpeech){
+      indexes.push(i);
+    }
+    //Iterates i
+    i--;
   }
+
+  //Returns array of indexes
+  return indexes;
+}
+
+function vocabEntered(){
+  //Gets array of submitted vocab
+  let submittedVocab = document.querySelector("#enterVocab").children;
+
+  //Loops through submitted vocab
+  for (const v of submittedVocab) {
+    let vocabEntry = v.children;
+    
+    //Adds new vocab based on submitted info
+    addNewVocab(vocabEntry[0].value, vocabEntry[1].value, vocabEntry[2].value, vocabEntry[3].value);
+  }
+
+  //Saves dictionary
+  saveDictionaryToFile();
+}
+
+function kanjiEntered(){
+  //Gets information for submitted kanji
+  let submittedKanji = document.querySelector("#enterKanji").children;
+  
+  for (const k of submittedKanji) {
+    let kanjiEntry = k.children;
+    //Creates arrays for kun and on readings
+    let kunReadings = kanjiEntry[2].value.split(",");
+    let onReadings = kanjiEntry[1].value.split(",");
+  
+    //Adds new kanji based on submitted info
+    addNewKanji(kanjiEntry[0].value, kunReadings, onReadings, kanjiEntry[3].value);
+  }
+  
+  //Saves dictionary
+  saveDictionaryToFile();
+}
+
+function addVocabInput(){
+  //Creates div
+  let inputDiv = document.createElement("div");
+  inputDiv.className = "vocabEntry";
+
+  //Creates input string with entry html
+  let inputString = "<input class='vocabKanji' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='vocabHirakata' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='vocabEnglish' type='text' size='20' maxlength='20' />"
+  inputString += "<select name='Part Of Speech' id='vocabPos'>"
+  inputString += "<option value='noun'>Noun</option>"
+  inputString += "<option value='vrb-u'>U Verb</option>"
+  inputString += "<option value='vrb-ru'>Ru Verb</option>"
+  inputString += "<option value='vrb-irr'>Irr Verb</option>"
+  inputString += "<option value='adj-na'>Na Adj</option>"
+  inputString += "<option value='adj-i'>I Adj</option>"
+  inputString += "</select>"
+
+  //Sets input div's inner html to the input string
+  inputDiv.innerHTML = inputString;
+
+  //Appends input div
+  document.querySelector("#enterVocab").appendChild(inputDiv);
+}
+
+function addKanjiInput(){
+  //Creates div
+  let inputDiv = document.createElement("div");
+  inputDiv.className = "kanjiEntry";
+
+  //Creates input string with entry html
+  let inputString = "<input class='kanjiCharacter' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='kanjiOn' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='kanjiKun' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='kanjiEnglish' type='text' size='20' maxlength='20' />"
+
+  //Sets input div's inner html to the input string
+  inputDiv.innerHTML = inputString;
+
+  //Appends input div
+  document.querySelector("#enterKanji").appendChild(inputDiv);
+
+}
+
+function getOldestVocabForDate(_date){
+  //Variable to store oldest index
+  let oldestIndex;
+  //Gets dates
+  let dateObj = Date.parse(_date).getTime();
+  let firstEntryDate = Date.parse(getVocabByIndex(0).entryTime).getTime();
+  let lastEntryDate = Date.parse(getVocabByIndex(jpDict.vocab.count - 1).entryTime).getTime();
+
+  //Checks to see if passed in date is within entry times
+  if(dateObj > firstEntryDate && dateObj < lastEntryDate){
+    //If the difference 
+    if(dateObj - firstEntryDate >= lastEntryDate - dateObj){
+      //Loops through dictionary from beginning
+      for(let i = 0; i < jpDict.vocab.count; i++){
+        let currentEntryTime = getVocabByIndex(i).entryTime;
+        if(Date.parse(currentEntryTime).getTime() >= dateObj){
+          oldestIndex = i;
+        }
+      }
+    }
+    else{
+      //Loops through dictionary from end
+      for(let i = jpDict.vocab.count - 1; i >= 0; i--){
+        let currentEntryTime = getVocabByIndex(i).entryTime;
+
+        if(Date.parse(currentEntryTime).getTime() < dateObj){
+          oldestIndex = i + 1 < jpDict.vocab.count ? i + 1: i;
+        }
+      }
+    }
+
+    return oldestIndex;
+  }
+  else{
+    console.log("invalid Date!");
+  }  
 }
 })();

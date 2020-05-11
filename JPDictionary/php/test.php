@@ -14,9 +14,15 @@
   $data = json_decode(file_get_contents("php://input"));
 
   
-
-  $file = fopen("dic/testing.txt", 'w');//creates new file
-  fwrite($file, json_encode($data));
-  fclose($file);
+  if($data){
+    $file = fopen("dic/all_dic", 'w');//creates new file
+    fwrite($file, json_encode($data));
+    fclose($file);
+    echo "Dictionary saved";
+  }
+  else{
+    echo "PHP: issue receiving jpDict";
+  }
+  
     
 ?>

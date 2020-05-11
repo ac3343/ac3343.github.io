@@ -5,6 +5,44 @@
     <script src="js/classes.js"></script>
 </head>
 <body>
+    <div id="enterVocab">
+        <div class="vocabEntry">
+            <input class="vocabKanji" type="text" size="20" maxlength="20" />
+            <input class="vocabHirakata" type="text" size="20" maxlength="20" />
+            <input class="vocabEnglish" type="text" size="20" maxlength="20" />
+            <select name="Part Of Speech" id="vocabPos">
+                <option value="noun">Noun</option>
+                <option value="vrb-u">U Verb</option>
+                <option value="vrb-ru">Ru Verb</option>
+                <option value="vrb-irr">Irr Verb</option>
+                <option value="adj-na">Na Adj</option>
+                <option value="adj-i">I Adj</option>
+            </select>
+        </div>
+    </div>
+    <button type="button" id="addVocabEntry">Add Entry</button>
+    <button type="button" id="submitVocab">Enter</button>
+
+    <br>
+
+    <div id="enterKanji">
+        <div class="kanjiEntry">
+            <input id="kanjiCharacter" type="text" size="20" maxlength="20" />
+            <input id="kanjiOn" type="text" size="20" maxlength="20" />
+            <input id="kanjiKun" type="text" size="20" maxlength="20" />
+            <input id="kanjiEnglish" type="text" size="20" maxlength="20" />
+        </div>
+    </div>
+    <button type="button" id="addKanjiEntry">Add Entry</button>
+    <button type="button" id="submitKanji">Enter</button>
+
+    <br>
+
+    <div id="searchArea">
+        <input id="searchterm" type="text" size="20" maxlength="20" />
+        <button type="button" id="search">Search!</button>
+        <button type="button" id="clear">Clear</button>
+    </div>
     <div id="entries">
         <div data-index = '0' class = 'entry'>
             <p class='col1'></p>
