@@ -7,11 +7,15 @@ window.onload= (e) => {
   document.querySelector("#addKanjiEntry").onclick = addKanjiInput;
 };
 
-
 let jpDict = "";
 let dictFIle = "php/dic/all_dic";
 let testDictFile = "dic/test_dict";
 let entriesElement = document.querySelector("#entries");
+
+//Local Storage Fields
+const prefix = "ac3343-jpDict-";
+const vocabPrefix = prefix + "vocab-";
+const kanjiPrefix = prefix + "kanji-";
 
 
 loadDictionary();
@@ -26,7 +30,12 @@ document.onkeypress = (e) => {
 
   //displayVocabList([0, 1, 2, 4]);
 
-  console.log(getVocabListWithNEntries(20, "", new Date(2020,4, 5)));
+  //console.log(getVocabList());
+  //console.log(getKanjiList(5, new Date(2020, 4, 2)));
+
+  //console.log(getRandomVocabList(10, "", new Date(2020, 4, 4)));
+  console.log(getVocabByString("to"));
+  console.log(getKanjiByString("つ"));
 };
 
 //let testVocab = new Vocab("留学する", "りゅがくする", "to study abroad", "vrb-irr", new Date());
@@ -278,14 +287,9 @@ function displayKanjiList(_indexArray){
   entriesElement.innerHTML = entriesString;
 }
 
-function getVocabListWithNEntries(_numberOfEntries, _partsOfSpeech, _date){
+function getVocabList(_numberOfEntries = jpDict.vocab.count, _partsOfSpeech, _date){
   //Array of indexes
   let indexes = [];
-
-  //Starting index
-  let dateObj;
-
-  
   
   //Starts loop at most recent dictionary entry.
   let i = jpDict.vocab.count - 1;
@@ -294,7 +298,6 @@ function getVocabListWithNEntries(_numberOfEntries, _partsOfSpeech, _date){
     //Gets current entry and current entry time
     let currentEntry = getVocabByIndex(i);
     let currentEntryTime = Date.parse(currentEntry.entryTime);
-    console.log(currentEntryTime);
 
     //If the date is older than the passed in date, the loop stops
     if(_date && currentEntryTime < _date){
@@ -306,6 +309,97 @@ function getVocabListWithNEntries(_numberOfEntries, _partsOfSpeech, _date){
     }
     //Iterates i
     i--;
+  }
+
+  //Returns array of indexes
+  return indexes;
+}
+
+function getKanjiList(_numberOfEntries = jpDict.kanji.count, _date){
+  //Array of indexes
+  let indexes = [];
+  
+  //Starts loop at most recent dictionary entry.
+  let i = jpDict.kanji.count - 1;
+  //Runs until the entire dictionary has been searched or the number of entries has been fulfilled
+  while(indexes.length < _numberOfEntries && i >= 0){
+    //Gets current entry and current entry time
+    let currentEntry = getKanjiByIndex(i);
+    let currentEntryTime = Date.parse(currentEntry.entryTime);
+
+    //If the date is older than the passed in date, the loop stops
+    if(_date && currentEntryTime < _date){
+      break;
+    }
+
+    //Pushes in current index
+    indexes.push(i);
+    //Iterates i
+    i--;
+  }
+
+  //Returns array of indexes
+  return indexes;
+}
+
+function getRandomVocabList(_numberOfEntries = 1, _partsOfSpeech, _date){
+  //Array of indexes
+  let indexes = [];
+
+  //Available indexes from dictionary keys
+  let availableIndexes = Object.keys(jpDict.vocab.dict);
+  
+  
+  //Runs until the entire dictionary has been searched or the number of entries has been fulfilled
+  while(indexes.length < _numberOfEntries && availableIndexes.length > 0){
+    //Randomly generates index
+    let i = Math.floor(Math.random() * availableIndexes.length);
+    let selectedIndex = parseInt(availableIndexes[i]);
+
+    //Gets current entry and current entry time
+    let currentEntry = getVocabByIndex(selectedIndex);
+    let currentEntryTime = Date.parse(currentEntry.entryTime);
+
+    //If the entry is newer than the requested date and the part of speech matches or isn't required
+    if(((_date && currentEntryTime >= _date) || !_date) && ((_partsOfSpeech && _partsOfSpeech.includes(currentEntry.pos)) || !_partsOfSpeech)){
+      //Adds selected index
+      indexes.push(selectedIndex);
+    }
+    
+    //Removes selected index from available indexes
+    availableIndexes.splice(i, 1);
+  }
+
+  //Returns array of indexes
+  return indexes;
+}
+
+function getRandomKanjiList(_numberOfEntries = 1, _date){
+  //Array of indexes
+  let indexes = [];
+
+  //Available indexes from dictionary keys
+  let availableIndexes = Object.keys(jpDict.kanji.dict);
+  
+  
+  //Runs until the entire dictionary has been searched or the number of entries has been fulfilled
+  while(indexes.length < _numberOfEntries && availableIndexes.length > 0){
+    //Randomly generates index
+    let i = Math.floor(Math.random() * availableIndexes.length);
+    let selectedIndex = parseInt(availableIndexes[i]);
+
+    //Gets current entry and current entry time
+    let currentEntry = getKanjiByIndex(selectedIndex);
+    let currentEntryTime = Date.parse(currentEntry.entryTime);
+
+    //If the entry is newer than the requested date and the part of speech matches or isn't required
+    if(((_date && currentEntryTime >= _date) || !_date)){
+      //Adds selected index
+      indexes.push(selectedIndex);
+    }
+    
+    //Removes selected index from available indexes
+    availableIndexes.splice(i, 1);
   }
 
   //Returns array of indexes
@@ -390,6 +484,111 @@ function addKanjiInput(){
 
 }
 
+function getVocabByString(_string){
+  //Array of matching indexes
+  let matchingIndexes = [];
+
+  //Stored search key
+  let searchKey = vocabPrefix + _string;
+  let storedResults = localStorage.getItem(searchKey);
+  let storedObj;
+
+  //Checks to see if search is stored 
+  if(storedResults){
+    //Returns array of stored results
+    let storedObj = JSON.parse(storedResults);
+    console.log(storedObj);
+  }
+
+  //If the stored results exist and are up to date
+  if(storedObj && storedObj.count == jpDict.vocab.count){
+    //Returns stored results
+    return storedObj.results;
+  }
+  else{
+    //Loops through vocab dictionary
+    for (let i = 0; i < jpDict.vocab.count; i++) {
+      let v  = jpDict.vocab.dict[i];
+      if(v.kanji.includes(_string) || v.hirakata.includes(_string) || v.english.includes(_string)){
+        matchingIndexes.push(i);
+      }
+    }
+
+    //If there are any results
+    if(matchingIndexes.length > 0){
+      //Creates search object to store
+      let newObj = {count: jpDict.vocab.count, results: matchingIndexes};
+      try {
+        //Stores search results locally
+        localStorage.setItem(searchKey, JSON.stringify(newObj));
+      }
+      catch(err) {
+        //Prints error message
+        console.log(err.message);
+        //In case of a quota exceeded error
+        if(err.code == 22){
+          //Clears local storage
+          localStorage.clear();
+        }
+      }
+    }
+    return matchingIndexes;
+  }
+}
+
+function getKanjiByString(_string){
+  //Array of matching indexes
+  let matchingIndexes = [];
+
+  //Stored search key
+  let searchKey = kanjiPrefix + _string;
+  let storedResults = localStorage.getItem(searchKey);
+  let storedObj;
+
+  //Checks to see if search is stored 
+  if(storedResults){
+    //Returns array of stored results
+    let storedObj = JSON.parse(storedResults);
+    console.log(storedObj);
+  }
+
+  //If the stored results exist and are up to date
+  if(storedObj && storedObj.count == jpDict.kanji.count){
+    //Returns stored results
+    return storedObj.results;
+  }
+  else{
+    let includesString = (e) => { return e.includes(_string)};
+    //Loops through kanji dictionary
+    for (let i = 0; i < jpDict.kanji.count; i++) {
+      let k  = jpDict.kanji.dict[i];
+      if(k.character.includes(_string) || k.kun.some(includesString) || k.on.some(includesString) || k.english.includes(_string)){
+        matchingIndexes.push(i);
+      }
+    }
+
+    if(matchingIndexes.length > 0){
+      //Creates search object to store
+      let newObj = {count: jpDict.vocab.count, results: matchingIndexes};
+      try {
+        //Stores search results locally
+        localStorage.setItem(searchKey, JSON.stringify(newObj));
+      }
+      catch(err) {
+        //Prints error message
+        console.log(err.message);
+        //In case of a quota exceeded error
+        if(err.code == 22){
+          //Clears local storage
+          localStorage.clear();
+        }
+      }
+    }
+    return matchingIndexes;
+  }
+  
+}
+
 function getOldestVocabForDate(_date){
   //Variable to store oldest index
   let oldestIndex;
@@ -427,4 +626,5 @@ function getOldestVocabForDate(_date){
     console.log("invalid Date!");
   }  
 }
+
 })();
