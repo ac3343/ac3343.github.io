@@ -5,52 +5,112 @@
     <script src="js/classes.js"></script>
 </head>
 <body>
-    <div id="enterVocab">
-        <div class="vocabEntry">
-            <input class="vocabKanji" type="text" size="20" maxlength="20" />
-            <input class="vocabHirakata" type="text" size="20" maxlength="20" />
-            <input class="vocabEnglish" type="text" size="20" maxlength="20" />
-            <select name="Part Of Speech" id="vocabPos">
-                <option value="noun">Noun</option>
-                <option value="vrb-u">U Verb</option>
-                <option value="vrb-ru">Ru Verb</option>
-                <option value="vrb-irr">Irr Verb</option>
-                <option value="adj-na">Na Adj</option>
-                <option value="adj-i">I Adj</option>
-            </select>
-        </div>
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="1">Add Vocab</button>
+        <button class="stateButton" data-stateIndex="2">Add Kanji</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="noun;vrb-irr;vrb-ru;vrb-u;adj-i;adj-na">All Vocab</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="noun">Nouns</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="vrb-irr;vrb-ru;vrb-u">Verbs</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="adj-i;adj-na">Adj</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="vrb-u">U Verbs</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="vrb-ru">Ru Verbs</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="vrb-irr">Irr Verbs</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="adj-na">Na Adj</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="adj-i">I Adj</button>
+        <button class="stateButton" data-stateIndex="4">Kanji</button>
+        <button class="stateButton" data-stateIndex="5">Study Random</button>
+        <button class="stateButton" data-stateIndex="6">Study Selected</button>
     </div>
-    <button type="button" id="addVocabEntry">Add Entry</button>
-    <button type="button" id="submitVocab">Enter</button>
+
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
+        <div id="enterVocab">
+            <div class="vocabEntry">
+                <input class="vocabKanji" type="text" size="20" maxlength="20" />
+                <input class="vocabHirakata" type="text" size="20" maxlength="20" />
+                <input class="vocabEnglish" type="text" size="20" maxlength="20" />
+                <select name="Part Of Speech" id="vocabPos">
+                    <option value="noun">Noun</option>
+                    <option value="vrb-u">U Verb</option>
+                    <option value="vrb-ru">Ru Verb</option>
+                    <option value="vrb-irr">Irr Verb</option>
+                    <option value="adj-na">Na Adj</option>
+                    <option value="adj-i">I Adj</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" id="addVocabEntry">Add Entry</button>
+        <button type="button" id="submitVocab">Enter</button>
+    </div>
 
     <br>
 
-    <div id="enterKanji">
-        <div class="kanjiEntry">
-            <input id="kanjiCharacter" type="text" size="20" maxlength="20" />
-            <input id="kanjiOn" type="text" size="20" maxlength="20" />
-            <input id="kanjiKun" type="text" size="20" maxlength="20" />
-            <input id="kanjiEnglish" type="text" size="20" maxlength="20" />
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
+        <div id="enterKanji">
+            <div class="kanjiEntry">
+                <input id="kanjiCharacter" type="text" size="20" maxlength="20" />
+                <input id="kanjiOn" type="text" size="20" maxlength="20" />
+                <input id="kanjiKun" type="text" size="20" maxlength="20" />
+                <input id="kanjiEnglish" type="text" size="20" maxlength="20" />
+            </div>
         </div>
+        <button type="button" id="addKanjiEntry">Add Entry</button>
+        <button type="button" id="submitKanji">Enter</button>
     </div>
-    <button type="button" id="addKanjiEntry">Add Entry</button>
-    <button type="button" id="submitKanji">Enter</button>
 
     <br>
 
-    <div id="searchArea">
-        <input id="searchterm" type="text" size="20" maxlength="20" />
-        <button type="button" id="search">Search!</button>
-        <button type="button" id="clear">Clear</button>
-    </div>
-    <div id="entries">
-        <div data-index = '0' class = 'entry'>
-            <p class='col1'></p>
-            <p class='col2'></p>
-            <p class='col3'></p>
-            <p class='col4'></p>
-            <p class='col5'></p>
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
+        <div class="searchArea">
+            <input class="searchterm" type="text" size="20" maxlength="20" />
+            <button type="button" class="search">Search!</button>
+            <button type="button" class="clear">Clear</button>
         </div>
+        <div id="vocabEntries">
+            <div data-index = '0' class = 'entry'>
+                <p class='col1'></p>
+                <p class='col2'></p>
+                <p class='col3'></p>
+                <p class='col4'></p>
+                <p class='col5'></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
+        <div class="searchArea">
+            <input class="searchterm" type="text" size="20" maxlength="20" />
+            <button type="button" class="search">Search!</button>
+            <button type="button" class="clear">Clear</button>
+        </div>
+        <div id="kanjiEntries">
+            <div data-index = '0' class = 'entry'>
+                <p class='col1'></p>
+                <p class='col2'></p>
+                <p class='col3'></p>
+                <p class='col4'></p>
+                <p class='col5'></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
+        
+        <button class="stateButton" data-stateIndex="7"></button>
+    </div>
+
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
+        
+        <button class="stateButton" data-stateIndex="7"></button>
+    </div>
+
+    <div class="state" display = "block">
+        <button class="stateButton" data-stateIndex="0">Home</button>
     </div>
     
     <script src="js/main.js"></script>

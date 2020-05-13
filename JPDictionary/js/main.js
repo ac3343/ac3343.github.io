@@ -5,12 +5,84 @@ window.onload= (e) => {
   document.querySelector("#submitKanji").onclick = kanjiEntered;
   document.querySelector("#addVocabEntry").onclick = addVocabInput;
   document.querySelector("#addKanjiEntry").onclick = addKanjiInput;
+
+  //Sets state buttons to change state when clicked
+  let stateButtons = document.querySelectorAll(".stateButton");
+  for (const b of stateButtons) {
+    b.addEventListener("click", changeState);
+  }
+  
+  let clearButtons = document.querySelectorAll(".clear");
+  for (const b of clearButtons) {
+    b.onclick = (e) => {
+      //Clears search bar text
+      b.parentElement.querySelector(".searchterm").value = "";
+      
+      //Presses search button
+      b.previousElementSibling.click();
+    }
+  }
+
+  let searchButtons = document.querySelectorAll(".search");
+  searchButtons[0].onclick = (e) => {
+      //Gets search bar text
+    let search = e.target.previousElementSibling.value;
+
+    //Creates matching entries array
+    let matchingEntries;
+    
+    //If search is not any empty string
+    if(search){
+      //Gets list of matching entries
+      matchingEntries = getVocabByString(search);
+    }
+
+    //If there are no matching entries, get the entire vocab list
+    if(!matchingEntries || matchingEntries == []){
+      matchingEntries = getVocabList();
+    }
+
+    //Displays matching entries entries
+    displayVocabList(matchingEntries);
+  };
+
+  searchButtons[1].onclick = (e) =>{
+    //Gets search bar text
+    let search = e.target.previousElementSibling.value;
+
+    //Creates matching entries array
+    let matchingEntries;
+
+    //If search is not any empty string
+    if(search){
+      //Gets list of matching entries
+      matchingEntries = getKanjiByString(search);
+    }
+
+    //If there are no matching entries, get the entire vocab list
+    if(!matchingEntries || matchingEntries == []){
+      matchingEntries = getKanjiList();
+    }
+
+    //Displays matching entries entries
+    displayKanjiList(matchingEntries);
+  };
 };
 
+//Declares dictionary object
 let jpDict = "";
-let dictFIle = "php/dic/all_dic";
-let testDictFile = "dic/test_dict";
-let entriesElement = document.querySelector("#entries");
+let vocabEntriesElement = document.querySelector("#vocabEntries");
+let kanjiEntriesElement = document.querySelector("#kanjiEntries");
+
+//State arrays
+const allStates = document.querySelectorAll(".state");
+let stateStyles = ["block", "block", "block", "block", "block", "block", "block", "block"];
+
+//Clears out every state except home
+for(let i  =1; i < 8; i++){
+  allStates[i].style.display = "none";
+}
+
 
 //Local Storage Fields
 const prefix = "ac3343-jpDict-";
@@ -34,8 +106,8 @@ document.onkeypress = (e) => {
   //console.log(getKanjiList(5, new Date(2020, 4, 2)));
 
   //console.log(getRandomVocabList(10, "", new Date(2020, 4, 4)));
-  console.log(getVocabByString("to"));
-  console.log(getKanjiByString("つ"));
+  //console.log(getVocabByString("to"));
+  //console.log(getKanjiByString("つ"));
 };
 
 //let testVocab = new Vocab("留学する", "りゅがくする", "to study abroad", "vrb-irr", new Date());
@@ -54,7 +126,7 @@ function loadDictionary() {
 
         //console.log(jpDict.vocab.dict[2]);
         //console.log(jpDict.kanji.dict[1]);
-        console.log(jpDict);
+        //console.log(jpDict);
       }
     };
     xhttp.open("GET", "php/dic/all_dic", true);
@@ -264,7 +336,7 @@ function displayVocabList(_indexArray){
   }
 
   //Sets inner html of entries element to the big string
-  entriesElement.innerHTML = entriesString;
+  vocabEntriesElement.innerHTML = entriesString;
 }
 
 function displayKanjiList(_indexArray){
@@ -284,10 +356,10 @@ function displayKanjiList(_indexArray){
   }
 
   //Sets inner html of entries element to the big string
-  entriesElement.innerHTML = entriesString;
+  kanjiEntriesElement.innerHTML = entriesString;
 }
 
-function getVocabList(_numberOfEntries = jpDict.vocab.count, _partsOfSpeech, _date){
+function getVocabList(_partsOfSpeech, _numberOfEntries = jpDict.vocab.count, _date){
   //Array of indexes
   let indexes = [];
   
@@ -627,4 +699,34 @@ function getOldestVocabForDate(_date){
   }  
 }
 
+function changeState(e){
+  //Clears all states
+  for(let i=0; i < 8; i++){
+    allStates[i].style.display = "none";
+  }
+  let newState = e.target.dataset.stateindex;
+  
+
+  //Unique state setup
+  if(newState == 3){
+    //Gets part of speech array from element
+    let pos = e.target.dataset.pos.split(';');
+
+    //Gets list of eligible entries
+    let entryList = getVocabList(pos);
+
+    //Displays list
+    displayVocabList(entryList);
+  }
+  else if(newState == 4){
+    //Gets list of kanji
+    let entryList = getKanjiList();
+
+    //Displays list
+    displayKanjiList(entryList);
+  }
+
+  //Sets new state
+  allStates[parseInt(newState)].style.display = stateStyles[newState];
+}
 })();
