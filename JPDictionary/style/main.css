@@ -1,0 +1,147 @@
+body{
+    background-color:whitesmoke;
+}
+#home{
+    display: grid;
+    grid-template-columns: 45vw 45vw;
+    grid-template-rows: 43vw 43vw 43vw 43vw 43vw 43vw 43vw;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    margin-top: 10vw;
+}
+
+#topRow{
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 45vw 45vw;
+    grid-template-rows: 40vw 40vw;
+}
+.stateButton{
+    width: 38vw;
+    height: 35vw;
+    font-size: 40px;
+    margin: auto;
+    background-color: #F4861F;
+    box-shadow: 2px 2px 15px black;
+    color: #071E22;
+}
+.stateButton:hover{
+    opacity: 80%;
+}
+
+.blueButton{
+    background-color: #471D66;
+    color: #D3D4D9;
+}
+
+.greenButton{
+    background-color: #0E652B;
+    color: #D3D4D9;
+}
+
+.redButton{
+    background-color: #66101F;
+    color: #D3D4D9;
+}
+
+.entry{
+    display: grid;
+    grid-template-columns: 20vw 20vw 16vw 22vw 22vw;
+    grid-template-rows: auto;
+    justify-content: center;
+}
+
+#vocabEntries .entry, #kanjiEntries .entry{
+    grid-template-rows: 15vw;
+    border-top: 8px double #F4861F;
+    background-color: white;
+}
+#vocabEntries, #kanjiEntries{
+    border-bottom: 8px double #F4861F;
+}
+
+.entry p{
+    margin: auto;
+    text-align: center;
+    font-size: xx-large;
+}
+
+#vocabEntries .col5{
+    font-size: x-large;
+}
+
+#kanjiEntries p{
+    font-size: x-large;
+}
+
+#kanjiEntries .col1{
+    font-size: xx-large;
+}
+
+#kanjiScreen .entry{
+    grid-template-columns: 18vw 16vw 16vw 24vw 26vw;
+}
+
+.searchterm{
+    width: 55vw;
+    height: 9vw;
+    margin: 5vw 0;
+    font-size: x-large;
+}
+.search, .clear{
+    width: 20vw;
+    height: 10vw;
+    font-size: x-large;
+}
+
+.homeButton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vw;
+}
+.homeButton .stateButton{
+    width: 20vw;
+    height: 10vw;
+    margin: auto;
+    box-shadow: 0px 0px 0px black;
+    font-size: xx-large;
+}
+
+.vocabEntry{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 19vw 19vw 20vw 20vw 15vw;
+    grid-template-rows: 8vw;
+    font-size: x-large;
+    gap: 1vw;
+    margin: 1vw 0vw;
+}
+.kanjiEntry{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 19vw 19vw 20vw 20vw 15vw;
+    grid-template-rows: 8vw;
+    font-size: x-large;
+    gap: 1vw;
+    margin: 1vw 0vw;
+}
+#enterVocab .entry{
+    grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+}
+.vocabEntry input, .vocabEntry button, .kanjiEntry input, .kanjiEntry button, .vocabEntry select{
+    font-size: x-large;
+}
+
+.entryButtons{
+    display: flex;
+    margin: 3vw 0;
+}
+#addVocabEntry, #submitVocab, #addKanjiEntry, #submitKanji{
+    width: 20vw;
+    height: 10vw;
+    margin: auto;
+    font-size: x-large;
+}

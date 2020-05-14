@@ -24,31 +24,31 @@ window.onload= (e) => {
   }
 
   let searchButtons = document.querySelectorAll(".search");
-  searchButtons[0].onclick = (e) => {
+  let searchFields = document.querySelectorAll(".searchterm");
+  function searchVocab(e){
       //Gets search bar text
-    let search = e.target.previousElementSibling.value;
+      let search = searchFields[0].value;
 
-    //Creates matching entries array
-    let matchingEntries;
-    
-    //If search is not any empty string
-    if(search){
-      //Gets list of matching entries
-      matchingEntries = getVocabByString(search);
-    }
-
-    //If there are no matching entries, get the entire vocab list
-    if(!matchingEntries || matchingEntries == []){
-      matchingEntries = getVocabList();
-    }
-
-    //Displays matching entries entries
-    displayVocabList(matchingEntries);
+      //Creates matching entries array
+      let matchingEntries;
+      
+      //If search is not any empty string
+      if(search){
+        //Gets list of matching entries
+        matchingEntries = getVocabByString(search);
+      }
+  
+      //If there are no matching entries, get the entire vocab list
+      if(!matchingEntries || matchingEntries == []){
+        matchingEntries = getVocabList();
+      }
+  
+      //Displays matching entries entries
+      displayVocabList(matchingEntries);
   };
-
-  searchButtons[1].onclick = (e) =>{
+  function searchKanji(e){
     //Gets search bar text
-    let search = e.target.previousElementSibling.value;
+    let search = searchFields[1].value;
 
     //Creates matching entries array
     let matchingEntries;
@@ -67,6 +67,46 @@ window.onload= (e) => {
     //Displays matching entries entries
     displayKanjiList(matchingEntries);
   };
+  searchButtons[0].onclick = searchVocab;
+  searchFields[0].onkeypress = (e) =>{
+    if(e.key == "Enter"){
+      searchVocab(e);
+    }
+  };
+
+  searchButtons[1].onclick = searchKanji;
+  searchFields[1].onkeypress = (e) =>{
+    if(e.key == "Enter"){
+      searchKanji(e);
+    }
+  };
+
+  searchButtons[1].onclick = (e) =>{
+    //Gets search bar text
+    let search = searchFields[1].value;
+
+    //Creates matching entries array
+    let matchingEntries;
+
+    //If search is not any empty string
+    if(search){
+      //Gets list of matching entries
+      matchingEntries = getKanjiByString(search);
+    }
+
+    //If there are no matching entries, get the entire vocab list
+    if(!matchingEntries || matchingEntries == []){
+      matchingEntries = getKanjiList();
+    }
+
+    //Displays matching entries entries
+    displayKanjiList(matchingEntries);
+  };
+
+  let removeButtons = document.querySelectorAll(".removeButton");
+  for (const b of removeButtons) {
+    b.onclick = removeInput;
+  }
 };
 
 //Declares dictionary object
@@ -76,7 +116,7 @@ let kanjiEntriesElement = document.querySelector("#kanjiEntries");
 
 //State arrays
 const allStates = document.querySelectorAll(".state");
-let stateStyles = ["block", "block", "block", "block", "block", "block", "block", "block"];
+let stateStyles = ["grid", "block", "block", "block", "block", "block", "block", "block"];
 
 //Clears out every state except home
 for(let i  =1; i < 8; i++){
@@ -88,6 +128,11 @@ for(let i  =1; i < 8; i++){
 const prefix = "ac3343-jpDict-";
 const vocabPrefix = prefix + "vocab-";
 const kanjiPrefix = prefix + "kanji-";
+
+//Filter variables
+let vocabFiltersApplied = false;
+let kanjiFiltersApplied = false;
+
 
 
 loadDictionary();
@@ -282,11 +327,12 @@ function displayVocab(_index){
     element += "</p><p class='col2'>";
     element += vocabEntry.hirakata;
     element += "</p><p class='col3'>";
-    element += vocabEntry.english;
-    element += "</p><p class='col4'>";
     element += vocabEntry.pos;
     element += "</p><p class='col4'>";
-    element += vocabEntry.entryTime;
+    element += vocabEntry.english;
+    element += "</p><p class='col5'>";
+    let entryDate = new Date(vocabEntry.entryTime);
+    element += entryDate.toLocaleString();
     element += "</div>";
 
     return element;
@@ -310,8 +356,9 @@ function displayKanji(_index){
     element += kanjiEntry.kun;
     element += "</p><p class='col4'>";
     element += kanjiEntry.english;
-    element += "</p><p class='col4'>";
-    element += kanjiEntry.entryTime;
+    element += "</p><p class='col5'>";
+    let entryDate = new Date(kanjiEntry.entryTime);
+    element += entryDate.toLocaleString();
     element += "</div>";
 
     return element;
@@ -484,10 +531,13 @@ function vocabEntered(){
 
   //Loops through submitted vocab
   for (const v of submittedVocab) {
-    let vocabEntry = v.children;
-    
-    //Adds new vocab based on submitted info
-    addNewVocab(vocabEntry[0].value, vocabEntry[1].value, vocabEntry[2].value, vocabEntry[3].value);
+    if(v.className == "vocabEntry"){
+      let vocabEntry = v.children;
+      
+      //Adds new vocab based on submitted info
+      addNewVocab(vocabEntry[0].value, vocabEntry[1].value, vocabEntry[2].value, vocabEntry[3].value);
+
+    }
   }
 
   //Saves dictionary
@@ -499,13 +549,16 @@ function kanjiEntered(){
   let submittedKanji = document.querySelector("#enterKanji").children;
   
   for (const k of submittedKanji) {
-    let kanjiEntry = k.children;
-    //Creates arrays for kun and on readings
-    let kunReadings = kanjiEntry[2].value.split(",");
-    let onReadings = kanjiEntry[1].value.split(",");
-  
-    //Adds new kanji based on submitted info
-    addNewKanji(kanjiEntry[0].value, kunReadings, onReadings, kanjiEntry[3].value);
+    if(k.className == "kanjiEntry"){
+      let kanjiEntry = k.children;
+      //Creates arrays for kun and on readings
+      let kunReadings = kanjiEntry[2].value.split(",");
+      let onReadings = kanjiEntry[1].value.split(",");
+    
+      //Adds new kanji based on submitted info
+      addNewKanji(kanjiEntry[0].value, kunReadings, onReadings, kanjiEntry[3].value);
+
+    }
   }
   
   //Saves dictionary
@@ -533,6 +586,17 @@ function addVocabInput(){
   //Sets input div's inner html to the input string
   inputDiv.innerHTML = inputString;
 
+  //Creates remove input button
+  let removeButton = document.createElement("button");
+  removeButton.className = "removeButton redButton";
+  removeButton.innerText = "Remove"
+
+  //Removes current input field when pressed
+  removeButton.onclick = removeInput;
+
+  //Appends button to input div
+  inputDiv.appendChild(removeButton);
+
   //Appends input div
   document.querySelector("#enterVocab").appendChild(inputDiv);
 }
@@ -551,9 +615,33 @@ function addKanjiInput(){
   //Sets input div's inner html to the input string
   inputDiv.innerHTML = inputString;
 
+  //Creates remove input button
+  let removeButton = document.createElement("button");
+  removeButton.className = "removeButton redButton";
+  removeButton.innerText = "Remove"
+
+  //Removes current input field when pressed
+  removeButton.onclick = removeInput;
+
+  //Appends button to input div
+  inputDiv.appendChild(removeButton);
   //Appends input div
   document.querySelector("#enterKanji").appendChild(inputDiv);
 
+}
+
+function removeInput(e){
+  //Gets parent of clicked element
+  let inputDiv = e.target.parentElement;
+
+  //Gets all inputs from div
+  let allInputs = inputDiv.parentElement.children;
+
+  //If there is at least 2 inputs
+  if(allInputs.length > 2){
+    //Removes current input
+    inputDiv.remove();
+  }
 }
 
 function getVocabByString(_string){
@@ -724,6 +812,27 @@ function changeState(e){
 
     //Displays list
     displayKanjiList(entryList);
+  }
+  else if(newState == 0){
+    //Gets list of vocab inputs
+    let vocabInputs = document.querySelectorAll(".vocabEntry");
+
+    //If there are multiple input fields, remove all but one
+    if(vocabInputs.length > 1){
+      for(let i = 1; i < vocabInputs.length; i++){
+        vocabInputs[i].querySelector(".removeButton").click();
+      }
+    }
+
+    //Gets list of kanji inputs
+    let kanjiInputs = document.querySelectorAll(".kanjiEntry");
+
+    //If there are multiple input fields, remove all but one
+    if(kanjiInputs.length > 1){
+      for(let i = 1; i < kanjiInputs.length; i++){
+        kanjiInputs[i].querySelector(".removeButton").click();
+      }
+    }
   }
 
   //Sets new state
