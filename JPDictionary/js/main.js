@@ -17,6 +17,9 @@ window.onload= (e) => {
     b.onclick = (e) => {
       //Clears search bar text
       b.parentElement.querySelector(".searchterm").value = "";
+
+      //Clears filters
+      b.parentElement.parentElement.querySelector(".clearFilter").click();
       
       //Presses search button
       b.previousElementSibling.click();
@@ -31,16 +34,32 @@ window.onload= (e) => {
 
       //Creates matching entries array
       let matchingEntries;
+
+      //Gets part of speech filter info
+      let posFilter = [];
+      let posCheckboxes = document.querySelector(".posFilters").querySelectorAll(".singleSelect");
+
+      //Pushes checked parts of speech
+      for (const c of posCheckboxes) {
+        if(c.checked){
+          posFilter.push(c.value);
+        }
+      }
+
+      //If no parts of speech are selected, makes filter blank
+      if(posFilter.length == 0){
+        posFilter = "";
+      }
       
       //If search is not any empty string
       if(search){
         //Gets list of matching entries
-        matchingEntries = getVocabByString(search);
+        matchingEntries = getVocabByString(search, posFilter, vocabFilterDate);
       }
   
       //If there are no matching entries, get the entire vocab list
       if(!matchingEntries || matchingEntries == []){
-        matchingEntries = getVocabList();
+        matchingEntries = getVocabList(posFilter, vocabFilterDate);
       }
   
       //Displays matching entries entries
@@ -56,12 +75,12 @@ window.onload= (e) => {
     //If search is not any empty string
     if(search){
       //Gets list of matching entries
-      matchingEntries = getKanjiByString(search);
+      matchingEntries = getKanjiByString(search, kanjiFilterDate);
     }
 
     //If there are no matching entries, get the entire vocab list
     if(!matchingEntries || matchingEntries == []){
-      matchingEntries = getKanjiList();
+      matchingEntries = getKanjiList(kanjiFilterDate);
     }
 
     //Displays matching entries entries
@@ -91,12 +110,12 @@ window.onload= (e) => {
     //If search is not any empty string
     if(search){
       //Gets list of matching entries
-      matchingEntries = getKanjiByString(search);
+      matchingEntries = getKanjiByString(search, kanjiFilterDate);
     }
 
     //If there are no matching entries, get the entire vocab list
     if(!matchingEntries || matchingEntries == []){
-      matchingEntries = getKanjiList();
+      matchingEntries = getKanjiList(kanjiFilterDate);
     }
 
     //Displays matching entries entries
@@ -107,7 +126,275 @@ window.onload= (e) => {
   for (const b of removeButtons) {
     b.onclick = removeInput;
   }
+
+  let vocabTimeFilters = document.querySelectorAll(".vocabTime");
+  let kanjiTimeFilters = document.querySelectorAll(".kanjiTime");
+  let studyTimeFilters = document.querySelectorAll(".studyTime");
+  
+  for (const f of vocabTimeFilters) {
+    f.onclick= (e) =>{
+      //Gets current time and submitted time
+      let now = new Date();
+      let submittedTime = new Date();
+
+      //Sets filter time based on selection
+      switch(f.value){
+        case "all":
+          //Makes submitted time blank
+          submittedTime = "";
+          break;
+        case "week":
+          //Submitted time is set to a week ago
+          submittedTime.setTime(now.getTime() - 604800000);
+          break;
+        case "twoWeeks":
+          //Submitted time is set to two weeks ago
+          submittedTime.setTime(now.getTime() - 604800000 * 2);
+          break;
+        case "month":
+          //Submitted time is set to a month ago
+          submittedTime.setTime(now.getTime() - 604800000 * 4);
+          break;
+        case "sixMonths":
+          //Submitted time is set to six months ago
+          submittedTime.setTime(now.getTime() - 604800000 * 24);
+          break;
+      };
+
+      //Sets vocab filter date to the submitted time
+      vocabFilterDate = submittedTime;
+    }
+  }
+
+  for (const f of kanjiTimeFilters) {
+    f.onclick= (e) =>{
+      //Gets current time and submitted time
+      let now = new Date();
+      let submittedTime = new Date();
+
+      //Sets filter time based on selection
+      switch(f.value){
+        case "all":
+          //Makes submitted time blank
+          submittedTime = "";
+          break;
+        case "week":
+          //Submitted time is set to a week ago
+          submittedTime.setTime(now.getTime() - 604800000);
+          break;
+        case "twoWeeks":
+          //Submitted time is set to two weeks ago
+          submittedTime.setTime(now.getTime() - 604800000 * 2);
+          break;
+        case "month":
+          //Submitted time is set to a month ago
+          submittedTime.setTime(now.getTime() - 604800000 * 4);
+          break;
+        case "sixMonths":
+          //Submitted time is set to six months ago
+          submittedTime.setTime(now.getTime() - 604800000 * 24);
+          break;
+      };
+
+      //Sets vocab filter date to the submitted time
+      kanjiFilterDate = submittedTime;
+    }
+  }
+
+  for (const s of studyTimeFilters) {
+    s.onclick= (e) =>{
+      //Gets current time and submitted time
+      let now = new Date();
+      let submittedTime = new Date();
+
+      //Sets filter time based on selection
+      switch(s.value){
+        case "all":
+          //Makes submitted time blank
+          submittedTime = "";
+          break;
+        case "week":
+          //Submitted time is set to a week ago
+          submittedTime.setTime(now.getTime() - 604800000);
+          break;
+        case "twoWeeks":
+          //Submitted time is set to two weeks ago
+          submittedTime.setTime(now.getTime() - 604800000 * 2);
+          break;
+        case "month":
+          //Submitted time is set to a month ago
+          submittedTime.setTime(now.getTime() - 604800000 * 4);
+          break;
+        case "sixMonths":
+          //Submitted time is set to six months ago
+          submittedTime.setTime(now.getTime() - 604800000 * 24);
+          break;
+      };
+
+      //Sets vocab filter date to the submitted time
+      studyFilterDate = submittedTime;
+    }
+  }
+
+  let posCheckboxes = document.querySelectorAll(".posFilters");
+  for (const p of posCheckboxes) {
+    let allBoxes = p.querySelectorAll("input");
+
+    allBoxes[0].onclick = (e) =>{
+      for(let i = 1; i < allBoxes.length; i++){
+        allBoxes[i].checked = allBoxes[0].checked;
+      }
+    }
+
+    let multiSelectButtons = [2, 6];
+    for (const i of multiSelectButtons) {
+      allBoxes[i].onclick = (e) =>{
+        for(let j = 1; e.target.dataset.children >= j; j++){
+          allBoxes[i+j].checked = allBoxes[i].checked;
+        }
+      }
+    }
+  }
+
+  let clearFilterButtons = document.querySelectorAll(".clearFilter");
+
+  for (const c of clearFilterButtons) {
+    c.onclick = (e) => {
+      //Clicks all time filter
+      let timeFilters = c.previousElementSibling;
+      timeFilters.querySelector(".all").click();
+
+      let parent = c.parentElement;
+      //Gets all parts of speech button
+      let allPos = parent.querySelector(".allSelect");
+
+      if(allPos){
+        //Click it if it is checked and click it twice if it isn't
+        allPos.click();
+        if(allPos.checked){
+          allPos.click();
+        }
+      }
+    };    
+  }
+  
+  let shuffleButton = document.querySelector("#shuffle");
+  shuffleButton.onclick = (e) =>{
+    //Resets current card
+    currentCard = 0;
+
+    //Creates new entries array
+    let newEntries = [];
+
+    //Shuffles vocab and kanji sections
+    for(let i = vocabCount; i > 0; i--){
+      //Gets random index
+      let rndIndex = Math.floor(Math.random() * i);
+
+      //Sets entry at random index to not flipped
+      entriesToStudy[rndIndex].flipped = false;
+
+      //Removes entry at random index and places it in new array
+      newEntries.push(entriesToStudy.splice(rndIndex, 1)[0]);
+    }
+    for(let i = kanjiCount; i > 0; i--){
+      //Gets random index
+      let rndIndex = Math.floor(Math.random() * i);
+
+      //Sets entry at random index to not flipped
+      entriesToStudy[rndIndex].flipped = false;
+
+      //Removes entry at random index and places it in new array
+      newEntries.push(entriesToStudy.splice(rndIndex, 1)[0]);
+    }
+
+    //Sets entries to study equal to the new array
+    entriesToStudy = newEntries;
+
+    //Shows flashcards and hides end screen
+    flashCardElement.style.display = "block";
+    studyEndElement.style.display = "none";
+
+    //Updates displayed card
+    updateStudyCard();
+  };
+
+  let nVocabElement = document.querySelector("#nVocab");
+  let nKanjiElement = document.querySelector("#nKanji");
+
+  nVocabElement.max = jpDict.vocab.count;
+  nKanjiElement.max = jpDict.kanji.count;
+
+  let startStudyButton = document.querySelector("#startStudy");
+  startStudyButton.addEventListener("click", (e) =>{
+    //Sets new entry counts
+    vocabCount = nVocabElement.value;
+    kanjiCount = nKanjiElement.value;
+    
+    //Checks to see if a valid number of entries has been sumbitted
+    if((0 >= vocabCount && 0 >= kanjiCount)){
+      //Maxes out vocab count and kanji count
+      vocabCount = jpDict.vocab.count;
+      kanjiCount = jpDict.kanji.count;
+    }
+    if(vocabCount > jpDict.vocab.count){
+      //Maxes out vocab count
+      vocabCount = jpDict.vocab.count;
+    }
+    if(kanjiCount > jpDict.kanji.count){
+      //Maxes out kanji count
+      kanjiCount = jpDict.kanji.count;
+    }
+
+    //Resets entriesToStudy
+    entriesToStudy = [];
+
+    //Gets part of speech filter info
+    let posFilter = [];
+    let posCheckboxes = document.querySelectorAll(".posFilters")[1].querySelectorAll(".singleSelect");
+
+    //Pushes checked parts of speech
+    for (const c of posCheckboxes) {
+      if(c.checked){
+        posFilter.push(c.value);
+      }
+    }
+
+    //If no parts of speech are selected, makes filter blank
+    if(posFilter.length == 0){
+      posFilter = "";
+    }
+
+    //Generates random list of terms
+    let vocabList = getRandomVocabList(posFilter, studyFilterDate, vocabCount);
+    let kanjiList = getRandomKanjiList(studyFilterDate, kanjiCount);
+
+    //Combines vocab list and kanji list into entries to study
+    for(let i = 0; i < vocabCount; i++){
+      entriesToStudy.push({index: vocabList[i], type: "vocab", flipped: false});
+    }
+    for(let i = 0; i < kanjiCount; i++){
+      entriesToStudy.push({index: kanjiList[i], type: "kanji", flipped: false});
+    }
+  });
+
+  let vocabConfigOptions = document.querySelector("#vocabArrange").children;
+  let kanjiConfigOptions = document.querySelector("#kanjiArrange").children;
+
+  for (const v of vocabConfigOptions) {
+    v.onclick = (e) =>{
+      vocabArrangement = cardArrangements[v.value];
+      console.log(v.value);
+    };
+  }
+  for (const k of kanjiConfigOptions) {
+    k.onclick = (e) =>{
+      kanjiArrangement = cardArrangements[k.value];
+      console.log(k.value);
+    };
+  }
 };
+
 
 //Declares dictionary object
 let jpDict = "";
@@ -130,37 +417,42 @@ const vocabPrefix = prefix + "vocab-";
 const kanjiPrefix = prefix + "kanji-";
 
 //Filter variables
-let vocabFiltersApplied = false;
-let kanjiFiltersApplied = false;
+let vocabFilterDate = "";
+let kanjiFilterDate = "";
+let studyFilterDate = "";
 
+//Study Variables
+let entriesToStudy = [];
+let currentCard, vocabCount, kanjiCount;
+let cardInfo = document.querySelectorAll(".cardInfo");
+let flashCardElement = document.querySelector("#flashCards");
+let studyEndElement = document.querySelector("#studyEnd");
+let cardArrangements = [[0, 1, 3], [0, 2, 3], [2, 3, 0], [2, 0, 1]];
+let vocabArrangement = cardArrangements[0];
+let kanjiArrangement = cardArrangements[0];
+let selectedVocab = [];
+let selectedKanji = [];
 
 
 loadDictionary();
-document.onkeypress = (e) => {
-  //addNewVocab("留学する", "りゅがくする", "to study abroad", "vrb-irr");
-  //addNewKanji("夜", ["よる", "よ"], ["や"], "night");
+window.onkeyup = (e) => {
+  if(allStates[7].style.display != "none"){
+    if(e.key == "ArrowRight"){
+      toNextCard();
+    }
+    else if(e.key == "ArrowLeft"){
+      toPreviousCard();
+    }
+    else if(e.key == " "){
+      //Toggles current cards flipped status
+      entriesToStudy[currentCard].flipped = !entriesToStudy[currentCard].flipped;
 
-  //console.log(jpDict);
+      //Updates current card
+      updateStudyCard();
+    }
+  }
   
-  //editKanjiEntry(1, "鳥", ["とり"], ["ちょう"], "bird");
-  //editVocabEntry(0, "近い", "ちかい", "close;near", "adj-i");
-
-  //displayVocabList([0, 1, 2, 4]);
-
-  //console.log(getVocabList());
-  //console.log(getKanjiList(5, new Date(2020, 4, 2)));
-
-  //console.log(getRandomVocabList(10, "", new Date(2020, 4, 4)));
-  //console.log(getVocabByString("to"));
-  //console.log(getKanjiByString("つ"));
 };
-
-//let testVocab = new Vocab("留学する", "りゅがくする", "to study abroad", "vrb-irr", new Date());
-
-//let testKanji = new Kanji("夜", ["よる", "よ"], ["や"], "night", new Date());
-
-//console.log(testVocab);
-//console.log(testKanji);
 
 
 function loadDictionary() {
@@ -384,6 +676,22 @@ function displayVocabList(_indexArray){
 
   //Sets inner html of entries element to the big string
   vocabEntriesElement.innerHTML = entriesString;
+
+  for (const v of vocabEntriesElement.children) {
+    //Toggles entry selection when they are pressed
+    v.onclick = (e) =>{
+      if(selectedVocab.includes(v.dataset.index)){
+        selectedVocab.splice(selectedVocab.indexOf(v.dataset.index), 1);
+        v.style.backgroundColor = "white";
+        v.style.color = "black";
+      }
+      else{
+        selectedVocab.push(v.dataset.index);
+        v.style.backgroundColor = "#FFD374";
+        //v.style.color = "white";
+      }
+    }
+  }
 }
 
 function displayKanjiList(_indexArray){
@@ -404,9 +712,25 @@ function displayKanjiList(_indexArray){
 
   //Sets inner html of entries element to the big string
   kanjiEntriesElement.innerHTML = entriesString;
+
+  for (const k of kanjiEntriesElement.children) {
+    //Toggles entry selection when they are pressed
+    k.onclick = (e) =>{
+      if(selectedKanji.includes(k.dataset.index)){
+        selectedKanji.splice(selectedKanji.indexOf(k.dataset.index), 1);
+        k.style.backgroundColor = "white";
+        k.style.color = "black";
+      }
+      else{
+        selectedKanji.push(k.dataset.index);
+        k.style.backgroundColor = "#FFD374";
+        //v.style.color = "white";
+      }
+    }
+  }
 }
 
-function getVocabList(_partsOfSpeech, _numberOfEntries = jpDict.vocab.count, _date){
+function getVocabList(_partsOfSpeech, _date, _numberOfEntries = jpDict.vocab.count){
   //Array of indexes
   let indexes = [];
   
@@ -434,7 +758,7 @@ function getVocabList(_partsOfSpeech, _numberOfEntries = jpDict.vocab.count, _da
   return indexes;
 }
 
-function getKanjiList(_numberOfEntries = jpDict.kanji.count, _date){
+function getKanjiList( _date, _numberOfEntries = jpDict.kanji.count){
   //Array of indexes
   let indexes = [];
   
@@ -461,7 +785,7 @@ function getKanjiList(_numberOfEntries = jpDict.kanji.count, _date){
   return indexes;
 }
 
-function getRandomVocabList(_numberOfEntries = 1, _partsOfSpeech, _date){
+function getRandomVocabList(_partsOfSpeech, _date, _numberOfEntries = 1){
   //Array of indexes
   let indexes = [];
 
@@ -493,7 +817,7 @@ function getRandomVocabList(_numberOfEntries = 1, _partsOfSpeech, _date){
   return indexes;
 }
 
-function getRandomKanjiList(_numberOfEntries = 1, _date){
+function getRandomKanjiList(_date ,_numberOfEntries = 1){
   //Array of indexes
   let indexes = [];
 
@@ -644,7 +968,7 @@ function removeInput(e){
   }
 }
 
-function getVocabByString(_string){
+function getVocabByString(_string, _partsOfSpeech, _date){
   //Array of matching indexes
   let matchingIndexes = [];
 
@@ -669,8 +993,17 @@ function getVocabByString(_string){
     //Loops through vocab dictionary
     for (let i = 0; i < jpDict.vocab.count; i++) {
       let v  = jpDict.vocab.dict[i];
+      let currentEntryTime = Date.parse(v.entryTime);
+
+      //If the date is older than the passed in date, the loop stops
+      if(_date && currentEntryTime < _date){
+        break;
+      }
       if(v.kanji.includes(_string) || v.hirakata.includes(_string) || v.english.includes(_string)){
-        matchingIndexes.push(i);
+        //If the part of speech matches or isn't required, the index gets pushed in
+        if((_partsOfSpeech && _partsOfSpeech.includes(v.pos)) || !_partsOfSpeech){
+          matchingIndexes.push(i);
+        }
       }
     }
 
@@ -696,7 +1029,7 @@ function getVocabByString(_string){
   }
 }
 
-function getKanjiByString(_string){
+function getKanjiByString(_string, _date){
   //Array of matching indexes
   let matchingIndexes = [];
 
@@ -722,6 +1055,12 @@ function getKanjiByString(_string){
     //Loops through kanji dictionary
     for (let i = 0; i < jpDict.kanji.count; i++) {
       let k  = jpDict.kanji.dict[i];
+      let currentEntryTime = k.entryTime;
+
+      //If the date is older than the passed in date, the loop stops
+      if(_date && currentEntryTime < _date){
+        break;
+      }
       if(k.character.includes(_string) || k.kun.some(includesString) || k.on.some(includesString) || k.english.includes(_string)){
         matchingIndexes.push(i);
       }
@@ -823,7 +1162,6 @@ function changeState(e){
         vocabInputs[i].querySelector(".removeButton").click();
       }
     }
-
     //Gets list of kanji inputs
     let kanjiInputs = document.querySelectorAll(".kanjiEntry");
 
@@ -835,7 +1173,105 @@ function changeState(e){
     }
   }
 
+  else if(newState == 7){
+    //Resets current card
+    currentCard = 0;
+
+    //Updates card information
+    updateStudyCard();
+
+    //Shows flashcards and hides end screen
+    flashCardElement.style.display = "block";
+    studyEndElement.style.display = "none";
+  }
+
   //Sets new state
   allStates[parseInt(newState)].style.display = stateStyles[newState];
+}
+
+function toNextCard(){
+  //Increases current card by one
+  currentCard++;
+
+  //Checks to see if it is greater than the total card count
+  if(currentCard >= kanjiCount + vocabCount){
+    //Sets current card equal to the card count
+    currentCard = kanjiCount + vocabCount;
+
+    //Hides flashcards and shows end screen
+    flashCardElement.style.display = "none";
+    studyEndElement.style.display = "block";
+  }
+  else{
+    //Updates card information
+    updateStudyCard();
+  }
+}
+
+function toPreviousCard(){
+  if(currentCard > 0){
+    //Decreases current card by one
+    currentCard--;
+
+    //Shows flashcards and hides end screen
+    flashCardElement.style.display = "block";
+    studyEndElement.style.display = "none";
+
+    //Updates card information
+    updateStudyCard();
+  }
+}
+
+function updateStudyCard(){
+  //Shows back of card if it is flipped and front of card if not
+  if(entriesToStudy[currentCard].flipped){
+    cardInfo[0].parentElement.style.display = "none";
+    cardInfo[2].parentElement.style.display = "block";
+  }
+  else{
+    cardInfo[0].parentElement.style.display = "block";
+    cardInfo[2].parentElement.style.display = "none";
+  }
+
+  //Clears out card info
+  for (const c of cardInfo) {
+    c.innerText = "";
+  }
+
+  //Gets vocab and kanji count elements
+  let vocabCountElement = document.querySelector("#vocabCount");
+  let kanjiCountElement = document.querySelector("#kanjiCount");
+
+
+  //Displays entry based on the information it has stored
+  if(entriesToStudy[currentCard].type == "vocab"){
+    //Gets vocab entry
+    let vocabEntry = getVocabByIndex(entriesToStudy[currentCard].index);
+    if(vocabEntry.kanji){
+      cardInfo[vocabArrangement[0]].innerText = vocabEntry.kanji;
+      cardInfo[vocabArrangement[1]].innerText = vocabEntry.hirakata;
+    }
+    else{
+      cardInfo[vocabArrangement[1]].innerText = "";
+      cardInfo[vocabArrangement[0]].innerText = vocabEntry.hirakata;
+    }
+    
+    cardInfo[vocabArrangement[2]].innerText = vocabEntry.english;
+
+    //Updates vocab and kanji count elements
+    vocabCountElement.innerText = "Vocab: " + (currentCard + 1) + "/" + vocabCount;
+    kanjiCountElement.innerText = "Kanji: " + "0/" + kanjiCount;
+  }
+  else if(entriesToStudy[currentCard].type == "kanji"){
+    //Gets vocab entry
+    let kanjiEntry = getKanjiByIndex(entriesToStudy[currentCard].index);
+    cardInfo[kanjiArrangement[0]].innerText = kanjiEntry.character;
+    cardInfo[kanjiArrangement[1]].innerText = "On: " + kanjiEntry.on + " Kun: " + kanjiEntry.kun;
+    cardInfo[kanjiArrangement[2]].innerText = kanjiEntry.english;
+
+    //Updates vocab and kanji count elements
+    vocabCountElement.innerText = "Vocab: " + vocabCount + "/" + vocabCount;
+    kanjiCountElement.innerText = "Kanji: " + (currentCard - kanjiCount + 1) + "/" + kanjiCount;
+  }
 }
 })();

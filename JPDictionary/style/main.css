@@ -54,11 +54,11 @@ body{
 
 #vocabEntries .entry, #kanjiEntries .entry{
     grid-template-rows: 15vw;
-    border-top: 8px double #F4861F;
+    border-top: 8px solid #F4861F;
     background-color: white;
 }
 #vocabEntries, #kanjiEntries{
-    border-bottom: 8px double #F4861F;
+    border-bottom: 8px solid #F4861F;
 }
 
 .entry p{

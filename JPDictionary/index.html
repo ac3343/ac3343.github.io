@@ -59,8 +59,6 @@
         
     </div>
 
-    <br>
-
     <div class="state">
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
@@ -88,8 +86,6 @@
         
     </div>
 
-    <br>
-
     <div class="state" >
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
@@ -103,18 +99,40 @@
             <button class="filterButton">Filers</button>
 
             <div class="filters">
+                <div class="posFilters">
+                    <input type="checkbox" id="searchAll" class="allSelect">
+                    <label for="searchAll">All</label>
+                    <input type="checkbox" id="searchNoun" class="singleSelect" value="noun">
+                    <label for="searchNoun">Nouns</label>
+                    <input type="checkbox" id="searchVerb" class="multiSelect" data-children= "3">
+                    <label for="searchVerb">Verbs</label>
+                    <input type="checkbox" id="searchUVrb" class="singleSelect" value="vrb-u">
+                    <label for="searchUVrb">U Verbs</label>
+                    <input type="checkbox" id="searchRuVrb" class="singleSelect" value="vrb-ru">
+                    <label for="searchRuVrb">Ru Verbs</label>
+                    <input type="checkbox" id="searchIrrVrb" class="singleSelect" value="vrb-irr">
+                    <label for="searchIrrVrb">Irr Verbs</label>
+                    <input type="checkbox" id="searchAdj" class="multiSelect" data-children= "2">
+                    <label for="searchAdj">Adjectives</label>
+                    <input type="checkbox" id="searchNaAdj" class="singleSelect" value="adj-na">
+                    <label for="searchNaAdj">Na</label>
+                    <input type="checkbox" id="searchIAdj" class="singleSelect" value="adj-i">
+                    <label for="searchIAdj">I</label>
+                </div>
                 <div class="timeFilters">
                     <p>Time</p>
-                    <input type="radio" id="week" name="timeOption">
-                    <label for="week">Week</label>
-                    <input type="radio" id="twoWeeks" name="timeOption">
-                    <label for="twoWeeks">Two Weeks</label>
-                    <input type="radio" id="month" name="timeOption">
-                    <label for="month">Month</label>
-                    <input type="radio" id="sixMonths" name="timeOption">
-                    <label for="sixMonths">Six Months</label>
+                    <input type="radio" class="all vocabTime" name="vocabTimeOption" value="all" id="vocabAll">
+                    <label for="vocabAll">All</label>
+                    <input type="radio" class="week vocabTime" name="vocabTimeOption" value="week" id="vocabWeek">
+                    <label for="vocabWeek">Week</label>
+                    <input type="radio" class="twoWeeks vocabTime" name="vocabTimeOption" value="twoWeeks" id="vocabTwoWeek">
+                    <label for="vocabTwoWeek">Two Weeks</label>
+                    <input type="radio" class="month vocabTime" name="vocabTimeOption" value="month" id="vocabMonth">
+                    <label for="vocabMonth">Month</label>
+                    <input type="radio" class="sixMonths vocabTime" name="vocabTimeOption" value="sixMonths" id="vocabSixMonth">
+                    <label for="vocabSixMonth">Six Months</label>
                 </div>
-                <button class="applyFilter">Apply</button>
+                <button class="clearFilter">Reset Filters</button>
             </div>
             
         </div>
@@ -151,16 +169,18 @@
             <div class="filters">
                 <div class="timeFilters">
                     <p>Time</p>
-                    <input type="radio" id="week" name="timeOption">
-                    <label for="week">Week</label>
-                    <input type="radio" id="twoWeeks" name="timeOption">
-                    <label for="twoWeeks">Two Weeks</label>
-                    <input type="radio" id="month" name="timeOption">
-                    <label for="month">Month</label>
-                    <input type="radio" id="sixMonths" name="timeOption">
-                    <label for="sixMonths">Six Months</label>
+                    <input type="radio" class="all kanjiTime" name="kanjiTimeOption" value="all" id="kanjiAll" checked>
+                    <label for="kanjiAll">All</label>
+                    <input type="radio" class="week kanjiTime" name="kanjiTimeOption" value="week" id="kanjiWeek">
+                    <label for="kanjiWeek">Week</label>
+                    <input type="radio" class="twoWeeks kanjiTime" name="kanjiTimeOption" value="twoWeeks" id="kanjiTwoWeek">
+                    <label for="kanjiTwoWeek">Two Weeks</label>
+                    <input type="radio" class="month kanjiTime" name="kanjiTimeOption" value="month" id="kanjiMonth">
+                    <label for="kanjiMonth">Month</label>
+                    <input type="radio" class="sixMonths kanjiTime" name="kanjiTimeOption" value="sixMonths" id="kanjiSixMonth">
+                    <label for="kanjiSixMonth">Six Months</label>
                 </div>
-                <button class="applyFilter">Apply</button>
+                <button class="clearFilter">Reset Filters</button>
             </div>
             
         </div>
@@ -186,8 +206,49 @@
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
         </div>
-        
-        <button class="stateButton" data-stateIndex="7"></button>
+
+        <div class="filters">
+            <div class="posFilters">
+                <input type="checkbox" id="studyAll" class="allSelect">
+                <label for="studyAll">All</label>
+                <input type="checkbox" id="studyNoun" class="singleSelect" value="noun">
+                <label for="studyNoun">Nouns</label>
+                <input type="checkbox" id="studyVerb" class="multiSelect" data-children= "3">
+                <label for="studyVerb">Verbs</label>
+                <input type="checkbox" id="studyUVrb" class="singleSelect" value="vrb-u">
+                <label for="studyUVrb">U Verbs</label>
+                <input type="checkbox" id="studyRuVrb" class="singleSelect" value="vrb-ru">
+                <label for="studyRuVrb">Ru Verbs</label>
+                <input type="checkbox" id="studyIrrVrb" class="singleSelect" value="vrb-irr">
+                <label for="studyIrrVrb">Irr Verbs</label>
+                <input type="checkbox" id="studyAdj" class="multiSelect" data-children= "2">
+                <label for="studyAdj">Adjectives</label>
+                <input type="checkbox" id="studyNaAdj" class="singleSelect" value="adj-na">
+                <label for="studyNaAdj">Na</label>
+                <input type="checkbox" id="studyIAdj" class="singleSelect" value="adj-i">
+                <label for="studyIAdj">I</label>
+            </div>
+            <div class="timeFilters">
+                <p>Time</p>
+                <input type="radio" class="all studyTime" name="studyTimeOption" value="all" id="studyAllTime">
+                <label for="studyAllTime">All</label>
+                <input type="radio" class="week studyTime" name="studyTimeOption" value="week" id="studyWeek">
+                <label for="studyWeek">Week</label>
+                <input type="radio" class="twoWeeks studyTime" name="studyTimeOption" value="twoWeeks" id="studyTwoWeek">
+                <label for="studyTwoWeek">Two Weeks</label>
+                <input type="radio" class="month studyTime" name="studyTimeOption" value="month" id="studyMonth">
+                <label for="studyMonth">Month</label>
+                <input type="radio" class="sixMonths studyTime" name="studyTimeOption" value="sixMonths" id="studySixMonth">
+                <label for="studySixMonth">Six Months</label>
+            </div>
+            <label for="nVocab">Number of Vocab:</label>
+            <input type="number" id="nVocab" name="nVocab" min="0" max="2" value="0">
+            <label for="nKanji">Number of Kanji:</label>
+            <input type="number" id="nKanji" name="nKanji" min="0" max="2" value="0">
+            <button class="clearFilter">Reset Filters</button>
+        </div>
+
+        <button class="stateButton" data-stateIndex="6" id="startStudy"></button>
     </div>
 
     <div class="state">
@@ -195,12 +256,55 @@
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
         </div>
         
+        <div id="cardArrangements">
+            <div id="vocabArrange">
+                <input type="radio" name="vocabConfigs" id="vocabConfig1" value= "0" checked>
+                <label for="vocabConfig1">Front: Kanji + Hiragana / Back: English</label>
+                <input type="radio" name="vocabConfigs" id="vocabConfig2" value= "1">
+                <label for="vocabConfig2">Front: Kanji / Back: Hiragana + English</label>
+                <input type="radio" name="vocabConfigs" id="vocabConfig3" value= "2">
+                <label for="vocabConfig3">Front: English / Back: Kanji + Hiragana</label>
+                <input type="radio" name="vocabConfigs" id="vocabConfig4" value= "3">
+                <label for="vocabConfig4">Front: Hiragana + English / Back: Kanji</label>
+            </div>
+            <div id="kanjiArrange">
+                <input type="radio" name="kanjiConfigs" id="kanjiConfig1" value= "0" checked>
+                <label for="kanjiConfig1">Front: Character + On and Kun / Back: English</label>
+                <input type="radio" name="kanjiConfigs" id="kanjiConfig2" value= "1">
+                <label for="kanjiConfig2">Front: Character / Back: English + On and Kun</label>
+                <input type="radio" name="kanjiConfigs" id="kanjiConfig3" value= "2">
+                <label for="kanjiConfig3">Front: English / Back: Character + On and Kun</label>
+                <input type="radio" name="kanjiConfigs" id="kanjiConfig4" value= "3">
+                <label for="kanjiConfig4">Front: English + On and Kun / Back: Character</label>
+            </div>
+        </div>
         <button class="stateButton" data-stateIndex="7"></button>
     </div>
 
     <div class="state">
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
+        </div>
+
+        <div id="flashCards">
+            <button id="removeCard">Remove</button>
+            <div id="front">
+                <p class="cardInfo"></p>
+                <p class="cardInfo"></p>
+            </div>
+            <div id="back">
+                <p class="cardInfo"></p>
+                <p class="cardInfo"></p>
+            </div>
+        </div>
+
+        <div id="studyEnd">
+            <button id="shuffle">Restudy Selection</button>
+            <button class="stateButton greenButton" data-stateIndex="5">Study Settings</button>
+        </div>
+        <div id="entryTracker">
+            <p id="vocabCount">0/0</p>
+            <p id="kanjiCount">0/0</p>
         </div>
     </div>
     
