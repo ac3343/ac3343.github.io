@@ -22,7 +22,7 @@
         <button class="stateButton" data-stateIndex="3" data-pos="vrb-irr">Irr Verbs</button>
         <button class="stateButton" data-stateIndex="3" data-pos="adj-na">Na Adjectives</button>
         <button class="stateButton" data-stateIndex="3" data-pos="adj-i">I Adjectives</button>
-        <button class="stateButton greenButton" data-stateIndex="6">Study Selected</button>
+        <button class="stateButton greenButton" data-stateIndex="6" id="studySelected">Study Selected</button>
     </div>
 
     <div class="state">
@@ -86,7 +86,7 @@
         
     </div>
 
-    <div class="state" >
+    <div class="state" id="vocabScreen">
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
         </div>
@@ -94,6 +94,11 @@
             <input class="searchterm" type="text" size="20" maxlength="20" />
             <button type="button" class="search greenButton">Search</button>
             <button type="button" class="clear redButton">Clear</button>
+        </div>
+        <div class="entryEdit">
+            <button id="vocabEdit">Edit</button>
+            <button id="saveVocab">Save</button>
+            <button id="deleteVocab">Delete</button>
         </div>
         <div class="filterDiv">
             <button class="filterButton">Filers</button>
@@ -162,6 +167,11 @@
             <input class="searchterm" type="text" size="60" maxlength="60" />
             <button type="button" class="search greenButton">Search</button>
             <button type="button" class="clear redButton">Clear</button>
+        </div>
+        <div class="entryEdit">
+            <button id="kanjiEdit">Edit</button>
+            <button id="saveKanji">Save</button>
+            <button id="deleteKanji">Delete</button>
         </div>
         <div class="filterDiv">
             <button class="filterButton">Filers</button>

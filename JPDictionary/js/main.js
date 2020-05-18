@@ -100,28 +100,6 @@ window.onload= (e) => {
     }
   };
 
-  searchButtons[1].onclick = (e) =>{
-    //Gets search bar text
-    let search = searchFields[1].value;
-
-    //Creates matching entries array
-    let matchingEntries;
-
-    //If search is not any empty string
-    if(search){
-      //Gets list of matching entries
-      matchingEntries = getKanjiByString(search, kanjiFilterDate);
-    }
-
-    //If there are no matching entries, get the entire vocab list
-    if(!matchingEntries || matchingEntries == []){
-      matchingEntries = getKanjiList(kanjiFilterDate);
-    }
-
-    //Displays matching entries entries
-    displayKanjiList(matchingEntries);
-  };
-
   let removeButtons = document.querySelectorAll(".removeButton");
   for (const b of removeButtons) {
     b.onclick = removeInput;
@@ -393,6 +371,154 @@ window.onload= (e) => {
       console.log(k.value);
     };
   }
+
+  let studySelectedButton = document.querySelector("#studySelected");
+  studySelectedButton.onclick = (e) =>{
+    vocabCount = selectedVocab.length;
+    kanjiCount = selectedKanji.length;
+
+    //Combines selected vocab list and kanji list into entries to study
+    for(let i = 0; i < selectedVocab.length; i++){
+      entriesToStudy.push({index: selectedVocab[i], type: "vocab", flipped: false});
+    }
+    for(let i = 0; i < selectedKanji.length; i++){
+      entriesToStudy.push({index: selectedKanji[i], type: "kanji", flipped: false});
+    }
+  };
+
+  let hideFilterButton = document.querySelectorAll(".filterButton");
+  for (const b of hideFilterButton) {
+    b.onclick = (e) =>{
+      //Toggles filter visibility
+      let filterDiv = b.nextElementSibling;
+      if(filterDiv.style.display == "none" || !filterDiv.style.display){
+        filterDiv.style.display = "block";
+      }
+      else{
+        filterDiv.style.display = "none";
+      }
+    };
+  }
+
+  let vocabEditButton = document.querySelector("#vocabEdit");
+  vocabEditButton.onclick = (e) =>{
+    //Toggles edit mode
+    editButtonPushed = !editButtonPushed;
+
+    //Changes border color for all entries
+    if(editButtonPushed){
+      for (const v of vocabEntriesElement.children) {
+        vocabEntriesElement.style.borderColor = "#0E652B";
+        v.style.borderColor = "#0E652B";
+      }
+    }
+    else{
+      for (const v of vocabEntriesElement.children) {
+        vocabEntriesElement.style.borderColor = "#F4861F";
+        v.style.borderColor = "#F4861F";
+      }
+
+      isEditing = false;
+      editVocab = "";
+
+      //Resets page
+      searchButtons[0].click();
+    }    
+  };
+
+  let kanjiEditButton = document.querySelector("#kanjiEdit");
+  kanjiEditButton.onclick = (e) =>{
+    //Toggles edit mode
+    editButtonPushed = !editButtonPushed;
+
+    //Changes border color for all entries
+    if(editButtonPushed){
+      for (const v of kanjiEntriesElement.children) {
+        kanjiEntriesElement.style.borderColor = "#0E652B";
+        v.style.borderColor = "#0E652B";
+      }
+    }
+    else{
+      for (const v of kanjiEntriesElement.children) {
+        kanjiEntriesElement.style.borderColor = "#F4861F";
+        v.style.borderColor = "#F4861F";
+      }
+
+      isEditing = false;
+      editKanji = "";
+
+      //Resets page
+      searchButtons[0].click();
+    }    
+  };
+
+  let saveVocabEdit = document.querySelector("#saveVocab");
+  saveVocabEdit.onclick = (e) =>{
+    if(isEditing){
+      let vocabInfo = editVocab.querySelectorAll("input");
+      console.log(vocabInfo);
+      editVocabEntry(editVocab.dataset.index, vocabInfo[0].value, vocabInfo[1].value, vocabInfo[2].value);
+
+      isEditing = false;
+      editButtonPushed = false;
+      editVocab = "";
+
+      //Resets page
+      searchButtons[0].click();
+      
+      saveDictionaryToFile();
+    }
+  };
+
+  let saveKanjiEdit = document.querySelector("#saveKanji");
+  saveKanjiEdit.onclick = (e) =>{
+    if(isEditing){
+      let kanjiInfo = editKanji.querySelectorAll("input");
+      console.log(kanjiInfo);
+      editKanjiEntry(editKanji.dataset.index, kanjiInfo[0].value, kanjiInfo[2].value, kanjiInfo[1].value, kanjiInfo[3].value);
+
+      isEditing = false;
+      editButtonPushed = false;
+      editKanji = "";
+
+      //Resets page
+      searchButtons[1].click();
+
+      saveDictionaryToFile();
+    }
+  };
+
+  let deleteVocabEdit = document.querySelector("#deleteVocab");
+  deleteVocabEdit.onclick = (e) =>{
+    if(isEditing){
+      removeVocabAtIndex(editVocab.dataset.index);
+
+      isEditing = false;
+      editButtonPushed = false;
+      editVocab = "";
+
+      //Resets page
+      searchButtons[0].click();
+      
+      saveDictionaryToFile();
+    }
+  };
+
+  let deleteKanjiEdit = document.querySelector("#deleteKanji");
+  deleteKanjiEdit.onclick = (e) =>{
+    if(isEditing){
+      removeKanjiAtIndex(editKanji.dataset.index);
+
+      isEditing = false;
+      editButtonPushed = false;
+      editKanji = "";
+
+      //Resets page
+      searchButtons[1].click();
+
+      saveDictionaryToFile();
+    }
+  };
 };
 
 
@@ -432,6 +558,10 @@ let vocabArrangement = cardArrangements[0];
 let kanjiArrangement = cardArrangements[0];
 let selectedVocab = [];
 let selectedKanji = [];
+
+//Entry Editing variables
+let isEditing, editButtonPushed = false;
+let editVocab, editKanji;
 
 
 loadDictionary();
@@ -555,14 +685,13 @@ function removeKanjiAtIndex(_index){
   }
 }
 
-function editVocabEntry(_index, _kanji, _hirakata, _english, _pos){
+function editVocabEntry(_index, _kanji, _hirakata, _english){
   //Checks to see if index is within dictionary count
   if(_index < jpDict.vocab.count && _index >= 0){
     //Edits entry at index
     jpDict.vocab.dict[_index].kanji = _kanji;
     jpDict.vocab.dict[_index].hirakata = _hirakata;
     jpDict.vocab.dict[_index].english = _english;
-    jpDict.vocab.dict[_index].pos = _pos;
 
     console.log("Edited vocab entry at" + _index);
   }
@@ -614,17 +743,18 @@ function displayVocab(_index){
     //Creates entry element
     let element = "<div data-index = '";
     element += _index;
-    element += "' class = 'entry'> <p class='col1'>";
+    element += "' class = 'entry'> <input type ='text' readonly = 'true' class='col1' value ='";
     element += vocabEntry.kanji;
-    element += "</p><p class='col2'>";
+    element += "'><input type ='text' readonly = 'true' class='col2' value ='";
     element += vocabEntry.hirakata;
-    element += "</p><p class='col3'>";
+    element += "'><p class='col3'>";
     element += vocabEntry.pos;
-    element += "</p><p class='col4'>";
+    element += "</p><input type ='text' readonly = 'true' class='col4' value ='";
     element += vocabEntry.english;
-    element += "</p><p class='col5'>";
+    element += "'><p class='col5'>";
     let entryDate = new Date(vocabEntry.entryTime);
     element += entryDate.toLocaleString();
+    element += "</p>";
     element += "</div>";
 
     return element;
@@ -640,17 +770,18 @@ function displayKanji(_index){
     //Creates entry element
     let element = "<div data-index = '";
     element += _index;
-    element += "' class = 'entry'> <p class='col1'>";
+    element += "' class = 'entry'> <input type ='text' readonly = 'true' class='col1' value ='";
     element += kanjiEntry.character;
-    element += "</p><p class='col2'>";
+    element += "'><input type ='text' readonly = 'true' class='col2' value ='";
     element += kanjiEntry.on;
-    element += "</p><p class='col3'>";
+    element += "'><input type ='text' readonly = 'true' class='col3' value ='";
     element += kanjiEntry.kun;
-    element += "</p><p class='col4'>";
+    element += "'><input type ='text' readonly = 'true' class='col4' value ='";
     element += kanjiEntry.english;
-    element += "</p><p class='col5'>";
+    element += "'><p class='col5'>";
     let entryDate = new Date(kanjiEntry.entryTime);
     element += entryDate.toLocaleString();
+    element += "</p>";
     element += "</div>";
 
     return element;
@@ -678,17 +809,43 @@ function displayVocabList(_indexArray){
   vocabEntriesElement.innerHTML = entriesString;
 
   for (const v of vocabEntriesElement.children) {
-    //Toggles entry selection when they are pressed
+    //Changes background color if v is already selected
+    if(selectedVocab.includes(v.dataset.index)){
+      v.style.backgroundColor = "#FFD374";
+    }
+
     v.onclick = (e) =>{
-      if(selectedVocab.includes(v.dataset.index)){
-        selectedVocab.splice(selectedVocab.indexOf(v.dataset.index), 1);
-        v.style.backgroundColor = "white";
-        v.style.color = "black";
+      if(editButtonPushed && !isEditing){
+        //Resets all other border colors
+        for (const w of vocabEntriesElement.children) {
+          if(w != v){
+            w.style.borderColor = "#F4861F";
+          }
+        }
+
+        vocabEntriesElement.style.borderColor = "#F4861F";
+
+        //Sets is editing to true
+        isEditing = true;
+
+        //Enables text boxes
+        let inputs = v.querySelectorAll("input");
+        for (const i of inputs) {
+          i.readOnly = false;
+        }
+
+        editVocab = v;
       }
-      else{
-        selectedVocab.push(v.dataset.index);
-        v.style.backgroundColor = "#FFD374";
-        //v.style.color = "white";
+      else if(!isEditing){
+        //Toggles entry selection when they are pressed
+        if(selectedVocab.includes(v.dataset.index)){
+          selectedVocab.splice(selectedVocab.indexOf(v.dataset.index), 1);
+          v.style.backgroundColor = "white";
+        }
+        else{
+          selectedVocab.push(v.dataset.index);
+          v.style.backgroundColor = "#FFD374";
+        }
       }
     }
   }
@@ -714,18 +871,45 @@ function displayKanjiList(_indexArray){
   kanjiEntriesElement.innerHTML = entriesString;
 
   for (const k of kanjiEntriesElement.children) {
+    //Changes background color if k is already selected
+    if(selectedKanji.includes(k.dataset.index)){
+      k.style.backgroundColor = "#FFD374";
+    }
     //Toggles entry selection when they are pressed
     k.onclick = (e) =>{
-      if(selectedKanji.includes(k.dataset.index)){
-        selectedKanji.splice(selectedKanji.indexOf(k.dataset.index), 1);
-        k.style.backgroundColor = "white";
-        k.style.color = "black";
+      if(editButtonPushed && !isEditing){
+        //Resets all other border colors
+        for (const w of kanjiEntriesElement.children) {
+          if(w != k){
+            w.style.borderColor = "#F4861F";
+          }
+        }
+
+        kanjiEntriesElement.style.borderColor = "#F4861F";
+
+        //Sets is editing to true
+        isEditing = true;
+
+        //Enables text boxes
+        let inputs = k.querySelectorAll("input");
+        for (const i of inputs) {
+          i.readOnly = false;
+        }
+
+        editKanji = k;
       }
-      else{
-        selectedKanji.push(k.dataset.index);
-        k.style.backgroundColor = "#FFD374";
-        //v.style.color = "white";
+      else if(!isEditing){
+        //Toggles entry selection when they are pressed
+        if(selectedKanji.includes(k.dataset.index)){
+          selectedKanji.splice(selectedKanji.indexOf(k.dataset.index), 1);
+          k.style.backgroundColor = "white";
+        }
+        else{
+          selectedKanji.push(k.dataset.index);
+          k.style.backgroundColor = "#FFD374";
+        }
       }
+      
     }
   }
 }
@@ -1171,6 +1355,11 @@ function changeState(e){
         kanjiInputs[i].querySelector(".removeButton").click();
       }
     }
+
+    isEditing = false;
+    editButtonPushed = false;
+    editVocab = "";
+    editKanji = "";
   }
 
   else if(newState == 7){
@@ -1271,7 +1460,7 @@ function updateStudyCard(){
 
     //Updates vocab and kanji count elements
     vocabCountElement.innerText = "Vocab: " + vocabCount + "/" + vocabCount;
-    kanjiCountElement.innerText = "Kanji: " + (currentCard - kanjiCount + 1) + "/" + kanjiCount;
+    kanjiCountElement.innerText = "Kanji: " + (currentCard - vocabCount + 1) + "/" + kanjiCount;
   }
 }
 })();

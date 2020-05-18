@@ -54,14 +54,18 @@ body{
 
 #vocabEntries .entry, #kanjiEntries .entry{
     grid-template-rows: 15vw;
-    border-top: 8px solid #F4861F;
+    border-top: 5px solid #F4861F;
+    border-bottom: 5px solid #F4861F;
+    margin: 5px 0;
     background-color: white;
 }
 #vocabEntries, #kanjiEntries{
-    border-bottom: 8px solid #F4861F;
+    margin-top: 1vw;
+    border-top: 5px solid #F4861F;
+    border-bottom: 5px solid #F4861F;
 }
 
-.entry p{
+.entry p, .entry input{
     margin: auto;
     text-align: center;
     font-size: xx-large;
@@ -134,7 +138,15 @@ body{
 .vocabEntry input, .vocabEntry button, .kanjiEntry input, .kanjiEntry button, .vocabEntry select{
     font-size: x-large;
 }
-
+.entry input{
+    width: 100%;
+    border: none;
+    font-size: x-large;
+    background-color: transparent;
+}
+.entry input:focus{
+    outline: none;
+}
 .entryButtons{
     display: flex;
     margin: 3vw 0;
@@ -144,4 +156,8 @@ body{
     height: 10vw;
     margin: auto;
     font-size: x-large;
+}
+
+#vocabScreen .filters, #kanjiScreen .filters{
+    display: none;
 }
