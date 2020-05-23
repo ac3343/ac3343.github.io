@@ -297,17 +297,13 @@ window.onload= (e) => {
     updateStudyCard();
   };
 
-  let nVocabElement = document.querySelector("#nVocab");
-  let nKanjiElement = document.querySelector("#nKanji");
-
-  nVocabElement.max = jpDict.vocab.count;
-  nKanjiElement.max = jpDict.kanji.count;
+  
 
   let startStudyButton = document.querySelector("#startStudy");
   startStudyButton.addEventListener("click", (e) =>{
     //Sets new entry counts
-    vocabCount = nVocabElement.value;
-    kanjiCount = nKanjiElement.value;
+    vocabCount = parseInt(nVocabElement.value);
+    kanjiCount = parseInt(nKanjiElement.value);
     
     //Checks to see if a valid number of entries has been sumbitted
     if((0 >= vocabCount && 0 >= kanjiCount)){
@@ -346,6 +342,10 @@ window.onload= (e) => {
     //Generates random list of terms
     let vocabList = getRandomVocabList(posFilter, studyFilterDate, vocabCount);
     let kanjiList = getRandomKanjiList(studyFilterDate, kanjiCount);
+
+    //Updates kanji can vocab count
+    vocabCount = vocabList.length;
+    kanjiCount = kanjiList.length;
 
     //Combines vocab list and kanji list into entries to study
     for(let i = 0; i < vocabCount; i++){
@@ -392,7 +392,7 @@ window.onload= (e) => {
       //Toggles filter visibility
       let filterDiv = b.nextElementSibling;
       if(filterDiv.style.display == "none" || !filterDiv.style.display){
-        filterDiv.style.display = "block";
+        filterDiv.style.display = "grid";
       }
       else{
         filterDiv.style.display = "none";
@@ -411,12 +411,19 @@ window.onload= (e) => {
         vocabEntriesElement.style.borderColor = "#0E652B";
         v.style.borderColor = "#0E652B";
       }
+
+      vocabEditButton.style.backgroundColor = "#0E652B";
+      vocabEditButton.style.color = "#D3D4D9";
+
     }
     else{
       for (const v of vocabEntriesElement.children) {
         vocabEntriesElement.style.borderColor = "#F4861F";
         v.style.borderColor = "#F4861F";
       }
+
+      vocabEditButton.style.backgroundColor = "#F4861F";
+      vocabEditButton.style.color = "#071E22";
 
       isEditing = false;
       editVocab = "";
@@ -437,12 +444,18 @@ window.onload= (e) => {
         kanjiEntriesElement.style.borderColor = "#0E652B";
         v.style.borderColor = "#0E652B";
       }
+
+      kanjiEditButton.style.backgroundColor = "#0E652B";
+      kanjiEditButton.style.color = "#D3D4D9";
     }
     else{
       for (const v of kanjiEntriesElement.children) {
         kanjiEntriesElement.style.borderColor = "#F4861F";
         v.style.borderColor = "#F4861F";
       }
+
+      kanjiEditButton.style.backgroundColor = "#F4861F";
+      kanjiEditButton.style.color = "#071E22";
 
       isEditing = false;
       editKanji = "";
@@ -455,13 +468,16 @@ window.onload= (e) => {
   let saveVocabEdit = document.querySelector("#saveVocab");
   saveVocabEdit.onclick = (e) =>{
     if(isEditing){
-      let vocabInfo = editVocab.querySelectorAll("input");
+      let vocabInfo = editVocab.querySelectorAll("textarea");
       console.log(vocabInfo);
       editVocabEntry(editVocab.dataset.index, vocabInfo[0].value, vocabInfo[1].value, vocabInfo[2].value);
 
       isEditing = false;
       editButtonPushed = false;
       editVocab = "";
+
+      vocabEditButton.style.backgroundColor = "#F4861F";
+      vocabEditButton.style.color = "#071E22";
 
       //Resets page
       searchButtons[0].click();
@@ -473,13 +489,16 @@ window.onload= (e) => {
   let saveKanjiEdit = document.querySelector("#saveKanji");
   saveKanjiEdit.onclick = (e) =>{
     if(isEditing){
-      let kanjiInfo = editKanji.querySelectorAll("input");
+      let kanjiInfo = editKanji.querySelectorAll("textarea");
       console.log(kanjiInfo);
       editKanjiEntry(editKanji.dataset.index, kanjiInfo[0].value, kanjiInfo[2].value, kanjiInfo[1].value, kanjiInfo[3].value);
 
       isEditing = false;
       editButtonPushed = false;
       editKanji = "";
+
+      kanjiEntriesElement.style.backgroundColor = "#F4861F";
+      kanjiEntriesElement.style.color = "#071E22";
 
       //Resets page
       searchButtons[1].click();
@@ -497,6 +516,9 @@ window.onload= (e) => {
       editButtonPushed = false;
       editVocab = "";
 
+      vocabEditButton.style.backgroundColor = "#F4861F";
+      vocabEditButton.style.color = "#071E22";
+
       //Resets page
       searchButtons[0].click();
       
@@ -513,12 +535,20 @@ window.onload= (e) => {
       editButtonPushed = false;
       editKanji = "";
 
+      kanjiEntriesElement.style.backgroundColor = "#F4861F";
+      kanjiEntriesElement.style.color = "#071E22";
+
       //Resets page
       searchButtons[1].click();
 
       saveDictionaryToFile();
     }
   };
+
+  let prevButton = document.querySelector("#prevButton");
+  let nextButton = document.querySelector("#nextButton");
+  prevButton.onclick = toPreviousCard;
+  nextButton.onclick = toNextCard;
 };
 
 
@@ -565,6 +595,18 @@ let editVocab, editKanji;
 
 
 loadDictionary();
+
+let nVocabElement = document.querySelector("#nVocab");
+let nKanjiElement = document.querySelector("#nKanji");
+
+flashCardElement.onclick = (e) =>{
+  //Toggles current cards flipped status
+  entriesToStudy[currentCard].flipped = !entriesToStudy[currentCard].flipped;
+
+  //Updates current card
+  updateStudyCard();
+};
+
 window.onkeyup = (e) => {
   if(allStates[7].style.display != "none"){
     if(e.key == "ArrowRight"){
@@ -591,6 +633,11 @@ function loadDictionary() {
       if (this.readyState == 4 && this.status == 200) {
         jpDict = JSON.parse(this.responseText);
 
+        nVocabElement.max = jpDict.vocab.count;
+        nVocabElement.value = jpDict.vocab.count;
+        nKanjiElement.max = jpDict.kanji.count; 
+        nKanjiElement.value = jpDict.kanji.count; 
+
         //console.log(jpDict.vocab.dict[2]);
         //console.log(jpDict.kanji.dict[1]);
         //console.log(jpDict);
@@ -598,7 +645,7 @@ function loadDictionary() {
     };
     xhttp.open("GET", "php/dic/all_dic", true);
     xhttp.send();
-  }
+}
 
 function saveDictionaryToFile(){
   let xhttp = new XMLHttpRequest();
@@ -743,15 +790,15 @@ function displayVocab(_index){
     //Creates entry element
     let element = "<div data-index = '";
     element += _index;
-    element += "' class = 'entry'> <input type ='text' readonly = 'true' class='col1' value ='";
+    element += "' class = 'entry'> <textarea type ='text' rows = '2' cols='4' readonly = 'true' class='col1'>";
     element += vocabEntry.kanji;
-    element += "'><input type ='text' readonly = 'true' class='col2' value ='";
+    element += "</textarea><textarea type ='text' rows = '2' cols='4' readonly = 'true' class='col2'>";
     element += vocabEntry.hirakata;
-    element += "'><p class='col3'>";
+    element += "</textarea><p class='col3'>";
     element += vocabEntry.pos;
-    element += "</p><input type ='text' readonly = 'true' class='col4' value ='";
+    element += "</p><textarea type ='text' rows = '2' cols='4' readonly = 'true' class='col4'>";
     element += vocabEntry.english;
-    element += "'><p class='col5'>";
+    element += "</textarea><p class='col5'>";
     let entryDate = new Date(vocabEntry.entryTime);
     element += entryDate.toLocaleString();
     element += "</p>";
@@ -770,15 +817,15 @@ function displayKanji(_index){
     //Creates entry element
     let element = "<div data-index = '";
     element += _index;
-    element += "' class = 'entry'> <input type ='text' readonly = 'true' class='col1' value ='";
+    element += "' class = 'entry'> <textarea type ='text' rows = 1' cols='4' readonly = 'true' class='col1'>";
     element += kanjiEntry.character;
-    element += "'><input type ='text' readonly = 'true' class='col2' value ='";
+    element += "</textarea><textarea type ='text' rows = '2' cols='4' readonly = 'true' class='col2'>";
     element += kanjiEntry.on;
-    element += "'><input type ='text' readonly = 'true' class='col3' value ='";
+    element += "</textarea><textarea type ='text' rows = '2' cols='4' readonly = 'true' class='col2'>";
     element += kanjiEntry.kun;
-    element += "'><input type ='text' readonly = 'true' class='col4' value ='";
+    element += "</textarea><textarea type ='text' rows = '2' cols='4' readonly = 'true' class='col2'>";
     element += kanjiEntry.english;
-    element += "'><p class='col5'>";
+    element += "</textarea><p class='col5'>";
     let entryDate = new Date(kanjiEntry.entryTime);
     element += entryDate.toLocaleString();
     element += "</p>";
@@ -829,7 +876,7 @@ function displayVocabList(_indexArray){
         isEditing = true;
 
         //Enables text boxes
-        let inputs = v.querySelectorAll("input");
+        let inputs = v.querySelectorAll("textarea");
         for (const i of inputs) {
           i.readOnly = false;
         }
@@ -891,7 +938,7 @@ function displayKanjiList(_indexArray){
         isEditing = true;
 
         //Enables text boxes
-        let inputs = k.querySelectorAll("input");
+        let inputs = k.querySelectorAll("textarea");
         for (const i of inputs) {
           i.readOnly = false;
         }
@@ -1389,7 +1436,7 @@ function toNextCard(){
 
     //Hides flashcards and shows end screen
     flashCardElement.style.display = "none";
-    studyEndElement.style.display = "block";
+    studyEndElement.style.display = "flex";
   }
   else{
     //Updates card information
@@ -1455,7 +1502,7 @@ function updateStudyCard(){
     //Gets vocab entry
     let kanjiEntry = getKanjiByIndex(entriesToStudy[currentCard].index);
     cardInfo[kanjiArrangement[0]].innerText = kanjiEntry.character;
-    cardInfo[kanjiArrangement[1]].innerText = "On: " + kanjiEntry.on + " Kun: " + kanjiEntry.kun;
+    cardInfo[kanjiArrangement[1]].innerText = "On: " + kanjiEntry.on + "\n" + " Kun: " + kanjiEntry.kun;
     cardInfo[kanjiArrangement[2]].innerText = kanjiEntry.english;
 
     //Updates vocab and kanji count elements

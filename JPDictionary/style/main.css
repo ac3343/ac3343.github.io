@@ -1,26 +1,23 @@
 body{
     background-color:whitesmoke;
+    margin: 0;
 }
 #home{
     display: grid;
     grid-template-columns: 45vw 45vw;
     grid-template-rows: 43vw 43vw 43vw 43vw 43vw 43vw 43vw;
+    grid-template-areas: 
+        ' area1 area2  ' ' area3 area4  ' ' area5 area6  ' ' area7 area8  ' ' area9 area10  ' ' area11 area12  '' area13 area14 '  ;
     width: 100%;
     justify-content: center;
     align-content: center;
     margin-top: 10vw;
 }
 
-#topRow{
-    grid-column: 1/3;
-    display: grid;
-    grid-template-columns: 45vw 45vw;
-    grid-template-rows: 40vw 40vw;
-}
 .stateButton{
     width: 38vw;
     height: 35vw;
-    font-size: 40px;
+    font-size: x-large;
     margin: auto;
     background-color: #F4861F;
     box-shadow: 2px 2px 15px black;
@@ -44,59 +41,67 @@ body{
     background-color: #66101F;
     color: #D3D4D9;
 }
+.orangeButton{
+    background-color: #F4861F;
+    color: #071E22;
+}
 
 .entry{
     display: grid;
-    grid-template-columns: 20vw 20vw 16vw 22vw 22vw;
+    grid-template-columns: 18vw 18vw 16vw 20vw 20vw;
     grid-template-rows: auto;
     justify-content: center;
 }
 
 #vocabEntries .entry, #kanjiEntries .entry{
     grid-template-rows: 15vw;
-    border-top: 5px solid #F4861F;
-    border-bottom: 5px solid #F4861F;
-    margin: 5px 0;
+    border-top: .5vh solid #F4861F;
+    border-bottom: .5vh solid #F4861F;
+    margin: .5vh 0;
     background-color: white;
 }
 #vocabEntries, #kanjiEntries{
     margin-top: 1vw;
-    border-top: 5px solid #F4861F;
-    border-bottom: 5px solid #F4861F;
+    border-top: .5vh solid #F4861F;
+    border-bottom: .5vh solid #F4861F;
 }
 
-.entry p, .entry input{
+.entry p, textarea{
     margin: auto;
     text-align: center;
-    font-size: xx-large;
+    font-size: medium;
 }
 
 #vocabEntries .col5{
-    font-size: x-large;
+    font-size: medium;
 }
 
 #kanjiEntries p{
-    font-size: x-large;
+    font-size: medium;
 }
 
 #kanjiEntries .col1{
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 #kanjiScreen .entry{
     grid-template-columns: 18vw 16vw 16vw 24vw 26vw;
 }
-
-.searchterm{
-    width: 55vw;
-    height: 9vw;
+.searchArea{
+    display: flex;
+    justify-content: center;
     margin: 5vw 0;
+}
+.searchterm{
+    width: 50vw;
+    height: 9vw;
     font-size: x-large;
 }
-.search, .clear{
+.search, .clear, .editButton, .filterButton{
     width: 20vw;
     height: 10vw;
-    font-size: x-large;
+    margin: 0;
+    font-size: large;
 }
 
 .homeButton{
@@ -104,14 +109,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2vw;
+    margin: 2vw 0;
 }
 .homeButton .stateButton{
     width: 20vw;
     height: 10vw;
     margin: auto;
     box-shadow: 0px 0px 0px black;
-    font-size: xx-large;
+    font-size: x-large;
 }
 
 .vocabEntry{
@@ -135,16 +140,22 @@ body{
 #enterVocab .entry{
     grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
 }
-.vocabEntry input, .vocabEntry button, .kanjiEntry input, .kanjiEntry button, .vocabEntry select{
-    font-size: x-large;
+.vocabEntry input, .kanjiEntry input, .vocabEntry select{
+    font-size: large;
 }
-.entry input{
+.vocabEntry button, .kanjiEntry button{
+    font-size: small;
+}
+.entry textarea{
     width: 100%;
     border: none;
-    font-size: x-large;
+    font-size: smaller;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
     background-color: transparent;
+    resize: none;
 }
-.entry input:focus{
+.entry textarea:focus{
     outline: none;
 }
 .entryButtons{
@@ -155,9 +166,385 @@ body{
     width: 20vw;
     height: 10vw;
     margin: auto;
-    font-size: x-large;
+    font-size: large;
 }
 
 #vocabScreen .filters, #kanjiScreen .filters{
     display: none;
+}
+.entryEdit{
+    margin: 2vw 0;
+    display: flex;
+    justify-content: center;
+}
+.editButton{
+    margin: 0 5vw;
+    width: 25vw;
+}
+.editModeButton{
+    background-color: #F4861F;
+    color: #071E22;
+}
+.filterDiv{
+    margin-bottom: 1vw;
+    color: #071E22;
+}
+.filters{
+    background-color: #D3F6DB;
+    margin: auto;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    padding: 3vw 0;
+}
+#kanjiScreen .filters{
+    grid-template-columns: 40vw;
+    width: 45vw;
+    margin-left: 0;
+}
+.filters label{
+    margin: auto;
+    margin-left: 1vw;
+    width: 100%;
+    text-align: left;
+    font-size: large;
+}
+.filters input{
+    margin: auto;
+    width: 4vw;
+    height: 4vw;
+}
+.filterButton{
+    background-color: #D3F6DB;
+    border: none;
+    color: #471D66;
+}
+.filterButton:focus{
+    outline: none;
+}
+.timeFilters{
+    display: grid;
+    grid-template-columns: 7vw 23vw;
+    grid-template-rows: auto;
+    margin-bottom: 2vw;
+    margin-left: 1vw;
+    align-self: center;
+    justify-self: center;
+}
+.clearFilter{
+    width: 20vw;
+    height: 10vw;
+    font-size: large;
+    grid-column: 1 /span 2;
+    grid-row: 2 / span 1;
+    margin: auto;
+}
+.posFilters{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+#studyOptions .filters{
+    height: 80vh;
+    margin: auto;
+    grid-template-columns: 70vw;
+    grid-template-rows: auto;
+    align-content: center;
+    gap: 2vh;
+}
+#studyOptions .clearFilter{
+    grid-column: 1 /span 1;
+    grid-row: 3 / span 1;
+}
+#nVocab, #nKanji{
+    width: 70%;
+    height: 3vh;
+    font-size: large;
+    text-align: center;
+}
+label[for="nVocab"], label[for="nKanji"]{
+    text-align: center;
+}
+#startStudy{
+    margin-top: 4vw;
+}
+
+#studyScreen{
+    display: grid;
+    grid-template-columns: 15vw 70vw 15vw;
+    grid-template-rows: 100vw 5vh;
+    padding-top: 10vh;
+}
+.cardInfo{
+    text-align: center;
+    font-size: large;
+    margin: 5vw 0;
+}
+#front, #back{
+    padding: 25vw 0;
+}
+#studyEnd button{
+    width: 40vw;
+    height: 20vw;
+    font-size: x-large;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px black;
+    margin:  auto;
+    margin-top: 9vh;
+}
+#studyEnd{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+#prevButton, #nextButton{
+    height: 5vh;
+    align-self: center;
+}
+#flashCards{
+    height: 100%;
+}
+
+#entryTracker{
+    grid-row: 2;
+    grid-column: 2 /span 1;
+    display: flex;
+    font-size: larger;
+}
+#entryTracker p{
+    margin: auto;
+}
+.top{
+    font-size: 48px;
+}
+.bottom{
+    font-size: 36px;
+}
+
+#cardArrangements{
+    background-color: #FFECDB;
+    display: flex;
+    flex-direction: column;
+}
+#vocabArrange, #kanjiArrange{
+    display: grid;
+    grid-template-columns: 5vw 80vw;
+    row-gap: 2.5vw;
+    margin:  5vw auto;
+}
+#cardArrangements hr{
+    width: 90%;
+    color: #F4861F;
+    background-color: #F4861F;
+    border-width: 0;
+    height: 2px;
+}
+
+@media screen and (min-width: 800px){
+    #home{
+        margin-top: 5vw;
+        grid-template-columns: 14vw 2vw 14vw 14vw 14vw 14vw 2vw 14vw;
+        grid-template-rows: 13vw 13vw 13vw;
+        grid-template-areas: 
+        ' area1 . . area5 area6 . . area3  ' 'area2 . area7 area9 area8  area10 . area4' '. . area11 area13 area12 area14 . .';
+    }
+    .stateButton{
+        width: 11vw;
+        height: 10vw;
+        font-size: x-large;
+    }
+    .stateButton[data-stateIndex="1"]{
+        grid-column: 2/ span 1;
+    }
+    .stateButton[data-stateIndex="4"]{
+        grid-column: 1/ span 1;
+    }
+
+    .homeButton .stateButton{
+        width: 10vw;
+        height: 5vw;
+        font-size: x-large;
+    }
+    #addVocabEntry, #submitVocab, #addKanjiEntry, #submitKanji{
+        width: 10vw;
+        height: 5vw;
+        margin: auto;
+        font-size: large;
+    }
+    #enterVocab, #enterKanji{
+        width: 70vw;
+        margin: auto;
+    }
+    .vocabEntry{
+        grid-template-columns: 14vw 14vw 14vw 14vw 9vw;
+        grid-template-rows: 4vw;
+        font-size: x-large;
+        gap: 1vw;
+        margin: 1vw 0vw;
+    }
+    .kanjiEntry{
+        grid-template-columns: 14vw 14vw 14vw 14vw 9vw;
+        grid-template-rows: 4vw;
+        font-size: x-large;
+        gap: 1vw;
+        margin: 1vw 0vw;
+    }
+    #enterVocab .entry{
+        grid-template-columns: 15vw 15vw 15vw 15vw 12vw;
+    }
+    #enterKanji .entry{
+        grid-template-columns: 15vw 15vw 15vw 15vw 12vw;
+    }
+    .vocabEntry button, .kanjiEntry button{
+        font-size: large;
+    }
+
+    .searchterm{
+        width: 25vw;
+        height: 2vw;
+        margin-top: .1vw;
+    }
+    .search, .clear, .editButton, .filterButton{
+        width: 5vw;
+        height: 2.5vw;
+        margin: 0;
+        font-size: large;
+    }
+    .entry{
+        font-size: x-large;
+        grid-template-columns: 14vw 14vw 12vw 16vw 16vw;
+    }
+    #vocabEntries .entry, #kanjiEntries .entry{
+        grid-template-rows: 5vw;
+        border-top: .25vh solid #F4861F;
+        border-bottom: .25vh solid #F4861F;
+        margin: .25vh 0;
+        background-color: white;
+    }
+    #vocabEntries, #kanjiEntries{
+        width: 70vw;
+        margin: auto;
+        border-top: .25vh solid #F4861F;
+        border-bottom: .25vh solid #F4861F;
+    }
+    .entry p{
+        font-size: large;
+    }
+    .searchArea{
+        margin: 1vw 0;
+    }
+    .filterDiv{
+        margin: auto;
+        margin-bottom: 1vw;
+        width: 70vw;
+    }
+    .clearFilter{
+        width: 5vw;
+        height: 2.5vw;
+    }
+    .filters input{
+        width: 1vw;
+        height: 1vw;
+        margin: .5vw .5vw;
+    }
+    .filters{
+        grid-template-columns: 15vw 15vw;
+        padding: 3vw 0;
+        width: 50%;
+        margin: 0;
+    }
+    .timeFilters{
+        display: grid;
+        grid-template-columns: 2vw 7vw;
+        grid-template-rows: auto;
+        margin-bottom: 2vw;
+        margin-left: 1vw;
+        align-self: center;
+        justify-self: center;
+    }
+    .filters label{
+        margin-left: 0vw;
+    }
+    #kanjiScreen .filters{
+        grid-template-columns: 40vw;
+        width: 30%;
+    }
+    #kanjiScreen .entry{
+        grid-template-columns: 12vw 10vw 10vw 18vw 20vw;
+    }
+    #vocabEntries .col5, #kanjiEntries .col5{
+        font-size: large;
+    }
+    #studyOptions .filters{
+        height: 70vh;
+        width: 60vw;
+        padding-left: 5vw;
+        margin: auto;
+        grid-template-columns: 12vw 10vw 15vw;
+        grid-template-rows: auto;
+        align-content: center;
+        gap: 1vw;
+    }
+    #studyOptions .timeFilters{
+        grid-column: 1/span 1;
+    }
+    #studyOptions .homeButton{
+        grid-column: 2/span 1;
+    }
+    #nVocab, #nKanji{
+        align-self: center;
+        width: 5vw;
+    }
+    #nVocab{
+        grid-column: 3/span 1;
+        grid-row: 1/span 1;
+    }
+    #nKanji{
+        grid-column: 3/span 1;
+        grid-row: 2/span 1;
+    }
+    label[for="nVocab"]{
+        grid-column: 2/span 1;
+        grid-row: 1/span 1;
+    }
+    label[for="nKanji"]{
+        grid-column: 2/span 1;
+        grid-row: 2/span 1;
+    }
+    #startStudy{
+        margin: auto;
+        width: 5vw;
+        height: 2.5vw;
+    }
+    
+    #studyScreen{
+        display: grid;
+        grid-template-columns: 5vw 40vw 5vw;
+        grid-template-rows: 50vh 5vh;
+        margin: 0 25vw;
+        margin-top: 2vw;
+    }
+    #front, #back{
+        padding: 0 0;
+    }
+    #studyEnd button{
+        width: 10vw;
+        height: 5vw;
+    }
+    #vocabArrange, #kanjiArrange{
+        display: grid;
+        grid-template-columns: 3vw 20vw;
+        row-gap: 1vw;
+        margin: 2vw auto;
+    }
+    #cardArrangements{
+        width: 50vw;
+        margin: auto;
+        justify-content: center;
+    }
+
+    #cardArrangements button{
+        width: 5vw;
+        height: 2.5vw;
+    }
 }
