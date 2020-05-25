@@ -1090,10 +1090,22 @@ function vocabEntered(){
       let vocabEntry = v.children;
       
       //Adds new vocab based on submitted info
-      addNewVocab(vocabEntry[0].value, vocabEntry[1].value, vocabEntry[2].value, vocabEntry[3].value);
-
+      addNewVocab(vocabEntry[0].value, vocabEntry[1].value, vocabEntry[2].value, vocabEntry[3].value);      
     }
   }
+
+  //Removes all inputs
+  for(let i = submittedVocab.length - 1; i > 1; i--){
+    let vocabEntry = submittedVocab[i].children;
+
+    //Presses remove entry
+    vocabEntry[4].click();
+  }
+
+  addVocabInput();
+
+  let firstEntry = submittedVocab[1].children;
+  firstEntry[4].click();
 
   //Saves dictionary
   saveDictionaryToFile();
@@ -1116,6 +1128,19 @@ function kanjiEntered(){
     }
   }
   
+  //Removes all inputs
+  for(let i = submittedKanji.length - 1; i > 1; i--){
+    let kanjiEntry = submittedKanji[i].children;
+
+    //Presses remove entry
+    kanjiEntry[4].click();
+  }
+
+  addVocabInput();
+
+  let firstEntry = submittedKanji[1].children;
+  firstEntry[4].click();
+
   //Saves dictionary
   saveDictionaryToFile();
 }
@@ -1128,7 +1153,7 @@ function addVocabInput(){
   //Creates input string with entry html
   let inputString = "<input class='vocabKanji' type='text' size='20' maxlength='20' />"
   inputString += "<input class='vocabHirakata' type='text' size='20' maxlength='20' />"
-  inputString += "<input class='vocabEnglish' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='vocabEnglish' type='text' size='20' maxlength='40' />"
   inputString += "<select name='Part Of Speech' id='vocabPos'>"
   inputString += "<option value='noun'>Noun</option>"
   inputString += "<option value='vrb-u'>U Verb</option>"
@@ -1165,7 +1190,7 @@ function addKanjiInput(){
   let inputString = "<input class='kanjiCharacter' type='text' size='20' maxlength='20' />"
   inputString += "<input class='kanjiOn' type='text' size='20' maxlength='20' />"
   inputString += "<input class='kanjiKun' type='text' size='20' maxlength='20' />"
-  inputString += "<input class='kanjiEnglish' type='text' size='20' maxlength='20' />"
+  inputString += "<input class='kanjiEnglish' type='text' size='20' maxlength='35' />"
 
   //Sets input div's inner html to the input string
   inputDiv.innerHTML = inputString;
