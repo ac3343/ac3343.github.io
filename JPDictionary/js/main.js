@@ -377,6 +377,9 @@ window.onload= (e) => {
     vocabCount = selectedVocab.length;
     kanjiCount = selectedKanji.length;
 
+    //Clears entries to study
+    entriesToStudy = [];
+
     //Combines selected vocab list and kanji list into entries to study
     for(let i = 0; i < selectedVocab.length; i++){
       entriesToStudy.push({index: selectedVocab[i], type: "vocab", flipped: false});
@@ -633,10 +636,10 @@ function loadDictionary() {
       if (this.readyState == 4 && this.status == 200) {
         jpDict = JSON.parse(this.responseText);
 
-        nVocabElement.max = jpDict.vocab.count;
-        nVocabElement.value = jpDict.vocab.count;
-        nKanjiElement.max = jpDict.kanji.count; 
-        nKanjiElement.value = jpDict.kanji.count; 
+        //nVocabElement.max = jpDict.vocab.count;
+        //nVocabElement.value = jpDict.vocab.count;
+        //nKanjiElement.max = jpDict.kanji.count; 
+        //nKanjiElement.value = jpDict.kanji.count; 
 
         //console.log(jpDict.vocab.dict[2]);
         //console.log(jpDict.kanji.dict[1]);
