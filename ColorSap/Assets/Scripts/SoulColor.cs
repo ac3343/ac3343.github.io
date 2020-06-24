@@ -36,4 +36,5 @@ public class SoulColor
         colorWeapon = _colorWeapon;
         ammoType = _ammoType;
     }
+ 
 }

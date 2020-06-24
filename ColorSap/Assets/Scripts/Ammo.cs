@@ -6,15 +6,29 @@ public class Ammo
 {
     string name;
     int numOfRounds;
-    int prefabIndex;
     int roundsPerShot;
     int damage;
 
-    public Ammo(string _name, int _rounds, int _index, int _rps)
+    public int NumOfRounds
+    {
+        get { return numOfRounds; }
+    }
+
+    public int Damage
+    {
+        get { return damage; }
+    }
+
+    public int RoundsPerShot
+    {
+        get { return roundsPerShot; }
+    }
+
+    public Ammo(string _name, int _rounds, int _rps, int _damage)
     {
         name = _name;
         numOfRounds = _rounds;
-        prefabIndex = _index;
         roundsPerShot = _rps;
+        damage = _damage;
     }
 }

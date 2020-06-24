@@ -6,14 +6,27 @@ public class Player : MonoBehaviour
 {
     AllColors allColors;
     Queue<SoulColor> sappedColors;
+    
+    public GameObject hitboxPrefab;
+    GameObject hitBox;
 
     Weapon equippedWeapon;
+
+    public GameObject projectilePrefab;
+    Queue<Round> rounds;
+    Queue<int> roundsToFire;
+    Queue<int> roundCount;
+    int currentRoundCount;
 
     // Start is called before the first frame update
     void Start()
     {
         allColors = new AllColors();
-        sappedColors = new Queue<SoulColor>();       
+        sappedColors = new Queue<SoulColor>();
+        rounds = new Queue<Round>();
+        roundsToFire = new Queue<int>();
+        roundCount = new Queue<int>();
+        currentRoundCount = 0;
     }
 
     // Update is called once per frame
@@ -39,9 +52,21 @@ public class Player : MonoBehaviour
         {
             CreateWeapon();
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            hitBox = Instantiate(hitboxPrefab);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            CreateRounds();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            FireRound();
+        }
         if (Input.anyKeyDown)
         {
-            PrintInfo();
+            //PrintInfo();
         }
     }
 
@@ -123,12 +148,98 @@ public class Player : MonoBehaviour
 
     void UseBoost()
     {
-        SoulColor currentColor = sappedColors.Dequeue();
-        Debug.Log(currentColor.BoostEffect + " increased");
+        if (sappedColors.Count > 0)
+        {
+            SoulColor currentColor = sappedColors.Dequeue();
+            Debug.Log(currentColor.BoostEffect + " increased");
+        }
+        else
+        {
+            Debug.Log("No color available to use boost");
+        }
+        
     }
     
-    void CreateAmmo()
+    void CreateRounds()
     {
+        if (sappedColors.Count > 0)
+        {
+            SoulColor currentColor = sappedColors.Dequeue();
+            roundsToFire.Enqueue(currentColor.AmmoType.RoundsPerShot);
 
+            roundCount.Enqueue(currentColor.AmmoType.NumOfRounds);
+
+            if(roundCount.Count == 1)
+            {
+                currentRoundCount = currentColor.AmmoType.NumOfRounds;
+            }
+             
+            for(int i = 0; i < currentColor.AmmoType.NumOfRounds; i++)
+            {
+                rounds.Enqueue(new Round(currentColor.AmmoType.Damage));
+            }
+        }
+        else
+        {
+            Debug.Log("No color available to create ammo");
+        }
+    }
+
+    void FireRound()
+    {
+        if(rounds.Count > 0)
+        {
+            int currentRTF = roundsToFire.Peek();
+            int remainingRounds = currentRoundCount - currentRTF;
+            int remainder = 0;
+
+            if (remainingRounds <= 0)
+            {
+                remainder = remainingRounds;
+
+                roundsToFire.Dequeue();
+                roundCount.Dequeue();
+                currentRoundCount = roundCount.Peek();
+            }
+
+            for (int i = 0; i < currentRTF - remainder; i++)
+            {
+                GameObject newProjectile = Instantiate(projectilePrefab);
+
+                newProjectile.GetComponent<Projectile>().SetRoundType(rounds.Dequeue());
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough rounds to fire");
+        }
+        
+    }
+
+    public int HitEnemy()
+    {
+        //Destroys hit box TEMPORARY
+        Destroy(hitBox);
+
+        if(equippedWeapon == null)
+        {
+            return 25;
+        }
+        else
+        {
+            return equippedWeapon.DamagePerHit;
+        }
+    }
+
+    private void OnGUI()
+    {
+        for(int i = 0; i < rounds.Count; i++)
+        {
+            Round currentRound = rounds.Dequeue();
+
+            //Prints round info to 
+            GUI.Label(new Rect(100, 35 + i * 20, 200, 50), "Round " + (i + 1) + ": " + currentRound.Damage);
+            rounds.Enqueue(currentRound);
+        }
     }
 }
