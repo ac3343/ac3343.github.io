@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour
     int health;
     Player playerRef;
 
+    public GameObject hitBoxPrefab;
+    GameObject hitBox;
+    public int attackDamage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,12 @@ public class Enemy : MonoBehaviour
         for(int i = 0; i < projectiles.Length; i++)
         {
             IsHitByProjectile(projectiles[i]);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            hitBox = Instantiate(hitBoxPrefab);
+            hitBox.GetComponent<HitBox>().SetDamage(25);
         }
     }
 
@@ -58,5 +68,10 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy has died");
             Destroy(gameObject);
         }
+    }
+
+    void Attack()
+    {
+
     }
 }

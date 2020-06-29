@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,6 +19,10 @@ public class Player : MonoBehaviour
     Queue<int> roundCount;
     int currentRoundCount;
 
+    int health;
+
+    public float SapRange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,13 @@ public class Player : MonoBehaviour
         roundsToFire = new Queue<int>();
         roundCount = new Queue<int>();
         currentRoundCount = 0;
+
+        health = 100;
+
+        if(SapRange == 0)
+        {
+            SapRange = 5;
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +47,7 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SapColor();
+            GetTiles();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow)){
             NextColor();
@@ -64,9 +76,15 @@ public class Player : MonoBehaviour
         {
             FireRound();
         }
-        if (Input.anyKeyDown)
+
+        HitBox enemyAttack = FindObjectOfType<HitBox>();
+
+        if(enemyAttack != null)
         {
-            //PrintInfo();
+            int attackDamage = enemyAttack.DealDamage();
+            health -= attackDamage;
+
+            Debug.Log("Player takes " + attackDamage + " damage and has " + health + " health left");
         }
     }
 
@@ -82,6 +100,87 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Colors full");
         }
+    }
+
+    void GetTiles()
+    {
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+
+        SapTiles(tiles);
+    }
+
+    public void SapTiles(GameObject[] tiles)
+    {
+        //Gets tiles in range
+        List<Tile> tilesInRange = new List<Tile>();
+        int checkedTiles = 0;
+        
+        //Checks all tiles in tiles array
+        while (checkedTiles < tiles.Length)
+        {
+            //Finds distance between 
+            Vector3 tileDistance =  tiles[checkedTiles].transform.position - transform.position;
+
+            //Stores tile if it within range
+            if(tileDistance.magnitude < SapRange && !tiles[checkedTiles].GetComponent<Tile>().IsSapped)
+            {
+                tilesInRange.Add(tiles[checkedTiles].GetComponent<Tile>());
+            }
+
+            checkedTiles++;
+        }
+
+        if(tilesInRange.Count == 0)
+        {
+            Debug.Log("No Tiles To Sap");
+            return;
+        }
+
+        //Creates ditionary to track the number of tiles with a certain color
+        Dictionary<SoulColor, List<Tile>> tileColors = new Dictionary<SoulColor, List<Tile>>();
+
+        foreach(Tile t in tilesInRange)
+        {
+            //Gets current tile's color
+            SoulColor currentTileColor = allColors.ColorList[t.TileSoul];
+            
+            //If other tiles already have this color
+            if (!tileColors.ContainsKey(currentTileColor))
+            {
+                //Add this color too the dictionary
+                tileColors.Add(currentTileColor, new List<Tile>());
+            }
+
+            //Increase that color's count
+            tileColors[currentTileColor].Add(t);
+        }
+
+
+        //Determines color to sap, one with most tiles
+        SoulColor colorToSap = null;
+        
+        foreach(SoulColor s in tileColors.Keys)
+        {
+            if(colorToSap == null)
+            {
+                colorToSap = s;
+            }
+            else
+            {
+                if(tileColors[s].Count >= tileColors[colorToSap].Count)
+                {
+                    colorToSap = s;
+                }
+            }
+        }
+
+        foreach(Tile t in tileColors[colorToSap])
+        {
+            t.SapTile();
+        }
+
+        sappedColors.Enqueue(colorToSap);
+        Debug.Log("Sapped " + colorToSap.Name);
     }
 
     SoulColor GetColor()
@@ -230,6 +329,8 @@ public class Player : MonoBehaviour
             return equippedWeapon.DamagePerHit;
         }
     }
+
+    
 
     private void OnGUI()
     {

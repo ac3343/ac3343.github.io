@@ -5,21 +5,16 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Round roundInfo;
-    bool hasHitEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        hasHitEnemy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasHitEnemy)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
     public void SetRoundType(Round _round)
@@ -29,7 +24,7 @@ public class Projectile : MonoBehaviour
 
     public int HitEnemy()
     {
-        hasHitEnemy = true;
+        Destroy(gameObject);
         return roundInfo.Damage;
     }
 }
