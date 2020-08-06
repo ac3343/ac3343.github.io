@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
     public float SapRange;
 
+    Vector3 position;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
         {
             SapRange = 5;
         }
+
+        position = transform.position;
     }
 
     // Update is called once per frame
@@ -56,7 +60,7 @@ public class Player : MonoBehaviour
         {
             PrevColor();
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             UseBoost();
         }
@@ -64,7 +68,7 @@ public class Player : MonoBehaviour
         {
             CreateWeapon();
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             hitBox = Instantiate(hitboxPrefab);
         }
@@ -76,6 +80,14 @@ public class Player : MonoBehaviour
         {
             FireRound();
         }
+        if (Input.GetKey(KeyCode.A))
+        {
+            position.x -= .5f * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            position.x += .5f * Time.deltaTime;
+        }
 
         HitBox enemyAttack = FindObjectOfType<HitBox>();
 
@@ -86,6 +98,8 @@ public class Player : MonoBehaviour
 
             Debug.Log("Player takes " + attackDamage + " damage and has " + health + " health left");
         }
+
+        transform.position = position;
     }
 
     void SapColor()
