@@ -362,13 +362,13 @@ window.onload= (e) => {
   for (const v of vocabConfigOptions) {
     v.onclick = (e) =>{
       vocabArrangement = cardArrangements[v.value];
-      console.log(v.value);
+      //console.log(v.value);
     };
   }
   for (const k of kanjiConfigOptions) {
     k.onclick = (e) =>{
       kanjiArrangement = cardArrangements[k.value];
-      console.log(k.value);
+      //console.log(k.value);
     };
   }
 
@@ -472,7 +472,7 @@ window.onload= (e) => {
   saveVocabEdit.onclick = (e) =>{
     if(isEditing){
       let vocabInfo = editVocab.querySelectorAll("textarea");
-      console.log(vocabInfo);
+      //console.log(vocabInfo);
       editVocabEntry(editVocab.dataset.index, vocabInfo[0].value, vocabInfo[1].value, vocabInfo[2].value);
 
       isEditing = false;
@@ -493,7 +493,7 @@ window.onload= (e) => {
   saveKanjiEdit.onclick = (e) =>{
     if(isEditing){
       let kanjiInfo = editKanji.querySelectorAll("textarea");
-      console.log(kanjiInfo);
+      //console.log(kanjiInfo);
       editKanjiEntry(editKanji.dataset.index, kanjiInfo[0].value, kanjiInfo[2].value, kanjiInfo[1].value, kanjiInfo[3].value);
 
       isEditing = false;
@@ -658,7 +658,7 @@ function saveDictionaryToFile(){
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 
-      console.log(this.responseText);
+      //console.log(this.responseText);
     }
   };
   let data = JSON.stringify(jpDict);
@@ -677,7 +677,7 @@ function addNewVocab(_kanji, _hirakata, _english, _pos){
     //Increases vocab count
     jpDict.vocab.count++;
 
-    console.log("Successfully added new vocab");
+    //console.log("Successfully added new vocab");
   }
   else{
     console.log("Error! jpDict not initialized");
@@ -696,7 +696,7 @@ function addNewKanji(_character, _kun, _on, _english){
     //Increases kanji count
     jpDict.kanji.count++;
 
-    console.log("Successfully added new kanji");
+    //console.log("Successfully added new kanji");
   }
   else{
     console.log("Error! jpDict not initialized");
@@ -712,7 +712,7 @@ function removeVocabAtIndex(_index){
     //Decreases vocab count
     jpDict.vocab.count--;
 
-    console.log("Successfully removed vocab at " + _index);
+    //console.log("Successfully removed vocab at " + _index);
   }
   else{
     console.log("Error! Index out " +  _index +" of bounds. Vocab dict only has " + jpDict.vocab.count + " entries.");
@@ -728,7 +728,7 @@ function removeKanjiAtIndex(_index){
     //Decreases kanji count
     jpDict.kanji.count--;
 
-    console.log("Successfully removed kanji at " + _index);
+    //console.log("Successfully removed kanji at " + _index);
   }
   else{
     console.log("Error! Index out " +  _index +" of bounds. Kanji dict only has " + jpDict.kanji.count + " entries.");
@@ -743,7 +743,7 @@ function editVocabEntry(_index, _kanji, _hirakata, _english){
     jpDict.vocab.dict[_index].hirakata = _hirakata;
     jpDict.vocab.dict[_index].english = _english;
 
-    console.log("Edited vocab entry at" + _index);
+    //console.log("Edited vocab entry at" + _index);
   }
   else{
     console.log("Error! Index " +  _index +" out  of bounds. Vocab dict only has " + jpDict.vocab.count + " entries.");
@@ -759,7 +759,7 @@ function editKanjiEntry(_index, _character, _kun, _on, _english){
     jpDict.kanji.dict[_index].on = _on;
     jpDict.kanji.dict[_index].english = _english;
 
-    console.log("Edited kanji entry at " + _index);
+    //console.log("Edited kanji entry at " + _index);
   }
   else{
     console.log("Error! Index " +  _index +" out  of bounds. Kanji dict only has " + jpDict.kanji.count + " entries.");
@@ -1164,6 +1164,7 @@ function addVocabInput(){
   inputString += "<option value='vrb-irr'>Irr Verb</option>"
   inputString += "<option value='adj-na'>Na Adj</option>"
   inputString += "<option value='adj-i'>I Adj</option>"
+  inputString += "<option value='adverb'>Adverb</option>"
   inputString += "</select>"
 
   //Sets input div's inner html to the input string
@@ -1240,7 +1241,7 @@ function getVocabByString(_string, _partsOfSpeech, _date){
   if(storedResults){
     //Returns array of stored results
     let storedObj = JSON.parse(storedResults);
-    console.log(storedObj);
+    //console.log(storedObj);
   }
 
   //If the stored results exist and are up to date
@@ -1301,7 +1302,7 @@ function getKanjiByString(_string, _date){
   if(storedResults){
     //Returns array of stored results
     let storedObj = JSON.parse(storedResults);
-    console.log(storedObj);
+    //console.log(storedObj);
   }
 
   //If the stored results exist and are up to date
@@ -1388,7 +1389,7 @@ function getOldestVocabForDate(_date){
 function changeState(e){
   //Clears all states
   for(let i=0; i < 8; i++){
-    allStates[i].style.display = "none";
+    //allStates[i].style.display = "none";
   }
   let newState = e.target.dataset.stateindex;
   
@@ -1450,8 +1451,24 @@ function changeState(e){
   }
 
   //Sets new state
-  allStates[parseInt(newState)].style.display = stateStyles[newState];
+  //allStates[parseInt(newState)].style.display = stateStyles[newState];
+
+  location.hash = e.target.dataset.stateindex;
 }
+
+window.onhashchange= (e) =>{
+  //Clears all states
+  for(let i=0; i < 8; i++){
+    allStates[i].style.display = "none";
+  }
+  let newState = location.hash.substr(1);
+
+  if(!newState || newState >= allStates.length){
+    newState = 0;
+  }
+  //Sets new state
+  allStates[parseInt(newState)].style.display = stateStyles[newState];
+};
 
 function toNextCard(){
   //Increases current card by one

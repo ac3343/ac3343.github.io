@@ -13,7 +13,7 @@
         <button class="stateButton blueButton" data-stateIndex="2" style="grid-area: area2;">Add Kanji</button>
         <button class="stateButton greenButton" data-stateIndex="5" style="grid-area: area3;">Study Random</button>
         <button class="stateButton greenButton" data-stateIndex="6" id="studySelected" style="grid-area: area4;">Study Selected</button>
-        <button class="stateButton redButton" data-stateIndex="3" data-pos="noun;vrb-irr;vrb-ru;vrb-u;adj-i;adj-na" style="grid-area: area5;">All Vocab</button>
+        <button class="stateButton redButton" data-stateIndex="3" data-pos="noun;vrb-irr;vrb-ru;vrb-u;adj-i;adj-na;adverb" style="grid-area: area5;">All Vocab</button>
         <button class="stateButton redButton" data-stateIndex="4" style="grid-area: area6;">Kanji</button>
         <button class="stateButton" data-stateIndex="3" data-pos="noun" style="grid-area: area7;">Nouns</button>
         <button class="stateButton" data-stateIndex="3" data-pos="vrb-irr;vrb-ru;vrb-u" style="grid-area: area8;">Verbs</button>
@@ -23,6 +23,7 @@
         <button class="stateButton" data-stateIndex="3" data-pos="vrb-ru" style="grid-area: area12;">Ru Verbs</button>
         <button class="stateButton" data-stateIndex="3" data-pos="adj-i" style="grid-area: area13;">I Adjectives</button>
         <button class="stateButton" data-stateIndex="3" data-pos="vrb-irr" style="grid-area: area14;">Irr Verbs</button>
+        <button class="stateButton" data-stateIndex="3" data-pos="adv" style="grid-area: area15;">Adverbs</button>
     </div>
 
     <div class="state">
@@ -90,57 +91,61 @@
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
         </div>
-        <div class="searchArea">
-            <input class="searchterm" type="text" size="20" maxlength="20" />
-            <button type="button" class="search greenButton">Search</button>
-            <button type="button" class="clear redButton">Clear</button>
-        </div>
-        
-        <div class="filterDiv">
-            <button class="filterButton blueButton">Filters</button>
+        <div class="entryTop">
 
-            <div class="filters">
-                <div class="posFilters">
-                    <input type="checkbox" id="searchAll" class="allSelect">
-                    <label for="searchAll">All</label>
-                    <input type="checkbox" id="searchNoun" class="singleSelect" value="noun">
-                    <label for="searchNoun">Nouns</label>
-                    <input type="checkbox" id="searchVerb" class="multiSelect" data-children= "3">
-                    <label for="searchVerb">Verbs</label>
-                    <input type="checkbox" id="searchUVrb" class="singleSelect" value="vrb-u">
-                    <label for="searchUVrb">U</label>
-                    <input type="checkbox" id="searchRuVrb" class="singleSelect" value="vrb-ru">
-                    <label for="searchRuVrb">Ru</label>
-                    <input type="checkbox" id="searchIrrVrb" class="singleSelect" value="vrb-irr">
-                    <label for="searchIrrVrb">Irr</label>
-                    <input type="checkbox" id="searchAdj" class="multiSelect" data-children= "2">
-                    <label for="searchAdj">Adj</label>
-                    <input type="checkbox" id="searchNaAdj" class="singleSelect" value="adj-na">
-                    <label for="searchNaAdj">Na</label>
-                    <input type="checkbox" id="searchIAdj" class="singleSelect" value="adj-i">
-                    <label for="searchIAdj">I</label>
-                </div>
-                <div class="timeFilters">
-                    <input type="radio" class="all vocabTime" name="vocabTimeOption" value="all" id="vocabAll">
-                    <label for="vocabAll">All</label>
-                    <input type="radio" class="week vocabTime" name="vocabTimeOption" value="week" id="vocabWeek">
-                    <label for="vocabWeek">Week</label>
-                    <input type="radio" class="twoWeeks vocabTime" name="vocabTimeOption" value="twoWeeks" id="vocabTwoWeek">
-                    <label for="vocabTwoWeek">Two Weeks</label>
-                    <input type="radio" class="month vocabTime" name="vocabTimeOption" value="month" id="vocabMonth">
-                    <label for="vocabMonth">Month</label>
-                    <input type="radio" class="sixMonths vocabTime" name="vocabTimeOption" value="sixMonths" id="vocabSixMonth">
-                    <label for="vocabSixMonth">Six Months</label>
-                </div>
-                <button class="clearFilter blueButton">Reset</button>
+            <div class="searchArea">
+                <input class="searchterm" type="text" size="20" maxlength="20" />
+                <button type="button" class="search greenButton">Search</button>
+                <button type="button" class="clear redButton">Clear</button>
             </div>
             
+            <div class="filterDiv">
+                <button class="filterButton blueButton">Filters</button>
+    
+                <div class="filters">
+                    <div class="posFilters">
+                        <input type="checkbox" id="searchAll" class="allSelect">
+                        <label for="searchAll">All</label>
+                        <input type="checkbox" id="searchNoun" class="singleSelect" value="noun">
+                        <label for="searchNoun">Nouns</label>
+                        <input type="checkbox" id="searchVerb" class="multiSelect" data-children= "3">
+                        <label for="searchVerb">Verbs</label>
+                        <input type="checkbox" id="searchUVrb" class="singleSelect" value="vrb-u">
+                        <label for="searchUVrb">U</label>
+                        <input type="checkbox" id="searchRuVrb" class="singleSelect" value="vrb-ru">
+                        <label for="searchRuVrb">Ru</label>
+                        <input type="checkbox" id="searchIrrVrb" class="singleSelect" value="vrb-irr">
+                        <label for="searchIrrVrb">Irr</label>
+                        <input type="checkbox" id="searchAdj" class="multiSelect" data-children= "2">
+                        <label for="searchAdj">Adj</label>
+                        <input type="checkbox" id="searchNaAdj" class="singleSelect" value="adj-na">
+                        <label for="searchNaAdj">Na</label>
+                        <input type="checkbox" id="searchIAdj" class="singleSelect" value="adj-i">
+                        <label for="searchIAdj">I</label>
+                    </div>
+                    <div class="timeFilters">
+                        <input type="radio" class="all vocabTime" name="vocabTimeOption" value="all" id="vocabAll">
+                        <label for="vocabAll">All</label>
+                        <input type="radio" class="week vocabTime" name="vocabTimeOption" value="week" id="vocabWeek">
+                        <label for="vocabWeek">Week</label>
+                        <input type="radio" class="twoWeeks vocabTime" name="vocabTimeOption" value="twoWeeks" id="vocabTwoWeek">
+                        <label for="vocabTwoWeek">Two Weeks</label>
+                        <input type="radio" class="month vocabTime" name="vocabTimeOption" value="month" id="vocabMonth">
+                        <label for="vocabMonth">Month</label>
+                        <input type="radio" class="sixMonths vocabTime" name="vocabTimeOption" value="sixMonths" id="vocabSixMonth">
+                        <label for="vocabSixMonth">Six Months</label>
+                    </div>
+                    <button class="clearFilter blueButton">Reset</button>
+                </div>
+                
+            </div>
+            <div class="entryEdit">
+                <button id="vocabEdit" class="editButton editModeButton">Edit</button>
+                <button id="saveVocab" class="editButton blueButton">Save</button>
+                <button id="deleteVocab" class="editButton redButton">Delete</button>
+            </div>
         </div>
-        <div class="entryEdit">
-            <button id="vocabEdit" class="editButton editModeButton">Edit</button>
-            <button id="saveVocab" class="editButton blueButton">Save</button>
-            <button id="deleteVocab" class="editButton redButton">Delete</button>
-        </div>
+        
         <div class = 'entry'>
             <p class='col1'>Kanji</p>
             <p class='col2'>Hira/Kata</p>
@@ -163,36 +168,38 @@
         <div class="homeButton">
             <button class="stateButton blueButton" data-stateIndex="0">Home</button>
         </div>
-        <div class="searchArea">
-            <input class="searchterm" type="text" size="60" maxlength="60" />
-            <button type="button" class="search greenButton">Search</button>
-            <button type="button" class="clear redButton">Clear</button>
-        </div>
-        
-        <div class="filterDiv">
-            <button class="filterButton blueButton">Filters</button>
-
-            <div class="filters">
-                <div class="timeFilters">
-                    <input type="radio" class="all kanjiTime" name="kanjiTimeOption" value="all" id="kanjiAll" checked>
-                    <label for="kanjiAll">All</label>
-                    <input type="radio" class="week kanjiTime" name="kanjiTimeOption" value="week" id="kanjiWeek">
-                    <label for="kanjiWeek">Week</label>
-                    <input type="radio" class="twoWeeks kanjiTime" name="kanjiTimeOption" value="twoWeeks" id="kanjiTwoWeek">
-                    <label for="kanjiTwoWeek">Two Weeks</label>
-                    <input type="radio" class="month kanjiTime" name="kanjiTimeOption" value="month" id="kanjiMonth">
-                    <label for="kanjiMonth">Month</label>
-                    <input type="radio" class="sixMonths kanjiTime" name="kanjiTimeOption" value="sixMonths" id="kanjiSixMonth">
-                    <label for="kanjiSixMonth">Six Months</label>
-                </div>
-                <button class="clearFilter blueButton">Reset</button>
+        <div class="entryTop">
+            <div class="searchArea">
+                <input class="searchterm" type="text" size="60" maxlength="60" />
+                <button type="button" class="search greenButton">Search</button>
+                <button type="button" class="clear redButton">Clear</button>
             </div>
             
-        </div>
-        <div class="entryEdit">
-            <button id="kanjiEdit" class="editButton editModeButton">Edit</button>
-            <button id="saveKanji" class="editButton blueButton">Save</button>
-            <button id="deleteKanji" class="editButton redButton">Delete</button>
+            <div class="filterDiv">
+                <button class="filterButton blueButton">Filters</button>
+    
+                <div class="filters">
+                    <div class="timeFilters">
+                        <input type="radio" class="all kanjiTime" name="kanjiTimeOption" value="all" id="kanjiAll" checked>
+                        <label for="kanjiAll">All</label>
+                        <input type="radio" class="week kanjiTime" name="kanjiTimeOption" value="week" id="kanjiWeek">
+                        <label for="kanjiWeek">Week</label>
+                        <input type="radio" class="twoWeeks kanjiTime" name="kanjiTimeOption" value="twoWeeks" id="kanjiTwoWeek">
+                        <label for="kanjiTwoWeek">Two Weeks</label>
+                        <input type="radio" class="month kanjiTime" name="kanjiTimeOption" value="month" id="kanjiMonth">
+                        <label for="kanjiMonth">Month</label>
+                        <input type="radio" class="sixMonths kanjiTime" name="kanjiTimeOption" value="sixMonths" id="kanjiSixMonth">
+                        <label for="kanjiSixMonth">Six Months</label>
+                    </div>
+                    <button class="clearFilter blueButton">Reset</button>
+                </div>
+                
+            </div>
+            <div class="entryEdit">
+                <button id="kanjiEdit" class="editButton editModeButton">Edit</button>
+                <button id="saveKanji" class="editButton blueButton">Save</button>
+                <button id="deleteKanji" class="editButton redButton">Delete</button>
+            </div>
         </div>
         <div class = 'entry'>
             <p class='col1'>Char.</p>
@@ -237,6 +244,8 @@
                 <label for="studyNaAdj">Na</label>
                 <input type="checkbox" id="studyIAdj" class="singleSelect" value="adj-i">
                 <label for="studyIAdj">I</label>
+                <input type="checkbox" id="studyAdv" class="singleSelect" value="adj-i">
+                <label for="studyAdv">Adv</label>
             </div>
             <div class="timeFilters">
                 <input type="radio" class="all studyTime" name="studyTimeOption" value="all" id="studyAllTime">
