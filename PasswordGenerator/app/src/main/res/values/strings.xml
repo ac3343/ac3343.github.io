@@ -23,4 +23,7 @@
     <string name="num_button">Numbers</string>
     <string name="spec_button">Symbols</string>
     <string name="pass_length">0</string>
+    <string name="channel_name">PasswordGenerator</string>
+    <string name="channel_description">Generates Password</string>
+    <string name="gen_pass">New Pass</string>
 </resources>

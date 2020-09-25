@@ -9,15 +9,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PopUpActivity"
+            android:supportsPictureInPicture="true"
+            android:configChanges=
+                "screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            ></activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:supportsPictureInPicture="true"
+            android:resizeableActivity="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <layout android:defaultHeight="700dp"
+                android:defaultWidth="600dp"
+                android:gravity="top|end"
+                android:minHeight="450dp"
+                android:minWidth="300dp" />
         </activity>
+        <receiver android:name=".MyBroadcastReceiver"  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.INPUT_METHOD_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".SettingsActivity$NotificationActionService" />
     </application>
+
 
 </manifest>
