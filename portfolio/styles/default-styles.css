@@ -155,6 +155,7 @@ main{
 
 #projectList{
     display: flex;
+    overflow: auto;
     width: 100%;
     border-top: 6px solid #08183A;
     border-bottom: 6px solid #08183A;
@@ -163,7 +164,9 @@ main{
 
 }
 .projectImage{
-    width: 20%;
+    flex: 1 auto;
+    flex-grow: 1;
+    min-width: 20%;
     padding-top: 20%;
     position: relative;
     background-position: center;
@@ -173,6 +176,10 @@ main{
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 }
+.projectImage:hover{
+    min-width: 25%;
+}
+
 .projectItem{
     width: 100%;
     height: 500px;
@@ -190,9 +197,7 @@ main{
     height: auto;
     padding: 0 25%;
 }
-.projectImage:hover{
-    width: 25%;
-}
+
 .projectDescription{
     width: 100%;
 }
@@ -331,6 +336,7 @@ main{
     
     }
     .projectImage{
+        min-width: 20vw;
         width: 20vw;
         border-left: 1vw solid #08183A;
         border-right: 1vw solid #08183A;
