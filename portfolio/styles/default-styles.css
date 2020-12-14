@@ -1,5 +1,8 @@
 p{
     font-size: large;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 #top{
@@ -92,10 +95,14 @@ main{
 }
 .oddSection h1{
     color: #FC9C54;
+    font-family: 'Raleway', sans-serif;
+
 }
 
 .evenSection h1{
     color: #FC9C54;
+    font-family: 'Raleway', sans-serif;
+
 }
 #about{
     grid-column: 1 / span 2;
@@ -152,7 +159,16 @@ main{
     grid-column: 1 / span 3;
     text-align: center;
 }
+#contact .fa{
+    width: 70px;
+    height: auto;
+    font-size: 50px;
+}
+address{
+    font-style: normal;
+    font-family: 'Raleway', sans-serif;
 
+}
 #projectList{
     display: flex;
     overflow: auto;
@@ -205,12 +221,17 @@ main{
     text-align: center;
     width: 100%;
     color: #FFE373;
+    font-family: 'Raleway', sans-serif;
+
 }
 .projectItem h3{
     text-align: center;
     width: 100%;
     
     color: #FD5E53;
+    font-family: 'Raleway', sans-serif;
+
+
 }
 .projectItem p{
     text-align: center;
@@ -266,7 +287,8 @@ main{
     width: auto;
     color: #FFE373;
     text-align: center;  
-    font-size: 3em;  
+    font-size: 3em;
+    font-family: 'Satisfy', cursive;
 }
 
 @media screen and (max-width: 768px) {
