@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+    <title>Andrew Cambridge</title>
+
+    <!-- Add this to <head> -->
+
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+        crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="portfolio/styles/default.css">
+</head>
+
+<body>
+    <div id="app">
+        <b-overlay :show="show" rounded="sm" id="overlayContent">
+        <b-button @click="show = !show;" id="topButton" pill variant="danger">About</b-button>
+            <div id="projectCardContainer">
+                <b-card-group deck class="cardGroup">
+                    <b-card v-for="p in projects.filter(a=>(3 >= a.pos))" v-bind:title="p.title" v-bind:img-src="p.image"
+                        v-bind:sub-title="p.technRole" img-height="75%">
+                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
+                    </b-card>
+                </b-card-group>
+                <b-card-group deck class="cardGroup">
+                    <b-card v-for="p in projects.filter(a=>( a.pos > 3))" v-bind:title="p.title" v-bind:img-src="p.image"
+                        v-bind:sub-title="p.technRole" img-height="75%"> 
+                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
+                    </b-card>
+                </b-card-group>
+            </div>
+            
+            <template #overlay>
+                <b-card img-src="portfolio/images/me.jpg" img-left img-alt="Photo Of Andrew Cambridge" 
+                id="overlayCard" class="card-img-left" img-height="100%" img-width="auto" height="auto%"
+                width="auto">
+                <b-card-title>About + Contact</b-card-title>
+                <b-card-text>
+                    Technology is incredible. From the vast and varied worlds of games and films
+                    to the regular yet remarkable presence of social media and smartphones. It has
+                    shaped my life and makes me glad I was born in the twenty-first century. That's
+                    why it was so fulfilling to learn programming languages like C#, Java, JavaScript,
+                    and HTML. Being able to create experiences, much like the ones I interacted with
+                    growing up, is exciting. And, with tools like Unity and Unreal, I hope to make
+                    something that may impact others the way technology has impacted me.
+                </b-card-text>
+                <b-card-sub-title>Contact Info</b-card-sub-title>
+                <address>
+                    Email: <a href="mailto:cambridgebandrew@gmail.com">cambridgebandrew@gmail.com</a><br>
+                    Phone: <a href="tel:+1-972-839-6665">972-839-6665</a> 
+                </address>
+                <b-link href="https://github.com/ac3343/Projects" class="fa fa-github"></b-link>
+                <b-link href="https://www.linkedin.com/in/andrewbcambridge/" class="fa fa-linkedin"></b-link>
+                <b-link href="https://twitter.com/CambridgeDrew" class="fa fa-twitter"></b-link>
+                
+                <b-button @click="show = false;" id="backButton" pill variant="warning">Back</b-button>
+                </b-card>
+            </template>
+        </b-overlay>
+
+    </div>
+
+    <script src="portfolio/src/main.js"></script>
+</body>
+
+</html>
