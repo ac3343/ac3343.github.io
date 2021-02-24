@@ -1,51 +1,49 @@
-(function(){
-  let projectDescription,projectImage,allProjects;
-  const AllProjectsLink = "portfolio/projects/all";
-  window.onload = (e) => {
-    projectDescription = document.querySelector(".projectDescription");
-    projectImage = document.querySelector(".projectItem").querySelector("img");
-
-    loadXMLDoc(AllProjectsLink,loadAllProjects);
-  };
-
-  function loadXMLDoc(file,onDataLoad) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {        
-        onDataLoad(JSON.parse(this.responseText))
+const app = new Vue({
+  el: '#app',
+  data: {
+    projects: [],
+    AllProjectsLink: "portfolio/projects/all",
+    show: false,
+    projectShow: [false, false, false, false, false, false],
+    normalCardMode: true
+  },
+  methods: {
+    loadXMLDoc(file, onDataLoad) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          onDataLoad(JSON.parse(this.responseText))
+        }
+      };
+      xhttp.open("GET", file, true);
+      xhttp.send();
+    },
+    loadAllProjects(loadedProjects) {
+      this.projects = loadedProjects.project;
+      this.projects.sort((a,b)=> (a.pos - b.pos));
+      this.projects.forEach(p => {
+        p.imgsrc = p.image;
+        p.hover = (isHovering) =>{
+          if(isHovering){
+            p.imgsrc = p.gif;
+          }
+          else{
+            p.imgsrc = p.image;
+          }
+        }
+      });
+    },
+    hoverHandler(isHovered){
+      if(isHovered){
+        projectShow = projectShow.map(a=> true);
       }
-    };
-    xhttp.open("GET", file, true);
-    xhttp.send();
-  }
+      else{
 
-  function loadProject(project){
-    projectDescription.querySelector("h2").innerHTML = project.title;
-    projectDescription.querySelector("h3").innerHTML = project.technRole;
-    projectDescription.querySelector("p").innerHTML = project.description;
-    projectDescription.querySelector("a").href = project.link;
-    projectImage.src = project.image;
-    projectImage.alt = project.title;
-  }
-
-  function loadAllProjects(projects){
-    allProjects = projects.project;
-    let projImages = document.querySelectorAll(".projectImage");
-
-    for(let i = 0; i < allProjects.length; i++){
-      let currentImage = projImages[i];
-      let currentProject = allProjects[i];
-      currentImage.hidden = false;
-      currentImage.dataset.index = i;
-      currentImage.style = `background-image: url(${currentProject.image});`;
+      }
     }
-
-    loadProject(allProjects[0]);
-
-    for (const p of projImages) {
-      p.onclick = (e)=>{loadProject(allProjects[e.target.dataset.index]);};
-    }
+  }, // end methods
+  created: function () {
+    this.loadXMLDoc(this.AllProjectsLink, this.loadAllProjects);
   }
-}());
-
+});
 
