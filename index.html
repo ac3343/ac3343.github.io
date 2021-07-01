@@ -37,64 +37,47 @@
 
 <body>
     <div id="app">
-        <b-overlay :show="show" rounded="sm" id="overlayContent" variant="transparent" blur='2px'>
+        <b-overlay :show="show" rounded="sm" id="overlayContent">
             <b-button @click="show = !show;" id="topButton" pill variant="danger">About</b-button>
-            <div v-if="normalCardMode" id="projectCardContainer">
-                <b-card-group deck class="cardGroup">
-                    <b-card v-for="p in projects.filter(a=>(3 >= a.pos))" v-bind:title="p.title"
-                        v-bind:img-src="p.imgsrc" v-bind:sub-title="p.technRole" sub-title-text-variant="black"
-                        img-height="75%" v-b-hover="p.hover">
-                        <a v-bind:href="p.link" class="stretched-link" target="_blank" ></a>
+            <div id="projectCardContainer">
+                <b-card-group  class="cardGroup">
+                    <b-card v-for="p in projects.filter(a=>(3 >= a.pos))" v-bind:title="p.title" v-bind:img-src="p.image"
+                        v-bind:sub-title="p.technRole" img-height="75%">
+                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
                     </b-card>
                 </b-card-group>
-                <b-card-group deck class="cardGroup">
-                    <b-card v-for="p in projects.filter(a=>( a.pos > 3))" v-bind:title="p.title"
-                        v-bind:img-src="p.imgsrc" v-bind:sub-title="p.technRole" sub-title-text-variant="black"
-                        img-height="75%" v-b-hover="p.hover">
+                <b-card-group  class="cardGroup">
+                    <b-card v-for="p in projects.filter(a=>( a.pos > 3))" v-bind:title="p.title" v-bind:img-src="p.image"
+                        v-bind:sub-title="p.technRole" img-height="75%"> 
                         <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
                     </b-card>
                 </b-card-group>
             </div>
-            <div v-else id="projectCardContainerBig">
-                <b-card-group deck class="cardGroupBig">
-                    <b-card v-for="p in projects" v-bind:title="p.title" v-bind:img-src="p.image"
-                        v-bind:sub-title="p.technRole" img-height="75%" v-b-hover="hoverHandler" overlay
-                        @click="normalCardMode = true">
-                        <!--<a v-bind:href="p.link" class="stretched-link" target="_blank"></a>-->
-
-                    </b-card>
-                </b-card-group>
-            </div>
-
-
-
-
+            
             <template #overlay>
+                <b-card img-src="portfolio/images/me.jpg" img-left img-alt="Photo Of Andrew Cambridge" 
+                id="overlayCard" class="card-img-left" img-height="100%" img-width="auto" height="auto"
+                width="auto">
+                <b-card-title>About + Contact</b-card-title>
+                <b-card-text>
+                    Technology is incredible. From the vast and varied worlds of games and films
+                    to the regular yet remarkable presence of social media and smartphones. It has
+                    shaped my life and makes me glad I was born in the twenty-first century. That's
+                    why it was so fulfilling to learn programming languages like C#, Java, JavaScript,
+                    and HTML. Being able to create experiences, much like the ones I interacted with
+                    growing up, is exciting. And, with tools like Unity and Unreal, I hope to make
+                    something that may impact others the way technology has impacted me.
+                </b-card-text>
+                <b-card-sub-title>Contact Info</b-card-sub-title>
+                <address>
+                    Email: <a href="mailto:cambridgebandrew@gmail.com">cambridgebandrew@gmail.com</a><br>
+                    Phone: <a href="tel:+1-972-839-6665">972-839-6665</a> 
+                </address>
+                <b-link href="https://github.com/ac3343/Projects" class="fa fa-github"></b-link>
+                <b-link href="https://www.linkedin.com/in/andrewbcambridge/" class="fa fa-linkedin"></b-link>
+                <b-link href="https://twitter.com/CambridgeDrew" class="fa fa-twitter"></b-link>
+                
                 <b-button @click="show = false;" id="backButton" pill variant="warning">Back</b-button>
-                <b-card id="overlayCard" class="card-img-left" img-height="100%" img-width="auto" height="auto%"
-                    width="auto">
-                    <b-card-title>Andrew Cambridge</b-card-title>
-                    <b-card-text>
-                        Technology is incredible. From the vast and varied worlds of games and films
-                        to the regular yet remarkable presence of social media and smartphones. It has
-                        shaped my life and makes me glad I was born in the twenty-first century. That's
-                        why it was so fulfilling to learn programming languages like C#, Java, JavaScript,
-                        and HTML. Being able to create experiences, much like the ones I interacted with
-                        growing up, is exciting. And, with tools like Unity and Unreal, I hope to make
-                        something that may impact others the way technology has impacted me.
-                    </b-card-text>
-                    <div id="contactInfo">
-                        <b-card-sub-title sub-title-text-variant="black">Contact Info</b-card-sub-title>
-                        <address>
-                            Email: <a href="mailto:cambridgebandrew@gmail.com">cambridgebandrew@gmail.com</a><br>
-                            Phone: <a href="tel:+1-972-839-6665">972-839-6665</a>
-                        </address>
-                        <b-link href="https://github.com/ac3343/Projects" class="fa fa-github"></b-link>
-                        <b-link href="https://www.linkedin.com/in/andrewbcambridge/" class="fa fa-linkedin"></b-link>
-                        <b-link href="https://twitter.com/CambridgeDrew" class="fa fa-twitter"></b-link>
-                    </div>
-
-
                 </b-card>
             </template>
         </b-overlay>
