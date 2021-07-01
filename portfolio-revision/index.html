@@ -34,15 +34,15 @@
 <body>
     <div id="app">
         <b-overlay :show="show" rounded="sm" id="overlayContent">
-        <b-button @click="show = !show;" id="topButton" pill variant="danger">About</b-button>
+            <b-button @click="show = !show;" id="topButton" pill variant="danger">About</b-button>
             <div id="projectCardContainer">
-                <b-card-group deck class="cardGroup">
+                <b-card-group  class="cardGroup">
                     <b-card v-for="p in projects.filter(a=>(3 >= a.pos))" v-bind:title="p.title" v-bind:img-src="p.image"
                         v-bind:sub-title="p.technRole" img-height="75%">
                         <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
                     </b-card>
                 </b-card-group>
-                <b-card-group deck class="cardGroup">
+                <b-card-group  class="cardGroup">
                     <b-card v-for="p in projects.filter(a=>( a.pos > 3))" v-bind:title="p.title" v-bind:img-src="p.image"
                         v-bind:sub-title="p.technRole" img-height="75%"> 
                         <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
@@ -52,7 +52,7 @@
             
             <template #overlay>
                 <b-card img-src="portfolio/images/me.jpg" img-left img-alt="Photo Of Andrew Cambridge" 
-                id="overlayCard" class="card-img-left" img-height="100%" img-width="auto" height="auto%"
+                id="overlayCard" class="card-img-left" img-height="100%" img-width="auto" height="auto"
                 width="auto">
                 <b-card-title>About + Contact</b-card-title>
                 <b-card-text>
