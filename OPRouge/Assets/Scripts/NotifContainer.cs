@@ -26,10 +26,11 @@ public class NotifContainer : MonoBehaviour
 
     public void AddNotif(string text)
     {
+        //Instantiates notif prefab and sets its text
         GameObject newNotif = Instantiate(notifPrefab, this.transform);
-
         newNotif.GetComponentInChildren<Text>().text = text;
 
+        //Moves other notifications upward
         for (int i = currentNotifs.Count - 1; i >= 0; i--)
         {
             if (currentNotifs[i] != null)
@@ -40,6 +41,7 @@ public class NotifContainer : MonoBehaviour
 
         }
 
+        //Adds new notification to list
         currentNotifs.Add(newNotif);
     }
 
@@ -47,9 +49,9 @@ public class NotifContainer : MonoBehaviour
     {
         for(int i = currentNotifs.Count - 1; i >= 0; i--)
         {
-            if(currentNotifs[(int)i] == null)
+            if(currentNotifs[i] == null)
             {
-                currentNotifs.RemoveAt((int)i);
+                currentNotifs.RemoveAt(i);
             }
 
         }
