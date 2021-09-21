@@ -18,6 +18,7 @@ public class Character
     public void TakeDamge(float damage)
     {
         m_fHealth -= damage;
+        Debug.Log(m_sName + " took " + damage + " damage and is at " + m_fHealth + " health");
 
         //Call event if damage kills
     }

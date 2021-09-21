@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Deck<T>
 {
+    /*
+     * TODO: Move more specific functions to a child class
+     */
+
     T[] m_DeckCards;
     Queue<T> m_PlayDeck;
     List<T> m_Hand;
@@ -107,8 +111,6 @@ public class Deck<T>
 
     public void PlayCard(int a_uHandIndex)
     {
-        //Debug.Log(a_uHandIndex);
-
         if (m_CardsToPlay.Contains(a_uHandIndex))
         {
             m_CardsToPlay.Remove(a_uHandIndex);
@@ -118,5 +120,17 @@ public class Deck<T>
             m_CardsToPlay.Add(a_uHandIndex);
         }
 
+    }
+
+    public void PlayAndDiscardCard(int a_uHandIndex)
+    {
+        PlayCard(a_uHandIndex);
+        DiscardCard();
+        //Game where multiple people share a deck?
+    }
+
+    public T GetCardInHand(int a_uHandIndex)
+    {
+        return m_Hand[a_uHandIndex];
     }
 }

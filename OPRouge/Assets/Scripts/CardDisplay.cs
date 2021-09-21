@@ -10,11 +10,12 @@ public class CardDisplay : MonoBehaviour
     [SerializeField]
     Text[] m_Fields;
     ClickCardEffect m_ccFunction;
+    RectTransform rect;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rect = GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -41,4 +42,6 @@ public class CardDisplay : MonoBehaviour
         m_ccFunction?.Invoke();
         gameObject.SetActive(false);
     }
+
+    
 }

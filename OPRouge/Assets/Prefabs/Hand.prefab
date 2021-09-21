@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card4
       objectReference: {fileID: 0}
+    - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
 --- !u!224 &6495098838261941801 stripped
@@ -236,6 +240,10 @@ PrefabInstance:
     - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
       propertyPath: m_Name
       value: Card3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
@@ -339,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card5
       objectReference: {fileID: 0}
+    - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
 --- !u!224 &7896570192145338080 stripped
@@ -441,6 +453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card1
       objectReference: {fileID: 0}
+    - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
 --- !u!224 &2267728126869262879 stripped
@@ -542,6 +558,10 @@ PrefabInstance:
     - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
       propertyPath: m_Name
       value: Card2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659969673777517183, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595e9fc4fbecc6e4586e9edffa96088a, type: 3}

@@ -28,6 +28,11 @@ public struct Card
         get { return m_tag1; }
     }
 
+    public CardEffect PlayEffect
+    {
+        get { return m_Effect; }
+    }
+
     public Card(string a_sName, string a_sDesc, string a_sTag)
     {
         m_cardName = a_sName;
@@ -36,9 +41,9 @@ public struct Card
         m_Effect = CardEffects.Attack(4.5f);
     }
 
-    public static Card FromCSV(string[] csvFields)
+    public static Card FromCSV(string[] csvColumns)
     {
-        return new Card(csvFields[0], csvFields[1], csvFields[2]);
+        return new Card(csvColumns[0], csvColumns[1], csvColumns[2]);
     }
 
     

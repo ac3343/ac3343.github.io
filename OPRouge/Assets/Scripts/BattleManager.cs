@@ -22,8 +22,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     GameObject m_CardPrefab;
 
-    [SerializeField]
-    CardDisplay[] m_Hand;
+    List<CardDisplay> m_Hand;
+
+    Character enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +39,13 @@ public class BattleManager : MonoBehaviour
         CSVContainer<Card> csvCards = new CSVContainer<Card>("deck.csv", Card.FromCSV);
         m_Deck = new Deck<Card>(csvCards.AllItems.ToArray());
 
+        m_Hand = new List<CardDisplay>();
+
         //Draws first hand
         DrawHands();
 
-        //Makes instantiated hand playable
-        MakeHandPlayable();
+        //Creates enemy
+        enemy = new Character("Gwen",csvCards.AllItems.ToArray(), 100);
     }
 
     // Update is called once per frame
@@ -90,28 +93,58 @@ public class BattleManager : MonoBehaviour
 
     void DrawHands()
     {
+        for(int i = m_Hand.Count - 1; i >= 0; i--)
+        {
+            Destroy(m_Hand[i].gameObject);
+            m_Hand.RemoveAt(i);
+        }
+
         m_Deck.DrawHand();
 
         for(int i = 0; i < m_Deck.Hand.Count; i++)
         {
-            m_Hand[i].DisplayCard(m_Deck.Hand[i]);
+            DisplayCard(i);
         }
+
+        //Makes instantiated hand playable
+        MakeHandPlayable();
+    }
+
+    private void DisplayCard(int i)
+    {
+        GameObject newCard = Instantiate(m_CardPrefab, new Vector3(0, 0), Quaternion.identity, GameObject.Find("Hand").transform);
+
+        RectTransform cardRect = newCard.GetComponent<RectTransform>();
+        //cardRect.position = new Vector3(-100 + i * 50, 5);
+        cardRect.anchoredPosition = new Vector2(-300 + i * 140, 5);
+
+        m_Hand.Add(newCard.GetComponent<CardDisplay>());
+        m_Hand[i].DisplayCard(m_Deck.Hand[i]);
     }
 
     void MakeHandPlayable()
     {
         //Loops through displayed hand
-        for (int i = 0; i < m_Hand.Length; i++)
+        for (int i = 0; i < m_Hand.Count; i++)
         {
-            //Creates function to call when card is played
-            int index = i;
-            void PlayCard()
-            {
-                m_Deck.PlayCard(index);
-            }
-
-            m_Hand[i].PassInClickCard(PlayCard);
+            MakeCardPlayable(i);
         }
+    }
+
+    private void MakeCardPlayable(int i)
+    {
+        //Gets card at the hand position i
+        int index = i;
+        Card currentCard = m_Deck.GetCardInHand(index);
+
+        //Creates function to call when card is played
+        void PlayCard()
+        {
+            currentCard.PlayEffect(enemy);
+            m_Deck.PlayCard(index);
+        }
+
+        m_Hand[i].PassInClickCard(PlayCard);
     }
 
     GameObject InstFromDeck(string[] param)
