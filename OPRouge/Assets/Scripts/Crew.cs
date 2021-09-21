@@ -24,5 +24,13 @@ public class Crew
         m_CrewDecks.Add(new Deck<Card>(allCrewCards.ToArray()));
     }
 
+    public Deck<Card> GetCrewDeck(int a_iCrewNum)
+    {
+        return m_CrewDecks[a_iCrewNum];
+    }
 
+    public Deck<Card> GetCrewDeck()
+    {
+        return GetCrewDeck(0);
+    }
 }

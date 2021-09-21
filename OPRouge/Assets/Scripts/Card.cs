@@ -33,12 +33,16 @@ public struct Card
         get { return m_Effect; }
     }
 
-    public Card(string a_sName, string a_sDesc, string a_sTag)
+    public Card(string a_sName, string a_sDesc, string a_sDamage)
     {
         m_cardName = a_sName;
         m_cardDesc = a_sDesc;
-        m_tag1 = a_sTag;
-        m_Effect = CardEffects.Attack(4.5f);
+        m_tag1 = "Attack";
+
+        float damage = 0;
+        float.TryParse(a_sDamage, out damage);
+
+        m_Effect = CardEffects.Attack(damage);
     }
 
     public static Card FromCSV(string[] csvColumns)

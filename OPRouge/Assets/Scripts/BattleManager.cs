@@ -26,6 +26,10 @@ public class BattleManager : MonoBehaviour
 
     Character enemy;
 
+    Character[] m_PlayerCharacters;
+    Crew m_PlayerCrew;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +39,25 @@ public class BattleManager : MonoBehaviour
         //Initializes battle state
         m_CurrentState = BattleStates.BattleStart;
 
+        //Creates player characters
+        CSVContainer<Card> luffyCards = new CSVContainer<Card>("luffy.csv", Card.FromCSV);
+        Character luffy = new Character("Luffy", luffyCards.AllItems.ToArray(), 100);
+
+        CSVContainer<Card> namiCards = new CSVContainer<Card>("nami.csv", Card.FromCSV);
+        Character nami = new Character("Nami", namiCards.AllItems.ToArray(), 100);
+
+        CSVContainer<Card> zoroCards = new CSVContainer<Card>("zoro.csv", Card.FromCSV);
+        Character zoro = new Character("Zoro", zoroCards.AllItems.ToArray(), 100);
+
+        m_PlayerCharacters = new Character[] { luffy, nami, zoro };
+
+        //Creates crew from player characters
+        Crew m_PlayerCrew = new Crew(m_PlayerCharacters);
+
+
         //Loads cards in from file and creates a deck from them
-        CSVContainer<Card> csvCards = new CSVContainer<Card>("deck.csv", Card.FromCSV);
-        m_Deck = new Deck<Card>(csvCards.AllItems.ToArray());
+        //CSVContainer<Card> csvCards = new CSVContainer<Card>("deck.csv", Card.FromCSV);
+        m_Deck = m_PlayerCrew.GetCrewDeck();
 
         m_Hand = new List<CardDisplay>();
 
@@ -45,19 +65,40 @@ public class BattleManager : MonoBehaviour
         DrawHands();
 
         //Creates enemy
-        enemy = new Character("Gwen",csvCards.AllItems.ToArray(), 100);
+        enemy = new Character("Gwen",luffyCards.AllItems.ToArray(), 100);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        switch (m_CurrentState)
         {
-            DrawHands();
+            case BattleStates.BattleStart:
+                ToNextState();
+                break;
+            case BattleStates.DrawPhase:
+                DrawHands();
+                ToNextState();
+                break;
+            case BattleStates.CardSelection:
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    ToNextState();
+                }
+                break;
+            case BattleStates.BattlePhase:
+                ToNextState();
+                break;
+            case BattleStates.BattleEnd:
+                Debug.Log("Enemy has been slain");
+                ToNextState();
+                break;
+            case BattleStates.Results:
+                break;
         }
     }
 
-    void ToNextState()
+     void ToNextState()
     {
         if (m_CurrentState == BattleStates.BattlePhase && !IsBattleOver())
         {
@@ -73,7 +114,7 @@ public class BattleManager : MonoBehaviour
             case BattleStates.BattleStart:
                 break;
             case BattleStates.DrawPhase:
-                DrawHands();
+                //DrawHands();
                 break;
             case BattleStates.CardSelection:
                 break;
@@ -88,7 +129,7 @@ public class BattleManager : MonoBehaviour
 
     bool IsBattleOver()
     {
-        return true;
+        return enemy.m_fHealth <= 0;
     }
 
     void DrawHands()
@@ -169,5 +210,4 @@ public class BattleManager : MonoBehaviour
         //Returns new card
         return newObj;
     }
- 
 }
