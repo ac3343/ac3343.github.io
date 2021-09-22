@@ -33,4 +33,9 @@ public class Crew
     {
         return GetCrewDeck(0);
     }
+
+    public Character GetRandomCharacter(int a_iCrew)
+    {
+        return m_CrewMembers[a_iCrew][Random.Range(0, 3)];
+    }
 }

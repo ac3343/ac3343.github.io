@@ -133,4 +133,12 @@ public class Deck<T>
     {
         return m_Hand[a_uHandIndex];
     }
+
+    public T[] GetRandomCardsInHand(int a_iCount)
+    {
+        if (a_iCount >= Hand.Count)
+            return m_Hand.ToArray();
+
+        return m_Hand.GetRange(0, a_iCount).ToArray();
+    }
 }

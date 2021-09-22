@@ -25,9 +25,12 @@ public class BattleManager : MonoBehaviour
     List<CardDisplay> m_Hand;
 
     Character enemy;
+    Crew m_EnemyCrew;
 
     Character[] m_PlayerCharacters;
     Crew m_PlayerCrew;
+
+    event CardEffect m_CardsToPlay;
 
 
     // Start is called before the first frame update
@@ -52,7 +55,7 @@ public class BattleManager : MonoBehaviour
         m_PlayerCharacters = new Character[] { luffy, nami, zoro };
 
         //Creates crew from player characters
-        Crew m_PlayerCrew = new Crew(m_PlayerCharacters);
+        m_PlayerCrew = new Crew(m_PlayerCharacters);
 
 
         //Loads cards in from file and creates a deck from them
@@ -65,7 +68,10 @@ public class BattleManager : MonoBehaviour
         DrawHands();
 
         //Creates enemy
-        enemy = new Character("Gwen",luffyCards.AllItems.ToArray(), 100);
+        CSVContainer<Card> enemyCards = new CSVContainer<Card>("enemy.csv", Card.FromCSV);
+        enemy = new Character("Gwen", enemyCards.AllItems.ToArray(), 100);
+
+        m_EnemyCrew = new Crew(new Character[] { enemy });
     }
 
     // Update is called once per frame
@@ -87,6 +93,7 @@ public class BattleManager : MonoBehaviour
                 }
                 break;
             case BattleStates.BattlePhase:
+                EnemyTurn();
                 ToNextState();
                 break;
             case BattleStates.BattleEnd:
@@ -209,5 +216,31 @@ public class BattleManager : MonoBehaviour
 
         //Returns new card
         return newObj;
+    }
+
+    void EnemyTurn()
+    {
+        //Selects random crew memeber
+        Character target = m_PlayerCrew.GetRandomCharacter(0);
+
+        //Plays random cards from hand on that crew member
+        Deck<Card> enemyDeck = m_EnemyCrew.GetCrewDeck();
+        enemyDeck.DrawHand();
+        Card[] randomCards = enemyDeck.GetRandomCardsInHand(2);
+
+        for(int i = 0; i < 2; i++)
+        {
+            Card currentCard = randomCards[i];
+            Debug.Log(enemy.m_sName + " uses " + currentCard.Name);
+            enemyDeck.PlayCard(i);
+            currentCard.PlayEffect(target);
+        }
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(50, 50, 100, 100), m_CurrentState.ToString());
+        string playerHealth = "Luffy: " + m_PlayerCharacters[0].m_fHealth + "\nNami: " + m_PlayerCharacters[1].m_fHealth + "\nZoro: " + m_PlayerCharacters[2].m_fHealth;
+        GUI.Label(new Rect(50, 150, 100, 100), playerHealth);
     }
 }

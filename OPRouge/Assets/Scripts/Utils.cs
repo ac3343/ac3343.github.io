@@ -54,4 +54,25 @@ public class Utils
 
         return indexes;
     }
+
+    //public static float[] DistinctRandom(float a_fMin, float a_fMax, uint a_uRolls)
+    //{
+    //    if (a_uRolls == 0)
+    //        return new float[0];
+    //
+    //    if(a_uRolls )
+    //
+    //    List<float> rolls = new List<float>();
+    //
+    //    for(int i = 0; i < a_uRolls; i++)
+    //    {
+    //        float randomNumber = Random.Range(a_fMin, a_fMax);
+    //
+    //
+    //        while (rolls.Contains(randomNumber))
+    //        {
+    //            
+    //        }
+    //    }
+    //}
 }
