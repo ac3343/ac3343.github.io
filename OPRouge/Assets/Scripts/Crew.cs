@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Crew
 {
+    Character[] m_AllCharacters;
     List<List<Character>> m_CrewMembers;
     List<Deck<Card>> m_CrewDecks;
+    List<string> m_CrewNames;
+    int m_iCrewCount;
+    float m_fMaxCrewHealth;
+    float m_fCrewHealth;
 
     public Crew(Character[] a_Crew)
     {
+        m_AllCharacters = a_Crew;
         m_CrewMembers = new List<List<Character>>();
         m_CrewMembers.Add(new List<Character>(a_Crew));
+        m_CrewNames = new List<string>();
+        m_iCrewCount = 1;
 
         m_CrewDecks = new List<Deck<Card>>();
 
@@ -22,6 +30,22 @@ public class Crew
         }
 
         m_CrewDecks.Add(new Deck<Card>(allCrewCards.ToArray()));
+
+        m_fMaxCrewHealth = 0;
+        string crewName = "";
+        foreach(Character c in m_CrewMembers[0])
+        {
+            m_fMaxCrewHealth += c.m_fHealth;
+            crewName += c.m_sName;
+        }
+        m_CrewNames.Add(crewName);
+        m_fCrewHealth = m_fMaxCrewHealth;
+    }
+
+    public void TakeDamge(float damage)
+    {
+        m_fCrewHealth -= damage;
+        Debug.Log(m_CrewNames[0] + " took " + damage + " damage and is at " + m_fCrewHealth + " health");
     }
 
     public Deck<Card> GetCrewDeck(int a_iCrewNum)

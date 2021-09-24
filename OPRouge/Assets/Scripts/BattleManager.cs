@@ -188,7 +188,7 @@ public class BattleManager : MonoBehaviour
         //Creates function to call when card is played
         void PlayCard()
         {
-            currentCard.PlayEffect(enemy);
+            currentCard.PlayCrewEffect(m_EnemyCrew);
             m_Deck.PlayCard(index);
         }
 
@@ -233,7 +233,7 @@ public class BattleManager : MonoBehaviour
             Card currentCard = randomCards[i];
             Debug.Log(enemy.m_sName + " uses " + currentCard.Name);
             enemyDeck.PlayCard(i);
-            currentCard.PlayEffect(target);
+            currentCard.PlayCrewEffect(m_PlayerCrew);
         }
     }
 

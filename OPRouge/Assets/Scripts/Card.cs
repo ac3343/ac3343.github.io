@@ -10,6 +10,7 @@ public struct Card
     string m_tag1;
 
     CardEffect m_Effect;
+    CardEffectCrew m_CrewEffect;
 
     const string FileToRead = "deck.csv";
 
@@ -33,16 +34,22 @@ public struct Card
         get { return m_Effect; }
     }
 
+    public CardEffectCrew PlayCrewEffect
+    {
+        get { return m_CrewEffect; }
+    }
+
     public Card(string a_sName, string a_sDesc, string a_sDamage)
     {
         m_cardName = a_sName;
         m_cardDesc = a_sDesc;
-        m_tag1 = "Attack";
+        m_tag1 = a_sDamage;
 
         float damage = 0;
         float.TryParse(a_sDamage, out damage);
 
         m_Effect = CardEffects.Attack(damage);
+        m_CrewEffect = CardEffects.AttackCrew(damage);
     }
 
     public static Card FromCSV(string[] csvColumns)
