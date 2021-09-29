@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum BattleStates
+public enum BattleStates
 {
     BattleStart,
     DrawPhase,
@@ -31,6 +31,8 @@ public class BattleManager : MonoBehaviour
     Crew m_PlayerCrew;
 
     event CardEffect m_CardsToPlay;
+
+    BattleUI m_BattleUI;
 
 
     // Start is called before the first frame update
@@ -64,19 +66,23 @@ public class BattleManager : MonoBehaviour
 
         m_Hand = new List<CardDisplay>();
 
-        //Draws first hand
-        DrawHands();
-
         //Creates enemy
         CSVContainer<Card> enemyCards = new CSVContainer<Card>("enemy.csv", Card.FromCSV);
         enemy = new Character("Gwen", enemyCards.AllItems.ToArray(), 100);
 
         m_EnemyCrew = new Crew(new Character[] { enemy });
+
+        m_BattleUI = gameObject.GetComponent<BattleUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (m_BattleUI.InTransition)
+        {
+            //Debug.Log("Transitioning");
+            return;
+        }
         switch (m_CurrentState)
         {
             case BattleStates.BattleStart:
@@ -106,7 +112,9 @@ public class BattleManager : MonoBehaviour
     }
 
      void ToNextState()
-    {
+     {
+        string outroText = "Ending " + m_CurrentState.ToString();
+
         if (m_CurrentState == BattleStates.BattlePhase && !IsBattleOver())
         {
             m_CurrentState = BattleStates.DrawPhase;
@@ -121,7 +129,6 @@ public class BattleManager : MonoBehaviour
             case BattleStates.BattleStart:
                 break;
             case BattleStates.DrawPhase:
-                //DrawHands();
                 break;
             case BattleStates.CardSelection:
                 break;
@@ -132,6 +139,11 @@ public class BattleManager : MonoBehaviour
             case BattleStates.Results:
                 break;
         }
+
+        string introText = "Begining " + m_CurrentState.ToString();
+
+        m_BattleUI.ToNextState(outroText, introText);
+
     }
 
     bool IsBattleOver()
