@@ -1,0 +1,1846 @@
+fileFormatVersion: 2
+guid: 7e6a55b41556c7842afae5014d0d8f87
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7280318222895243996
+    second: motion_1011339_luffy_0001_0
+  - first:
+      213: 8237816989297612121
+    second: motion_1011339_luffy_0001_1
+  - first:
+      213: 1693214385855015295
+    second: motion_1011339_luffy_0001_2
+  - first:
+      213: 970830844292322362
+    second: motion_1011339_luffy_0001_3
+  - first:
+      213: 3553801160707632687
+    second: motion_1011339_luffy_0001_4
+  - first:
+      213: -7971422819292958060
+    second: motion_1011339_luffy_0001_5
+  - first:
+      213: -2462569347438861621
+    second: motion_1011339_luffy_0001_6
+  - first:
+      213: -5693318168093110221
+    second: motion_1011339_luffy_0001_7
+  - first:
+      213: 2773994757312336989
+    second: motion_1011339_luffy_0001_8
+  - first:
+      213: 3657040608038209676
+    second: motion_1011339_luffy_0001_9
+  - first:
+      213: 7153276447143333739
+    second: motion_1011339_luffy_0001_10
+  - first:
+      213: -5003881151419846851
+    second: motion_1011339_luffy_0001_11
+  - first:
+      213: 7639373821697050340
+    second: motion_1011339_luffy_0001_12
+  - first:
+      213: -4197781758812467121
+    second: motion_1011339_luffy_0001_13
+  - first:
+      213: 3929901237143023760
+    second: motion_1011339_luffy_0001_14
+  - first:
+      213: 8323050807820567783
+    second: motion_1011339_luffy_0001_15
+  - first:
+      213: -8547180200427388637
+    second: motion_1011339_luffy_0001_16
+  - first:
+      213: 6848946404033016584
+    second: motion_1011339_luffy_0001_17
+  - first:
+      213: 3347192660486499124
+    second: motion_1011339_luffy_0001_18
+  - first:
+      213: 1047518307121667028
+    second: motion_1011339_luffy_0001_19
+  - first:
+      213: -5393095065530268767
+    second: motion_1011339_luffy_0001_20
+  - first:
+      213: 7911896281562752247
+    second: motion_1011339_luffy_0001_21
+  - first:
+      213: -8449957089276375735
+    second: motion_1011339_luffy_0001_22
+  - first:
+      213: 1283193838603458680
+    second: motion_1011339_luffy_0001_23
+  - first:
+      213: -8727673285978667671
+    second: motion_1011339_luffy_0001_24
+  - first:
+      213: -3779125945770630699
+    second: motion_1011339_luffy_0001_25
+  - first:
+      213: 8189294563966647412
+    second: motion_1011339_luffy_0001_26
+  - first:
+      213: -1798038449169888383
+    second: motion_1011339_luffy_0001_27
+  - first:
+      213: -6597454270158518360
+    second: motion_1011339_luffy_0001_28
+  - first:
+      213: 1366214239775199199
+    second: motion_1011339_luffy_0001_29
+  - first:
+      213: 339138033025047480
+    second: motion_1011339_luffy_0001_30
+  - first:
+      213: 6427167835773666504
+    second: motion_1011339_luffy_0001_31
+  - first:
+      213: 8784955705442645739
+    second: motion_1011339_luffy_0001_32
+  - first:
+      213: 2651334958695186528
+    second: motion_1011339_luffy_0001_33
+  - first:
+      213: -5093805504232117652
+    second: motion_1011339_luffy_0001_34
+  - first:
+      213: -2048412439042027049
+    second: motion_1011339_luffy_0001_35
+  - first:
+      213: -4581799667621995210
+    second: motion_1011339_luffy_0001_36
+  - first:
+      213: 6508818229115707652
+    second: motion_1011339_luffy_0001_37
+  - first:
+      213: 907731569989442875
+    second: motion_1011339_luffy_0001_38
+  - first:
+      213: -2243968462895645528
+    second: motion_1011339_luffy_0001_39
+  - first:
+      213: -1863543300717884437
+    second: motion_1011339_luffy_0001_40
+  - first:
+      213: 6445429212306343216
+    second: motion_1011339_luffy_0001_41
+  - first:
+      213: 2605985781291130163
+    second: motion_1011339_luffy_0001_42
+  - first:
+      213: 5999886558630472428
+    second: motion_1011339_luffy_0001_43
+  - first:
+      213: -1616177834763276212
+    second: motion_1011339_luffy_0001_44
+  - first:
+      213: -2545077236449787585
+    second: motion_1011339_luffy_0001_45
+  - first:
+      213: 4565146556864138949
+    second: motion_1011339_luffy_0001_46
+  - first:
+      213: 2689449702030550323
+    second: motion_1011339_luffy_0001_47
+  - first:
+      213: 798907247796289107
+    second: motion_1011339_luffy_0001_48
+  - first:
+      213: 141418117667810468
+    second: motion_1011339_luffy_0001_49
+  - first:
+      213: 3919688041042661638
+    second: motion_1011339_luffy_0001_50
+  - first:
+      213: 1920657904129686607
+    second: motion_1011339_luffy_0001_51
+  - first:
+      213: -5835501854970032108
+    second: motion_1011339_luffy_0001_52
+  - first:
+      213: 4557759504178164799
+    second: motion_1011339_luffy_0001_53
+  - first:
+      213: -5529363533347453907
+    second: motion_1011339_luffy_0001_54
+  - first:
+      213: 9153316322728635835
+    second: motion_1011339_luffy_0001_55
+  - first:
+      213: -887481630743688532
+    second: motion_1011339_luffy_0001_56
+  - first:
+      213: 8908946231750815275
+    second: motion_1011339_luffy_0001_57
+  - first:
+      213: -8650757737036557165
+    second: motion_1011339_luffy_0001_58
+  - first:
+      213: 1233883268602359882
+    second: motion_1011339_luffy_0001_59
+  - first:
+      213: 2251023480904511562
+    second: motion_1011339_luffy_0001_60
+  - first:
+      213: -2618270169793275127
+    second: motion_1011339_luffy_0001_61
+  - first:
+      213: 6424008274729802187
+    second: motion_1011339_luffy_0001_62
+  - first:
+      213: 1086418373092997057
+    second: motion_1011339_luffy_0001_63
+  - first:
+      213: -4043855990785832609
+    second: motion_1011339_luffy_0001_64
+  - first:
+      213: 4123177312169046893
+    second: motion_1011339_luffy_0001_65
+  - first:
+      213: -8494261414613827828
+    second: motion_1011339_luffy_0001_66
+  - first:
+      213: -7592444867513793792
+    second: motion_1011339_luffy_0001_67
+  - first:
+      213: -4880112774443214855
+    second: motion_1011339_luffy_0001_68
+  - first:
+      213: -4599392818240178870
+    second: motion_1011339_luffy_0001_69
+  - first:
+      213: -4768607303198340192
+    second: motion_1011339_luffy_0001_70
+  - first:
+      213: -7944340980477821998
+    second: motion_1011339_luffy_0001_71
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 824
+        width: 97
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d9688262d17fa90800000000000000
+      internalID: -7280318222895243996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 824
+        width: 97
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95513cbe7ea925270800000000000000
+      internalID: 8237816989297612121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_2
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 824
+        width: 123
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f79287d43818f7710800000000000000
+      internalID: 1693214385855015295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_3
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 824
+        width: 122
+        height: 191
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34590b5285197d00800000000000000
+      internalID: 970830844292322362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_4
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 824
+        width: 159
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e695aa353a15130800000000000000
+      internalID: 3553801160707632687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_5
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 824
+        width: 97
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 492b9952e21df5190800000000000000
+      internalID: -7971422819292958060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_6
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 1001
+        width: 6
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2242bc93233ddd0800000000000000
+      internalID: -2462569347438861621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_7
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 989
+        width: 6
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33058856a454df0b0800000000000000
+      internalID: -5693318168093110221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_8
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 986
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d54d566d8853f7620800000000000000
+      internalID: 2773994757312336989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_9
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 970
+        width: 24
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88cb43ae0b60c230800000000000000
+      internalID: 3657040608038209676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_10
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 970
+        width: 23
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6f852c670b854360800000000000000
+      internalID: 7153276447143333739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_11
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 965
+        width: 30
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3fe85fba94ae8ab0800000000000000
+      internalID: -5003881151419846851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_12
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 971
+        width: 82
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6cba40402840a60800000000000000
+      internalID: 7639373821697050340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_13
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 972
+        width: 8
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f405e5d2bbb7eb5c0800000000000000
+      internalID: -4197781758812467121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_14
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 893
+        width: 70
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090374a8a50d98630800000000000000
+      internalID: 3929901237143023760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_15
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 915
+        width: 34
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e44cafbc9a618370800000000000000
+      internalID: 8323050807820567783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_16
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 908
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321064284e0526980800000000000000
+      internalID: -8547180200427388637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_17
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 886
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 803b31a97785c0f50800000000000000
+      internalID: 6848946404033016584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_18
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 901
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ba7139dfd937e20800000000000000
+      internalID: 3347192660486499124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_19
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 853
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db94bfa958898e00800000000000000
+      internalID: 1047518307121667028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_20
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 888
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3082b9c90e725b0800000000000000
+      internalID: -5393095065530268767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_21
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 838
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f42842cfb3bccd60800000000000000
+      internalID: 7911896281562752247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_22
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 821
+        width: 14
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d436e0cc8bbba80800000000000000
+      internalID: -8449957089276375735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_23
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 661
+        width: 110
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 878ddef5ff1dec110800000000000000
+      internalID: 1283193838603458680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_24
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 661
+        width: 110
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9654399336311e680800000000000000
+      internalID: -8727673285978667671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_25
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 683
+        width: 26
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d121e899f8dd8bc0800000000000000
+      internalID: -3779125945770630699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_26
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 781
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47cf446640836a170800000000000000
+      internalID: 8189294563966647412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_27
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 774
+        width: 69
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b0cb09e851c07e0800000000000000
+      internalID: -1798038449169888383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_28
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 669
+        width: 84
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a7415dcb422174a0800000000000000
+      internalID: -6597454270158518360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_29
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 733
+        width: 97
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf81e0dc94c5f210800000000000000
+      internalID: 1366214239775199199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_30
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 758
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bb58448e3cd4b400800000000000000
+      internalID: 339138033025047480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_31
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 742
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c40b131813e13950800000000000000
+      internalID: 6427167835773666504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_32
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 723
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6337e5bae6ae970800000000000000
+      internalID: 8784955705442645739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_33
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 711
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0600a99f81f6bc420800000000000000
+      internalID: 2651334958695186528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_34
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 707
+        width: 66
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6aa05dc1ea2f49b0800000000000000
+      internalID: -5093805504232117652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_35
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 667
+        width: 70
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d198695db39293e0800000000000000
+      internalID: -2048412439042027049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_36
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 698
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63d536b4a7d2a60c0800000000000000
+      internalID: -4581799667621995210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_37
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 672
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4016706b1b7f35a50800000000000000
+      internalID: 6508818229115707652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_38
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 651
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3dd0a4bd09e89c00800000000000000
+      internalID: 907731569989442875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_39
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 644
+        width: 80
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8acfce17292dbd0e0800000000000000
+      internalID: -2243968462895645528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_40
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 635
+        width: 70
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebc621dd3d5326e0800000000000000
+      internalID: -1863543300717884437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_41
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 660
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 035027028b3c27950800000000000000
+      internalID: 6445429212306343216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_42
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 643
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d939fc2425a2420800000000000000
+      internalID: 2605985781291130163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_43
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 663
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea6fcb4901e34350800000000000000
+      internalID: 5999886558630472428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_44
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 659
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40331972de2299e0800000000000000
+      internalID: -1616177834763276212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_45
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 482
+        width: 160
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f314a73ecb11eacd0800000000000000
+      internalID: -2545077236449787585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_46
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 476
+        width: 113
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce0c753b98aa5f30800000000000000
+      internalID: 4565146556864138949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_47
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 571
+        width: 124
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 335afc23148d25520800000000000000
+      internalID: 2689449702030550323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_48
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 633
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35ef169b8e9461b00800000000000000
+      internalID: 798907247796289107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_49
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 634
+        width: 123
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ace46c570b66f100800000000000000
+      internalID: 141418117667810468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_50
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 547
+        width: 66
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601d1b48187856630800000000000000
+      internalID: 3919688041042661638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_51
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 617
+        width: 66
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c32be003c87aa10800000000000000
+      internalID: 1920657904129686607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_52
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 576
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 410d0601bf1240fa0800000000000000
+      internalID: -5835501854970032108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_53
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 594
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34333afe1a604f30800000000000000
+      internalID: 4557759504178164799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_54
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 344
+        width: 139
+        height: 271
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2483d88921c343b0800000000000000
+      internalID: -5529363533347453907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_55
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 338
+        width: 65
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd660df2bc170f70800000000000000
+      internalID: 9153316322728635835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_56
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 379
+        width: 309
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa86dea8280fa3f0800000000000000
+      internalID: -887481630743688532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_57
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 377
+        width: 56
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2eef8a656fe2ab70800000000000000
+      internalID: 8908946231750815275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_58
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 407
+        width: 229
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39459fdfba552f780800000000000000
+      internalID: -8650757737036557165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_59
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 179
+        width: 96
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40775f9b42af1110800000000000000
+      internalID: 1233883268602359882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_60
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 173
+        width: 117
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a407060fded3d3f10800000000000000
+      internalID: 2251023480904511562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_61
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 181
+        width: 118
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b587b17290aabd0800000000000000
+      internalID: -2618270169793275127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_62
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 181
+        width: 143
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc990717d79a62950800000000000000
+      internalID: 6424008274729802187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_63
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 183
+        width: 142
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c77aa511cbb31f00800000000000000
+      internalID: 1086418373092997057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_64
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 130
+        width: 142
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f590062d66651e7c0800000000000000
+      internalID: -4043855990785832609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_65
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 132
+        width: 141
+        height: 192
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6339cd7be7783930800000000000000
+      internalID: 4123177312169046893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_66
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 10
+        width: 143
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0fb2a87f325e1a80800000000000000
+      internalID: -8494261414613827828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_67
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 10
+        width: 144
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0034a179e9732a690800000000000000
+      internalID: -7592444867513793792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_68
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 4
+        width: 155
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7577f994b564cb0800000000000000
+      internalID: -4880112774443214855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_69
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 5
+        width: 164
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45bf46b99cab20c0800000000000000
+      internalID: -4599392818240178870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_70
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 3
+        width: 192
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab87834ce082ddb0800000000000000
+      internalID: -4768607303198340192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: motion_1011339_luffy_0001_71
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 3
+        width: 189
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db7a0c18f700c190800000000000000
+      internalID: -7944340980477821998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ae162cf50538ad442b8f7a23452d2cbf
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
