@@ -12,6 +12,8 @@ public class Dancer : MonoBehaviour
     private Material aura;
     private Color[] auraColors;
 
+    private string s_Combo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,19 +25,19 @@ public class Dancer : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.UpArrow)){
-            SetPose(0);
+            ContinueCombo(0);
         }
         else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            SetPose(1);
+            ContinueCombo(1);
         }
         else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            SetPose(2);
+            ContinueCombo(2);
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            SetPose(3);
+            ContinueCombo(3);
         }
     }
 
@@ -45,13 +47,33 @@ public class Dancer : MonoBehaviour
         foreach (GameObject p in poses)
         {
             p.SetActive(false);
-        }
+        }        
 
         //Shows pose
         u_CurrentPose = poses[i];
         u_CurrentPose.SetActive(true);
 
+        //Sets outline color and size
         aura.SetColor("_Color", auraColors[i]);
-        aura.SetFloat("_Outline", .01f * i + .01f);
+        aura.SetFloat("_Outline", .01f * i + .01f);        
+    }
+
+    private void ContinueCombo(uint i)
+    {
+        //Adds pose to combo
+        s_Combo += i;
+
+        //Sets pose
+        SetPose(i);
+
+        Debug.Log(s_Combo);
+
+        if (s_Combo.Length >= 3)
+        {
+            //Activates combo effect
+
+            //Clears combo
+            s_Combo = "";
+        }
     }
 }
