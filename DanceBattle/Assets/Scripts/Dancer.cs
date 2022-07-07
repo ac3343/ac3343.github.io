@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dancer : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class Dancer : MonoBehaviour
     private const int DEFAULT_STYLE = 3;
     private int i_styleBuff;
 
+    private Slider hypeSlider;
+    private Slider styleSlider;
+
     public string Combo
     {
         get { return s_Combo; }
@@ -36,6 +40,9 @@ public class Dancer : MonoBehaviour
 
         f_hype = 0;
         f_hypeMultiplier = 1;
+
+        hypeSlider = GameObject.FindGameObjectWithTag("UI_Hype").GetComponent<Slider>();
+        styleSlider = GameObject.FindGameObjectWithTag("UI_Style").GetComponent<Slider>();
 
         i_styleBuff = 0;
         TurnStart();
@@ -102,6 +109,7 @@ public class Dancer : MonoBehaviour
 
             //Decrements style gague
             i_style -= 1;
+            styleSlider.value = i_style;
 
             PrintDancer();
         }
@@ -112,6 +120,7 @@ public class Dancer : MonoBehaviour
         //Resets style bar
         i_style = DEFAULT_STYLE + i_styleBuff;
         i_styleBuff = 0;
+        styleSlider.value = i_style;
     }
 
     private void EndTurn()
@@ -133,6 +142,7 @@ public class Dancer : MonoBehaviour
     {
         f_hype += hype * f_hypeMultiplier;
         f_hypeMultiplier = 1;
+        hypeSlider.value = f_hype / MAX_HYPE;
     }
 
     private void PrintDancer()
