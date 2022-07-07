@@ -14,11 +14,31 @@ public class Dancer : MonoBehaviour
 
     private string s_Combo;
 
+    private float f_hype;
+    private const float MAX_HYPE = 50;
+    private float f_storedHype;
+    private float f_hypeMultiplier;
+
+    private int i_style;
+    private const int DEFAULT_STYLE = 3;
+    private int i_styleBuff;
+
+    public string Combo
+    {
+        get { return s_Combo; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         auraColors = new Color[] { new Color(0, 0, 1), new Color(1, 0, 1), new Color(0, 1, 1), new Color(1, 1, 0) };
         SetPose(0);
+
+        f_hype = 0;
+        f_hypeMultiplier = 1;
+
+        i_styleBuff = 0;
+        TurnStart();
     }
 
     // Update is called once per frame
@@ -60,6 +80,10 @@ public class Dancer : MonoBehaviour
 
     private void ContinueCombo(uint i)
     {
+        if(i_style <= 0)
+        {
+            return;
+        }
         //Adds pose to combo
         s_Combo += i;
 
@@ -71,9 +95,48 @@ public class Dancer : MonoBehaviour
         if (s_Combo.Length >= 3)
         {
             //Activates combo effect
+            Dances.ComboEffect(this);
 
             //Clears combo
             s_Combo = "";
+
+            //Decrements style gague
+            i_style -= 1;
+
+            PrintDancer();
         }
+    }
+
+    private void TurnStart()
+    {
+        //Resets style bar
+        i_style = DEFAULT_STYLE + i_styleBuff;
+        i_styleBuff = 0;
+    }
+
+    private void EndTurn()
+    {
+
+    }
+
+    public void ApplyHypeBuff(float multiplier)
+    {
+        f_hypeMultiplier += multiplier;
+    }
+
+    public void ApplyStyleBuff(int multiplier)
+    {
+        i_styleBuff += multiplier;
+    }
+
+    public void BuildHype(float hype)
+    {
+        f_hype += hype * f_hypeMultiplier;
+        f_hypeMultiplier = 1;
+    }
+
+    private void PrintDancer()
+    {
+        Debug.Log("Hype: " + f_hype + " Buff: " + f_hypeMultiplier + "\nStyle: " + i_style + " Buff: " + i_styleBuff);
     }
 }
