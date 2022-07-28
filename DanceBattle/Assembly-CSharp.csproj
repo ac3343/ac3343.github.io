@@ -57,10 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Sci-Fi Shader Pack\Assets\ForAllRenderers\Scripts\ShadersControl.cs" />
+    <Compile Include="Assets\Scripts\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Dancer.cs" />
     <Compile Include="Assets\Scripts\FPSLimiter.cs" />
-    <Compile Include="Assets\Scripts\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Dances.cs" />
+    <Compile Include="Assets\Scripts\Dance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sci-Fi Shader Pack\Assets\StandartRender\Shaders\GostStandart.shader" />
