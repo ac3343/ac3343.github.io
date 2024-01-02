@@ -1,107 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>
-        Andrew Cambridge
-    </title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+    <title>Andrew Cambridge</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@300&family=Raleway:ital,wght@0,400;1,200&display=swap"
-        rel="stylesheet">
+    <!-- Add this to <head> -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@2/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+        crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="//unpkg.com/vue@2/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@2/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@2/dist/bootstrap-vue-icons.min.js"></script>
+
 
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="portfolio/styles/default-styles.css">
-    <script src="portfolio/src/main.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/default.css">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#top">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="portfolio/images/Resume.pdf" target="_blank">Resume</a></li>
-            </ul>
+    <div id="app">
+        <b-overlay :show="show" rounded="sm" id="overlayContent">
+            <b-button @click="show = !show;" id="topButton" pill variant="danger">About</b-button>
+            <div id="projectCardContainer">
+                <b-card-group  class="cardGroup">
+                    <b-card v-for="p in projects.filter(a=>(3 >= a.pos))" v-bind:title="p.title" v-bind:img-src="p.image"
+                        v-bind:sub-title="p.technRole" img-height="75%">
+                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
+                    </b-card>
+                </b-card-group>
+                <b-card-group  class="cardGroup">
+                    <b-card v-for="p in projects.filter(a=>( a.pos > 3))" v-bind:title="p.title" v-bind:img-src="p.image"
+                        v-bind:sub-title="p.technRole" img-height="75%"> 
+                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
+                    </b-card>
+                </b-card-group>
+            </div>
+            
+            <template #overlay>
+                <b-card img-src="images/me.jpg" img-left img-alt="Photo Of Andrew Cambridge" 
+                id="overlayCard" class="card-img-left" img-height="100%" img-width="auto" height="auto"
+                width="auto">
+                <b-card-title>About + Contact</b-card-title>
+                <b-card-text>
+                    Technology is incredible. From the vast and varied worlds of games and films
+                    to the regular yet remarkable presence of social media and smartphones. It has
+                    shaped my life and makes me glad I was born in the twenty-first century. That's
+                    why it was so fulfilling to learn programming languages like C#, Java, JavaScript,
+                    and HTML. Being able to create experiences, much like the ones I interacted with
+                    growing up, is exciting. And, with tools like Unity and Unreal, I hope to make
+                    something that may impact others the way technology has impacted me.
+                </b-card-text>
+                <b-card-sub-title>Contact Info</b-card-sub-title>
+                <address>
+                    Email: <a href="mailto:cambridgebandrew@gmail.com">cambridgebandrew@gmail.com</a><br>
+                    Phone: <a href="tel:+1-972-839-6665">972-839-6665</a> 
+                </address>
+                <b-link href="https://github.com/ac3343/Projects" class="fa fa-github"></b-link>
+                <b-link href="https://www.linkedin.com/in/andrewbcambridge/" class="fa fa-linkedin"></b-link>
+                <b-link href="https://twitter.com/CambridgeDrew" class="fa fa-twitter"></b-link>
+                
+                <b-button @click="show = false;" id="backButton" pill variant="warning">Back</b-button>
+                </b-card>
+            </template>
+        </b-overlay>
 
-        </nav>
-    </header>
-
-    <div id="top">
-        <div class="vertical-center">
-            <h1>Andrew Cambridge</h1>
-        </div>
     </div>
 
-    <main>
-        <div id="about" class="oddSection">
-            <h1>About</h1>
-            <p>Technology is incredible. From the vast and varied worlds of games and films
-                to the regular yet remarkable presence of social media and smartphones. It has
-                shaped my life and makes me glad I was born in the twenty-first century. That's
-                why it was so fulfilling to learn programming languages like C#, Java, JavaScript,
-                and HTML. Being able to create experiences, much like the ones I interacted with
-                growing up, is exciting. And, with tools like Unity and Unreal, I hope to make
-                something that may impact others the way technology has impacted me.</p>
-        </div>
-
-        <img src="portfolio/images/me.jpg" alt="Photo of Me" id="myPicture">
-        
-        <div id="projects" class="evenSection">
-            <h1>Projects</h1>
-            <br>
-            <div id="projectList">
-                <div class="projectImage" data-index="0" hidden></div>
-                <div class="projectImage" data-index="1" hidden></div>
-                <div class="projectImage" data-index="2" hidden></div>
-                <div class="projectImage" data-index="3" hidden></div>
-                <div class="projectImage" data-index="4" hidden></div>
-                <div class="projectImage" data-index="5" hidden></div>
-                <div class="projectImage" data-index="6" hidden></div>
-                <div class="projectImage" data-index="7" hidden></div>
-                <div class="projectImage" data-index="8" hidden></div>
-                <div class="projectImage" data-index="9" hidden></div>
-            </div>
-            <div class="projectItem">
-                <img src="https://raw.githubusercontent.com/ac3343/QwaxGame/master/QwaxGame/Assets/Images/slashmountainlogo.jpg"
-                    alt="Slash Mountain Logo">
-                <div class="projectDescription">
-                    <h2>Slash Mountain</h2>
-                    <h3>Programmer/C#/Unity</h3>
-                    <p>GameJam game made with 3 other team members. Short hack and slash that tells the story of a boy's
-                        journey to return his dead father's sword to the top of a mountain. *Image created by another
-                        member.</p>
-                    <div class="portLink"><a href="https://github.com/ac3343/QwaxGame" target="_blank">Link</a></div>
-                </div>
-
-            </div>
-        </div>
-
-
-
-        <div id="contact" class="evenSection">
-            <h1>Contact Info</h1>
-            <address>
-                Email: <a href="mailto:cambridgebandrew@gmail.com" >cambridgebandrew@gmail.com</a><br>
-                Phone: 972-839-6665
-            </address>
-            <a href="https://github.com/ac3343/Projects" class="fa fa-github"></a>
-            <a href="https://www.linkedin.com/in/andrewbcambridge/" class="fa fa-linkedin"></a>
-            <a href="https://twitter.com/CambridgeDrew" class="fa fa-twitter"></a>
-
-        </div>
-    </main>
-
-
+    <script src="src/main.js"></script>
 </body>
 
 </html>

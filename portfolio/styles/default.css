@@ -25,6 +25,11 @@ html{
 
 .cardGroup{
     padding: 1vh 0vw;
+    gap: 1vw;
+}
+
+.cardGroup .card{
+    border-radius:  var(--bs-border-radius) !important;
 }
 
 #topButton{
@@ -52,18 +57,19 @@ html{
 #overlayCard{
 /*background: radial-gradient(circle, #F2671F 0%,#C91B26 30%, #9C0F5F 80%);
 */
-padding: 15px;
-
+    padding: 15px;
 }
 
 .card-title{
     color: #160A47;
+    color: black;
     font-family: 'Advent Pro', sans-serif;
     font-weight: bold;
 }
 
 .card-subtitle{
     color: #473591;
+    color: black !important;
     font-family: 'Advent Pro', sans-serif;
     font-weight: bold;
 
@@ -79,6 +85,95 @@ a{
     color: #60047A;
 }
 
-#projectCardContainer .card:hover{
-    width: 2px;
+#projectDesc{
+    display: flex;
+    flex-flow: row wrap;
+    width: 82vw;
+    margin: auto;
+    background: linear-gradient(337deg, rgba(242,103,31,1) 0%, rgba(220,62,35,1) 32%, rgba(201,27,38,1) 100%);
+    border-radius: 50px;
+    height: 100%;
+    padding: 8vh 5vw;
+}
+
+#projectDesc button{
+    background: linear-gradient(157deg, rgba(22,10,71,1) 0%, rgba(96,4,122,1)  100%);
+    border: 0;
+}
+
+#projectDesc a{
+    color: white;
+    text-decoration: none;
+}
+
+#projectInfo{
+    width: 40%;
+    padding-left: 4vw;
+}
+
+#descContainer{
+    padding: 8vh 6vw;
+    height: 100%;
+}
+
+#descImg{
+    height: fit-content;
+    width: 100%;
+}
+
+#imgContainer{
+    width: 50%;
+}
+
+#descExit{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-content: end;
+    flex-wrap: wrap;
+}
+
+#descExit button{
+    height: 4.5vh;
+    width: 8vh;
+    margin-left: 1vw;
+}
+
+#projectInfo p{
+    overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+    #imgContainer, #projectInfo, #descExit{
+        width: 100%;
+        height: auto;
+    }
+
+    #projectInfo{
+        height: 50%;
+        overflow-y: auto;
+    }
+
+    #imgContainer{
+        height: fit-content;
+    }
+
+    #projectDesc{
+        border-radius: 25px;
+        padding: 4vh 5vw;
+        flex-direction: row;
+    }
+
+    #descExit button{
+        margin-left: 4vw;
+    }
+
+    #overlayCard{
+        flex-wrap: wrap;
+    }
+
+    #overlayCard img{
+        height: 2px;
+        visibility: hidden;
+    }
 }

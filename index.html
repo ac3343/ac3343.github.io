@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
     <title>Andrew Cambridge</title>
+    <link rel="icon" type="image/x-icon" href="portfolio/images/icon.png">
 
     <!-- Add this to <head> -->
 
@@ -39,19 +40,39 @@
     <div id="app">
         <b-overlay :show="show" rounded="sm" id="overlayContent">
             <b-button @click="show = !show;" id="topButton" pill variant="danger">About</b-button>
-            <div id="projectCardContainer">
+            <div id="projectCardContainer" v-show="!detailView">
                 <b-card-group  class="cardGroup">
                     <b-card v-for="p in projects.filter(a=>(3 >= a.pos))" v-bind:title="p.title" v-bind:img-src="p.image"
-                        v-bind:sub-title="p.technRole" img-height="75%">
-                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
+                        v-bind:sub-title="p.technRole" img-height="75%" @click="switchPage(p.pos - 1)">
+                        <!-- <a v-bind:href="p.link" class="stretched-link" target="_blank"></a> -->
                     </b-card>
                 </b-card-group>
                 <b-card-group  class="cardGroup">
                     <b-card v-for="p in projects.filter(a=>( a.pos > 3))" v-bind:title="p.title" v-bind:img-src="p.image"
-                        v-bind:sub-title="p.technRole" img-height="75%"> 
-                        <a v-bind:href="p.link" class="stretched-link" target="_blank"></a>
+                        v-bind:sub-title="p.technRole" img-height="75%" @click="switchPage(p.pos - 1)"> 
+                        <!-- <a v-bind:href="p.link" class="stretched-link" target="_blank"></a> -->
                     </b-card>
                 </b-card-group>
+            </div>
+
+            <div id="descContainer" v-show="detailView">
+                <div id="projectDesc">
+                    <div id="imgContainer">
+                        <b-img-lazy v-bind:src="currentProject.image" id="descImg"></b-img-lazy>
+                    </div>
+                    
+    
+                    <div id="projectInfo">
+                        <h1 v-text="currentProject.title">Project Title</h1>
+                        <h2 v-text="currentProject.technRole"></h2>
+                        <p v-text="currentProject.description"></p>
+                        
+                    </div>
+                    <div id="descExit">
+                        <b-button ><a v-bind:href="currentProject.link">Link</a></b-button>
+                        <b-button @click="switchPage()">Back</b-button>
+                    </div>
+                </div>
             </div>
             
             <template #overlay>
@@ -75,7 +96,6 @@
                 </address>
                 <b-link href="https://github.com/ac3343/Projects" class="fa fa-github"></b-link>
                 <b-link href="https://www.linkedin.com/in/andrewbcambridge/" class="fa fa-linkedin"></b-link>
-                <b-link href="https://twitter.com/CambridgeDrew" class="fa fa-twitter"></b-link>
                 
                 <b-button @click="show = false;" id="backButton" pill variant="warning">Back</b-button>
                 </b-card>

@@ -5,7 +5,8 @@ const app = new Vue({
     AllProjectsLink: "portfolio/projects/all",
     show: false,
     projectShow: [false, false, false, false, false, false],
-    normalCardMode: true
+    currentProject: {},
+    detailView: false
   },
   methods: {
     loadXMLDoc(file, onDataLoad) {
@@ -33,12 +34,10 @@ const app = new Vue({
         }
       });
     },
-    hoverHandler(isHovered){
-      if(isHovered){
-        projectShow = projectShow.map(a=> true);
-      }
-      else{
-
+    switchPage(projectIndex){
+      this.detailView = !this.detailView;
+      if(projectIndex != null){
+        this.currentProject = this.projects[projectIndex];
       }
     }
   }, // end methods

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+    <title>Andrew Cambridge</title>
+
+    <!-- Add this to <head> -->
+
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@2/dist/bootstrap-vue.min.css" />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+        crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="//unpkg.com/vue@2/dist/vue.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@2/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="//unpkg.com/bootstrap-vue@2/dist/bootstrap-vue-icons.min.js"></script>
+
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="portfolio/styles/default.css">
+</head>
+
+<body>
+    <div id="app">
+        <b-carousel
+            id="carousel-1"
+            :interval="4000"
+            controls
+            indicators
+            background="#ababab"
+            img-width="1024"
+            img-height="480"
+            style="text-shadow: 1px 1px 2px #333;"
+            >
+            <!-- Text slides with image -->
+            <b-carousel-slide
+                caption="First slide"
+                text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+                img-src="https://picsum.photos/1024/480/?image=52"
+            ></b-carousel-slide>
+
+            <!-- Slides with custom text -->
+            <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
+                <h1>Hello world!</h1>
+            </b-carousel-slide>
+
+            <!-- Slides with image only -->
+            <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
+
+            <!-- Slides with img slot -->
+            <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+            <b-carousel-slide>
+                <template #img>
+                <img
+                    class="d-block img-fluid w-100"
+                    width="1024"
+                    height="480"
+                    src="https://picsum.photos/1024/480/?image=55"
+                    alt="image slot"
+                >
+                </template>
+            </b-carousel-slide>
+        </b-carousel>
+
+    </div>
+
+    <script src="portfolio/src/project.js"></script>
+</body>
+
+</html>
